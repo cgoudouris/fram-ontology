@@ -1,0 +1,527 @@
+@prefix fram: <https://flowfram.com/ontology/fram/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+# =============================================================================
+# FRAM Ontology - Functional Resonance Analysis Method
+# =============================================================================
+# 
+# An OWL 2 ontology for representing FRAM models, functions, aspects,
+# couplings, variability, and functional resonance analysis.
+#
+# Based on the work of Erik Hollnagel (2012, 2014, 2017) and formalized
+# as part of the FlowFRAM platform (https://flowfram.com).
+#
+# References:
+#   - Hollnagel, E. (2012). FRAM: The Functional Resonance Analysis Method.
+#   - Hollnagel, E. (2014). Safety-I and Safety-II.
+#   - Hollnagel, E. (2017). Safety-II in Practice.
+#   - W3C OWL 2 Web Ontology Language: https://www.w3.org/TR/owl2-overview/
+#   - W3C JSON-LD 1.1: https://www.w3.org/TR/json-ld11/
+# =============================================================================
+
+<https://flowfram.com/ontology/fram/> a owl:Ontology ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
+    dc:title "FRAM Ontology"@en ;
+    dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
+    dc:creator "César Goudouris" ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:created "2025-01-01"^^xsd:date ;
+    dcterms:modified "2025-06-01"^^xsd:date ;
+    vann:preferredNamespacePrefix "fram" ;
+    vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
+    rdfs:seeAlso <https://github.com/flowfram/fram-ontology> ;
+    rdfs:seeAlso <https://flowfram.com> .
+
+
+# =============================================================================
+# CORE CLASSES
+# =============================================================================
+
+fram:FRAMModel a owl:Class ;
+    rdfs:label "FRAM Model"@en ;
+    rdfs:comment "A complete FRAM model consisting of functions, aspects, and couplings. Represents a systemic description of how work is done (Work-as-Done) or imagined (Work-as-Imagined)."@en ;
+    skos:definition "A structured representation of a socio-technical system using the Functional Resonance Analysis Method, composed of interconnected functions characterized by six aspects."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:Function a owl:Class ;
+    rdfs:label "Function"@en ;
+    rdfs:comment "A FRAM function representing an activity or task in a socio-technical system. Each function is characterized by six aspects: Input, Output, Precondition, Resource, Control, and Time."@en ;
+    skos:definition "The basic unit of a FRAM model describing what people, organizations, or technology do. Functions are described by their six aspects rather than by their structure."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:Aspect a owl:Class ;
+    rdfs:label "Aspect"@en ;
+    rdfs:comment "One of the six characterizing aspects of a FRAM function: Input (I), Output (O), Precondition (P), Resource (R), Control (C), or Time (T)."@en ;
+    skos:definition "An aspect port on a FRAM function hexagon. Each function has exactly six aspects that describe the conditions necessary and sufficient for that function to be carried out."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:Coupling a owl:Class ;
+    rdfs:label "Coupling"@en ;
+    rdfs:comment "A coupling (connection) between the Output aspect of one function and an Input, Precondition, Resource, Control, or Time aspect of another function."@en ;
+    skos:definition "A directed link between functions representing how the output of one function provides input, preconditions, resources, control, or timing for another. Couplings are the pathways through which variability propagates."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:Variability a owl:Class ;
+    rdfs:label "Variability"@en ;
+    rdfs:comment "The potential variability of a function's output, characterized by timing and precision phenotypes."@en ;
+    skos:definition "Performance variability describes how the output of a function can vary in terms of timing (too early, on time, too late, not at all) and precision (precise, acceptable, imprecise). This variability propagates through couplings creating functional resonance."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:PerformanceCondition a owl:Class ;
+    rdfs:label "Performance Condition"@en ;
+    rdfs:comment "A Common Performance Condition (CPC) that influences the variability of function outputs."@en ;
+    skos:definition "Conditions in the work environment that affect how functions are performed and the variability of their outcomes. Based on Hollnagel's Common Performance Conditions framework."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:FunctionalResonance a owl:Class ;
+    rdfs:label "Functional Resonance"@en ;
+    rdfs:comment "An emergent phenomenon arising from the unintended interaction of everyday performance variability of multiple functions."@en ;
+    skos:definition "The detectable signal arising when everyday variability of multiple functions combines and amplifies through couplings, potentially leading to unexpected outcomes. This is the core concept of FRAM analysis."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:Distribution a owl:Class ;
+    rdfs:label "Distribution"@en ;
+    rdfs:comment "A probability distribution characterizing the quantitative variability of a function output or aspect."@en ;
+    skos:definition "A mathematical probability distribution (Normal, Uniform, Triangular, LogNormal) used to quantify the variability of function outputs for simulation and analysis."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:Phenotype a owl:Class ;
+    rdfs:label "Phenotype"@en ;
+    rdfs:comment "A qualitative characterization of output variability, classified as either a timing phenotype or a precision phenotype."@en ;
+    skos:definition "An observable expression of performance variability, categorized along two dimensions: timing and precision. Phenotypes provide a qualitative vocabulary for describing how function outputs vary."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# FUNCTION TYPE SUBCLASSES
+# =============================================================================
+
+fram:HumanFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Human Function"@en ;
+    rdfs:comment "A function performed by a human actor, characterized by high adaptability but also high variability."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:TechnologicalFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Technological Function"@en ;
+    rdfs:comment "A function performed by a technological system, characterized by high precision but limited adaptability."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:OrganisationalFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Organisational Function"@en ;
+    rdfs:comment "A function representing organisational processes, rules, or procedures."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:BackgroundFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Background Function"@en ;
+    rdfs:comment "A function that operates in the background, providing context or conditions for other functions."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:EntryFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Entry Function"@en ;
+    rdfs:comment "A function at the entry point of an FMI (FRAM Model Instantiation), active from Cycle 0."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:ExitFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Exit Function"@en ;
+    rdfs:comment "A function at the exit point of an FMI, representing final outputs of the instantiation."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# ASPECT TYPE SUBCLASSES
+# =============================================================================
+
+fram:InputAspect a owl:Class ;
+    rdfs:subClassOf fram:Aspect ;
+    rdfs:label "Input Aspect (I)"@en ;
+    rdfs:comment "The Input aspect: what the function processes or transforms. Represented at the left side of the FRAM hexagon."@en ;
+    skos:definition "That which the function processes or transforms or that which starts the function. A function can be linked to, or activated by, more than one input."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:OutputAspect a owl:Class ;
+    rdfs:subClassOf fram:Aspect ;
+    rdfs:label "Output Aspect (O)"@en ;
+    rdfs:comment "The Output aspect: what the function produces. The only aspect that can be a source of couplings to other functions."@en ;
+    skos:definition "That which is the result of the function, either an entity or a state change. The output of one function can provide the input, precondition, resource, control, or time for other functions."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:PreconditionAspect a owl:Class ;
+    rdfs:subClassOf fram:Aspect ;
+    rdfs:label "Precondition Aspect (P)"@en ;
+    rdfs:comment "The Precondition aspect: conditions that must be fulfilled before the function can be carried out."@en ;
+    skos:definition "Conditions that must exist before the function can be carried out. Unlike inputs, preconditions are not transformed by the function."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:ResourceAspect a owl:Class ;
+    rdfs:subClassOf fram:Aspect ;
+    rdfs:label "Resource Aspect (R)"@en ;
+    rdfs:comment "The Resource aspect: what the function needs or consumes while it is carried out."@en ;
+    skos:definition "That which the function needs or consumes when it is carried out (material, energy, manpower, software, tools, etc.)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:ControlAspect a owl:Class ;
+    rdfs:subClassOf fram:Aspect ;
+    rdfs:label "Control Aspect (C)"@en ;
+    rdfs:comment "The Control aspect: what monitors or regulates the function."@en ;
+    skos:definition "That which supervises or adjusts the function, e.g., plans, procedures, guidelines, other activities. Control constrains or regulates how the function is carried out."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:TimeAspect a owl:Class ;
+    rdfs:subClassOf fram:Aspect ;
+    rdfs:label "Time Aspect (T)"@en ;
+    rdfs:comment "The Time aspect: temporal constraints that affect when the function is carried out."@en ;
+    skos:definition "Temporal aspects that affect the function, including duration, start time, end time, rate, or temporal constraints from other functions."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# PHENOTYPE SUBCLASSES
+# =============================================================================
+
+fram:TimingPhenotype a owl:Class ;
+    rdfs:subClassOf fram:Phenotype ;
+    rdfs:label "Timing Phenotype"@en ;
+    rdfs:comment "A phenotype describing variability in timing: Too Early, On Time, Too Late, or Not At All."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:PrecisionPhenotype a owl:Class ;
+    rdfs:subClassOf fram:Phenotype ;
+    rdfs:label "Precision Phenotype"@en ;
+    rdfs:comment "A phenotype describing variability in precision: Precise, Acceptable, or Imprecise."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# TIMING PHENOTYPE INDIVIDUALS
+# =============================================================================
+
+fram:TooEarly a fram:TimingPhenotype ;
+    rdfs:label "Too Early"@en ;
+    rdfs:comment "The function output occurs earlier than expected or needed."@en .
+
+fram:OnTime a fram:TimingPhenotype ;
+    rdfs:label "On Time"@en ;
+    rdfs:comment "The function output occurs at the expected time."@en .
+
+fram:TooLate a fram:TimingPhenotype ;
+    rdfs:label "Too Late"@en ;
+    rdfs:comment "The function output occurs later than expected or needed."@en .
+
+fram:NotAtAll a fram:TimingPhenotype ;
+    rdfs:label "Not At All"@en ;
+    rdfs:comment "The function output does not occur (missing output)."@en .
+
+
+# =============================================================================
+# PRECISION PHENOTYPE INDIVIDUALS
+# =============================================================================
+
+fram:Precise a fram:PrecisionPhenotype ;
+    rdfs:label "Precise"@en ;
+    rdfs:comment "The function output matches the expected result precisely."@en .
+
+fram:Acceptable a fram:PrecisionPhenotype ;
+    rdfs:label "Acceptable"@en ;
+    rdfs:comment "The function output is within acceptable bounds but not precise."@en .
+
+fram:Imprecise a fram:PrecisionPhenotype ;
+    rdfs:label "Imprecise"@en ;
+    rdfs:comment "The function output deviates significantly from what is expected."@en .
+
+
+# =============================================================================
+# DISTRIBUTION SUBCLASSES
+# =============================================================================
+
+fram:NormalDistribution a owl:Class ;
+    rdfs:subClassOf fram:Distribution ;
+    rdfs:label "Normal Distribution"@en ;
+    rdfs:comment "A Gaussian (normal) probability distribution characterized by mean and standard deviation."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:UniformDistribution a owl:Class ;
+    rdfs:subClassOf fram:Distribution ;
+    rdfs:label "Uniform Distribution"@en ;
+    rdfs:comment "A uniform probability distribution where all values in a range are equally likely."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:TriangularDistribution a owl:Class ;
+    rdfs:subClassOf fram:Distribution ;
+    rdfs:label "Triangular Distribution"@en ;
+    rdfs:comment "A triangular probability distribution characterized by minimum, mode, and maximum values."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:LogNormalDistribution a owl:Class ;
+    rdfs:subClassOf fram:Distribution ;
+    rdfs:label "Log-Normal Distribution"@en ;
+    rdfs:comment "A log-normal probability distribution where the logarithm of the variable is normally distributed."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# VARIABILITY TYPE SUBCLASSES
+# =============================================================================
+
+fram:InternalVariability a owl:Class ;
+    rdfs:subClassOf fram:Variability ;
+    rdfs:label "Internal Variability"@en ;
+    rdfs:comment "Variability arising from within the function itself (e.g., human performance variability)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:ExternalVariability a owl:Class ;
+    rdfs:subClassOf fram:Variability ;
+    rdfs:label "External Variability"@en ;
+    rdfs:comment "Variability imposed on the function from outside (e.g., environmental conditions)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:UpstreamVariability a owl:Class ;
+    rdfs:subClassOf fram:Variability ;
+    rdfs:label "Upstream Variability"@en ;
+    rdfs:comment "Variability propagated from upstream functions through couplings."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:DownstreamVariability a owl:Class ;
+    rdfs:subClassOf fram:Variability ;
+    rdfs:label "Downstream Variability"@en ;
+    rdfs:comment "Variability propagated to downstream functions through couplings."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# OBJECT PROPERTIES
+# =============================================================================
+
+fram:hasFunction a owl:ObjectProperty ;
+    rdfs:label "has function"@en ;
+    rdfs:comment "Relates a FRAM model to one of its constituent functions."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range fram:Function ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasCoupling a owl:ObjectProperty ;
+    rdfs:label "has coupling"@en ;
+    rdfs:comment "Relates a FRAM model to one of its couplings between functions."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range fram:Coupling ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasAspect a owl:ObjectProperty ;
+    rdfs:label "has aspect"@en ;
+    rdfs:comment "Relates a FRAM function to one of its six characterizing aspects."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:Aspect ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasVariability a owl:ObjectProperty ;
+    rdfs:label "has variability"@en ;
+    rdfs:comment "Relates a function output to its variability characterization."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:Variability ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasPerformanceCondition a owl:ObjectProperty ;
+    rdfs:label "has performance condition"@en ;
+    rdfs:comment "Relates a function to a Common Performance Condition (CPC) that influences its variability."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:PerformanceCondition ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:sourceFunction a owl:ObjectProperty ;
+    rdfs:label "source function"@en ;
+    rdfs:comment "The function whose Output aspect is the source of this coupling."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range fram:Function ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:targetFunction a owl:ObjectProperty ;
+    rdfs:label "target function"@en ;
+    rdfs:comment "The function whose Input, Precondition, Resource, Control, or Time aspect is the target of this coupling."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range fram:Function ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:sourceAspect a owl:ObjectProperty ;
+    rdfs:label "source aspect"@en ;
+    rdfs:comment "The source aspect (always Output) of the coupling."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range fram:OutputAspect ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:targetAspect a owl:ObjectProperty ;
+    rdfs:label "target aspect"@en ;
+    rdfs:comment "The target aspect of the coupling (Input, Precondition, Resource, Control, or Time)."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range fram:Aspect ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasDistribution a owl:ObjectProperty ;
+    rdfs:label "has distribution"@en ;
+    rdfs:comment "Associates a quantitative variability characterization with a probability distribution."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range fram:Distribution ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasPhenotype a owl:ObjectProperty ;
+    rdfs:label "has phenotype"@en ;
+    rdfs:comment "Associates variability with a timing or precision phenotype."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range fram:Phenotype ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasContributingFactor a owl:ObjectProperty ;
+    rdfs:label "has contributing factor"@en ;
+    rdfs:comment "Relates variability to a performance condition that contributes to it."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range fram:PerformanceCondition ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# DATATYPE PROPERTIES
+# =============================================================================
+
+fram:aspectType a owl:DatatypeProperty ;
+    rdfs:label "aspect type"@en ;
+    rdfs:comment "The type code of an aspect: I (Input), O (Output), P (Precondition), R (Resource), C (Control), or T (Time)."@en ;
+    rdfs:domain fram:Aspect ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:aspectCode a owl:DatatypeProperty ;
+    rdfs:label "aspect code"@en ;
+    rdfs:comment "The short code for an aspect type (I, O, P, R, C, T)."@en ;
+    rdfs:domain fram:Aspect ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:functionType a owl:DatatypeProperty ;
+    rdfs:label "function type"@en ;
+    rdfs:comment "The type of the function: human, technological, organisational, or background."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:couplingStrength a owl:DatatypeProperty ;
+    rdfs:label "coupling strength"@en ;
+    rdfs:comment "A numeric value (0-1) representing the strength of a coupling between functions."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:resonanceFactor a owl:DatatypeProperty ;
+    rdfs:label "resonance factor"@en ;
+    rdfs:comment "A numeric value representing the degree of functional resonance at a particular point."@en ;
+    rdfs:domain fram:FunctionalResonance ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:variabilityPotential a owl:DatatypeProperty ;
+    rdfs:label "variability potential"@en ;
+    rdfs:comment "The potential level of variability: low, medium, or high."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:phenotypeProbability a owl:DatatypeProperty ;
+    rdfs:label "phenotype probability"@en ;
+    rdfs:comment "The probability (0-1) of a specific phenotype occurrence."@en ;
+    rdfs:domain fram:Phenotype ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:distributionMean a owl:DatatypeProperty ;
+    rdfs:label "distribution mean"@en ;
+    rdfs:comment "The mean value of a probability distribution."@en ;
+    rdfs:domain fram:Distribution ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:distributionStdDev a owl:DatatypeProperty ;
+    rdfs:label "distribution standard deviation"@en ;
+    rdfs:comment "The standard deviation of a probability distribution."@en ;
+    rdfs:domain fram:Distribution ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:distributionMin a owl:DatatypeProperty ;
+    rdfs:label "distribution minimum"@en ;
+    rdfs:comment "The minimum value of a probability distribution."@en ;
+    rdfs:domain fram:Distribution ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:distributionMax a owl:DatatypeProperty ;
+    rdfs:label "distribution maximum"@en ;
+    rdfs:comment "The maximum value of a probability distribution."@en ;
+    rdfs:domain fram:Distribution ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:timingPhenotype a owl:DatatypeProperty ;
+    rdfs:label "timing phenotype"@en ;
+    rdfs:comment "The timing dimension of variability: too-early, on-time, too-late, or not-at-all."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:precisionPhenotype a owl:DatatypeProperty ;
+    rdfs:label "precision phenotype"@en ;
+    rdfs:comment "The precision dimension of variability: precise, acceptable, or imprecise."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:expression a owl:DatatypeProperty ;
+    rdfs:label "expression"@en ;
+    rdfs:comment "A mathematical expression or formula associated with variability calculations."@en ;
+    rdfs:domain fram:Distribution ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:formula a owl:DatatypeProperty ;
+    rdfs:label "formula"@en ;
+    rdfs:comment "A formula for computing derived values in the FRAM model."@en ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:cycleNumber a owl:DatatypeProperty ;
+    rdfs:label "cycle number"@en ;
+    rdfs:comment "The FMI cycle number in which a function is activated (0 for entry functions)."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range xsd:integer ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:instantiationId a owl:DatatypeProperty ;
+    rdfs:label "instantiation ID"@en ;
+    rdfs:comment "The unique identifier of a FRAM Model Instantiation (FMI) run."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:analysisType a owl:DatatypeProperty ;
+    rdfs:label "analysis type"@en ;
+    rdfs:comment "The type of FRAM analysis: retrospective or prospective."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:executionTimestamp a owl:DatatypeProperty ;
+    rdfs:label "execution timestamp"@en ;
+    rdfs:comment "The timestamp when an instantiation or analysis was executed."@en ;
+    rdfs:range xsd:dateTime ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .

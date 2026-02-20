@@ -1,0 +1,155 @@
+{
+  "@context": "https://flowfram.com/ontology/fram/context.jsonld",
+  "@type": "FRAMModel",
+  "@id": "https://flowfram.com/models/example/boil-water",
+  "name": "Boiling Water - Simple FRAM Model",
+  "description": "A simple FRAM model demonstrating the boiling water process with three functions.",
+  "creator": "FlowFRAM Platform",
+  "dateCreated": "2025-06-01",
+  "version": "1.0",
+  "analysisType": "prospective",
+  "hasFunction": [
+    {
+      "@type": ["Function", "HumanFunction"],
+      "@id": "_:func-fill-kettle",
+      "name": "Fill kettle with water",
+      "functionType": "human",
+      "hasAspect": [
+        {
+          "@type": "InputAspect",
+          "aspectType": "Input",
+          "aspectCode": "I",
+          "name": "Need for hot water"
+        },
+        {
+          "@type": "OutputAspect",
+          "aspectType": "Output",
+          "aspectCode": "O",
+          "name": "Kettle filled with water"
+        },
+        {
+          "@type": "ResourceAspect",
+          "aspectType": "Resource",
+          "aspectCode": "R",
+          "name": "Water supply, kettle"
+        }
+      ],
+      "hasVariability": {
+        "@type": "Variability",
+        "variabilityPotential": "low",
+        "timingPhenotype": "on-time",
+        "precisionPhenotype": "acceptable",
+        "hasPhenotype": [
+          {
+            "@type": "TimingPhenotypeClass",
+            "phenotypeValue": "on-time",
+            "phenotypeProbability": 0.85
+          },
+          {
+            "@type": "PrecisionPhenotypeClass",
+            "phenotypeValue": "acceptable",
+            "phenotypeProbability": 0.90
+          }
+        ]
+      }
+    },
+    {
+      "@type": ["Function", "TechnologicalFunction"],
+      "@id": "_:func-heat-water",
+      "name": "Heat water to boiling",
+      "functionType": "technological",
+      "hasAspect": [
+        {
+          "@type": "InputAspect",
+          "aspectType": "Input",
+          "aspectCode": "I",
+          "name": "Filled kettle"
+        },
+        {
+          "@type": "OutputAspect",
+          "aspectType": "Output",
+          "aspectCode": "O",
+          "name": "Boiling water"
+        },
+        {
+          "@type": "ResourceAspect",
+          "aspectType": "Resource",
+          "aspectCode": "R",
+          "name": "Electricity"
+        },
+        {
+          "@type": "ControlAspect",
+          "aspectType": "Control",
+          "aspectCode": "C",
+          "name": "Thermostat"
+        },
+        {
+          "@type": "TimeAspect",
+          "aspectType": "Time",
+          "aspectCode": "T",
+          "name": "Heating duration (~3-5 min)"
+        }
+      ],
+      "hasVariability": {
+        "@type": "Variability",
+        "variabilityPotential": "low",
+        "timingPhenotype": "on-time",
+        "precisionPhenotype": "precise",
+        "hasDistribution": {
+          "@type": "NormalDistribution",
+          "distributionMean": 4.0,
+          "distributionStdDev": 0.5,
+          "unit": "minutes"
+        }
+      }
+    },
+    {
+      "@type": ["Function", "HumanFunction"],
+      "@id": "_:func-pour-water",
+      "name": "Pour boiling water",
+      "functionType": "human",
+      "hasAspect": [
+        {
+          "@type": "InputAspect",
+          "aspectType": "Input",
+          "aspectCode": "I",
+          "name": "Boiling water available"
+        },
+        {
+          "@type": "OutputAspect",
+          "aspectType": "Output",
+          "aspectCode": "O",
+          "name": "Hot water served"
+        },
+        {
+          "@type": "PreconditionAspect",
+          "aspectType": "Precondition",
+          "aspectCode": "P",
+          "name": "Cup or container available"
+        }
+      ]
+    }
+  ],
+  "hasCoupling": [
+    {
+      "@type": "Coupling",
+      "@id": "_:coupling-fill-to-heat",
+      "label": "Filled kettle to heating",
+      "sourceFunction": "_:func-fill-kettle",
+      "targetFunction": "_:func-heat-water",
+      "sourceAspect": { "@type": "OutputAspect", "aspectCode": "O" },
+      "targetAspect": { "@type": "InputAspect", "aspectCode": "I" },
+      "couplingStrength": 1.0
+    },
+    {
+      "@type": "Coupling",
+      "@id": "_:coupling-heat-to-pour",
+      "label": "Boiling water to pouring",
+      "sourceFunction": "_:func-heat-water",
+      "targetFunction": "_:func-pour-water",
+      "sourceAspect": { "@type": "OutputAspect", "aspectCode": "O" },
+      "targetAspect": { "@type": "InputAspect", "aspectCode": "I" },
+      "couplingStrength": 1.0
+    }
+  ]
+}
