@@ -38,7 +38,7 @@
     dcterms:modified "2025-06-01"^^xsd:date ;
     vann:preferredNamespacePrefix "fram" ;
     vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
-    rdfs:seeAlso <https://github.com/flowfram/fram-ontology> ;
+    rdfs:seeAlso <https://github.com/cgoudouris/fram-ontology> ;
     rdfs:seeAlso <https://flowfram.com> .
 
 

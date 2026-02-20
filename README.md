@@ -186,6 +186,6 @@ If you use this ontology in academic work, please cite:
   author = {Goudouris, César},
   year = {2025},
   url = {https://flowfram.com/ontology/fram/},
-  note = {Available at: https://github.com/flowfram/fram-ontology}
+  note = {Available at: https://github.com/cgoudouris/fram-ontology}
 }
 ```
