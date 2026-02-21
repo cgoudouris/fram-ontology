@@ -28,14 +28,14 @@
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.0.0> ;
-    owl:versionInfo "1.0.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.1.0> ;
+    owl:versionInfo "1.1.0" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
     dcterms:created "2025-01-01"^^xsd:date ;
-    dcterms:modified "2025-06-01"^^xsd:date ;
+    dcterms:modified "2026-02-21"^^xsd:date ;
     vann:preferredNamespacePrefix "fram" ;
     vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
     rdfs:seeAlso <https://github.com/cgoudouris/fram-ontology> ;
@@ -496,6 +496,7 @@ fram:expression a owl:DatatypeProperty ;
 fram:formula a owl:DatatypeProperty ;
     rdfs:label "formula"@en ;
     rdfs:comment "A formula for computing derived values in the FRAM model."@en ;
+    rdfs:domain fram:Variable ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -523,6 +524,7 @@ fram:analysisType a owl:DatatypeProperty ;
 fram:executionTimestamp a owl:DatatypeProperty ;
     rdfs:label "execution timestamp"@en ;
     rdfs:comment "The timestamp when an instantiation or analysis was executed."@en ;
+    rdfs:domain fram:Function ;
     rdfs:range xsd:dateTime ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -543,11 +545,7 @@ fram:Variable a owl:Class ;
     skos:definition "A named variable computed from an expression, potentially depending on constants or other variables. Variables can be calculated or sourced from external flow context."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
-fram:DataFlow a owl:Class ;
-    rdfs:label "Data Flow"@en ;
-    rdfs:comment "A data flow message transmitted through a coupling between functions."@en ;
-    skos:definition "Represents the structured data (constants, variables, passthrough fields) that flows from one function's output to another function's input aspect through a coupling."@en ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+# NOTE: fram:DataFlow was removed in v1.1.0 — its semantics are covered by fram:OutputMessage.
 
 fram:OutputMessage a owl:Class ;
     rdfs:label "Output Message"@en ;
@@ -609,22 +607,28 @@ fram:hasScenario a owl:ObjectProperty ;
 fram:originChain a owl:ObjectProperty ;
     rdfs:label "origin chain"@en ;
     rdfs:comment "A chain of function IDs tracing the origin of data through couplings."@en ;
+    rdfs:domain fram:FunctionalResonance ;
+    rdfs:range fram:Function ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:resonancePoint a owl:ObjectProperty ;
     rdfs:label "resonance point"@en ;
     rdfs:comment "A function identified as a potential point of functional resonance."@en ;
+    rdfs:domain fram:FunctionalResonance ;
     rdfs:range fram:Function ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:criticalPath a owl:ObjectProperty ;
     rdfs:label "critical path"@en ;
     rdfs:comment "A sequence of coupled functions identified as a critical variability path."@en ;
+    rdfs:domain fram:FunctionalResonance ;
+    rdfs:range fram:Function ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:variabilityHotspot a owl:ObjectProperty ;
     rdfs:label "variability hotspot"@en ;
     rdfs:comment "A function identified as a potential variability hotspot."@en ;
+    rdfs:domain fram:FunctionalResonance ;
     rdfs:range fram:Function ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -658,17 +662,20 @@ fram:value a owl:DatatypeProperty ;
     rdfs:label "value"@en ;
     rdfs:comment "The value of a constant or result of a computation."@en ;
     rdfs:domain fram:Constant ;
+    rdfs:range xsd:anySimpleType ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:unit a owl:DatatypeProperty ;
     rdfs:label "unit"@en ;
     rdfs:comment "The measurement unit of a constant or variable value."@en ;
+    rdfs:domain fram:Constant ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:dataType a owl:DatatypeProperty ;
     rdfs:label "data type"@en ;
     rdfs:comment "The XSD data type of a value (e.g., xsd:decimal, xsd:string)."@en ;
+    rdfs:domain fram:Constant ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -682,12 +689,14 @@ fram:codeType a owl:DatatypeProperty ;
 fram:semanticRole a owl:DatatypeProperty ;
     rdfs:label "semantic role"@en ;
     rdfs:comment "The semantic role of an aspect or coupling within the FRAM methodology."@en ;
+    rdfs:domain fram:Aspect ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:semanticMeaning a owl:DatatypeProperty ;
     rdfs:label "semantic meaning"@en ;
     rdfs:comment "A semantic description of the meaning of a constant or variable in the FRAM model context."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( fram:Constant fram:Variable ) ] ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -695,6 +704,7 @@ fram:position a owl:DatatypeProperty ;
     rdfs:label "position"@en ;
     rdfs:comment "The visual position (x, y coordinates) of a function in the FRAM diagram."@en ;
     rdfs:domain fram:Function ;
+    rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:edgeId a owl:DatatypeProperty ;
@@ -751,4 +761,115 @@ fram:phenotypeValue a owl:DatatypeProperty ;
     rdfs:comment "The value of a phenotype (e.g., TooEarly, OnTime, Precise)."@en ;
     rdfs:domain fram:Phenotype ;
     rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# P04 FIX: CONNECT UNCONNECTED ONTOLOGY ELEMENTS (v1.1.0)
+# =============================================================================
+
+fram:hasInterpretationProfile a owl:ObjectProperty ;
+    rdfs:label "has interpretation profile"@en ;
+    rdfs:comment "Relates a function to its interpretation profile defining how incoming aspects are combined."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:InterpretationProfile ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasPassthrough a owl:ObjectProperty ;
+    rdfs:label "has passthrough"@en ;
+    rdfs:comment "Relates an output message to a passthrough field forwarded without transformation."@en ;
+    rdfs:domain fram:OutputMessage ;
+    rdfs:range fram:Passthrough ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# P10 FIX: DISJOINTNESS AXIOMS (v1.1.0)
+# =============================================================================
+
+[] a owl:AllDisjointClasses ;
+   owl:members (
+        fram:HumanFunction
+        fram:TechnologicalFunction
+        fram:OrganisationalFunction
+        fram:BackgroundFunction
+        fram:EntryFunction
+        fram:ExitFunction
+    ) .
+
+[] a owl:AllDisjointClasses ;
+   owl:members (
+        fram:InputAspect
+        fram:OutputAspect
+        fram:PreconditionAspect
+        fram:ResourceAspect
+        fram:ControlAspect
+        fram:TimeAspect
+    ) .
+
+[] a owl:AllDisjointClasses ;
+   owl:members (
+        fram:TimingPhenotype
+        fram:PrecisionPhenotype
+    ) .
+
+[] a owl:AllDisjointClasses ;
+   owl:members (
+        fram:NormalDistribution
+        fram:UniformDistribution
+        fram:TriangularDistribution
+        fram:LogNormalDistribution
+    ) .
+
+[] a owl:AllDisjointClasses ;
+   owl:members (
+        fram:UpstreamVariability
+        fram:DownstreamVariability
+        fram:InternalVariability
+        fram:ExternalVariability
+    ) .
+
+
+# =============================================================================
+# P13 FIX: INVERSE RELATIONSHIPS (v1.1.0)
+# =============================================================================
+
+fram:isFunctionOf a owl:ObjectProperty ;
+    rdfs:label "is function of"@en ;
+    rdfs:comment "Relates a function back to its parent FRAM model."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:FRAMModel ;
+    owl:inverseOf fram:hasFunction ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isCouplingOf a owl:ObjectProperty ;
+    rdfs:label "is coupling of"@en ;
+    rdfs:comment "Relates a coupling back to its parent FRAM model."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range fram:FRAMModel ;
+    owl:inverseOf fram:hasCoupling ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isAspectOf a owl:ObjectProperty ;
+    rdfs:label "is aspect of"@en ;
+    rdfs:comment "Relates an aspect back to its parent function."@en ;
+    rdfs:domain fram:Aspect ;
+    rdfs:range fram:Function ;
+    owl:inverseOf fram:hasAspect ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isSourceOf a owl:ObjectProperty ;
+    rdfs:label "is source of"@en ;
+    rdfs:comment "Relates a function to couplings where it is the source."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:Coupling ;
+    owl:inverseOf fram:sourceFunction ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isTargetOf a owl:ObjectProperty ;
+    rdfs:label "is target of"@en ;
+    rdfs:comment "Relates a function to couplings where it is the target."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:Coupling ;
+    owl:inverseOf fram:targetFunction ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .

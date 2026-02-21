@@ -29,7 +29,6 @@
     "VariabilityPhenotype": "fram:VariabilityPhenotype",
     "Constant": "fram:Constant",
     "Variable": "fram:Variable",
-    "DataFlow": "fram:DataFlow",
     "OutputMessage": "fram:OutputMessage",
     "InterpretationProfile": "fram:InterpretationProfile",
     "FRAMScenario": "fram:FRAMScenario",
@@ -97,6 +96,8 @@
     "hasConstant": { "@id": "fram:hasConstant", "@type": "@id" },
     "hasVariable": { "@id": "fram:hasVariable", "@type": "@id" },
     "hasOutput": { "@id": "fram:hasOutput", "@type": "@id" },
+    "hasInterpretationProfile": { "@id": "fram:hasInterpretationProfile", "@type": "@id" },
+    "hasPassthrough": { "@id": "fram:hasPassthrough", "@type": "@id" },
     "originChain": { "@id": "fram:originChain", "@type": "@id" },
     "resonancePoint": { "@id": "fram:resonancePoint", "@type": "@id" },
     "criticalPath": { "@id": "fram:criticalPath", "@type": "@id" },
@@ -139,7 +140,7 @@
     "position": "fram:position",
     "edgeId": "fram:edgeId",
     "message": "fram:message",
-    "passthrough": { "@id": "fram:passthrough", "@container": "@set" },
+    "passthrough": { "@id": "fram:hasPassthrough", "@container": "@set" },
     "sourceField": "fram:sourceField",
     "targetField": "fram:targetField",
     "sourceFunctionName": "fram:sourceFunctionName",
@@ -155,7 +156,7 @@
     "fallbackValue": "fram:fallbackValue",
     "activationCondition": "fram:activationCondition",
     "isCustomActivation": "fram:isCustomActivation",
-    "interpretationProfile": "fram:interpretationProfile",
+    "interpretationProfile": "fram:hasInterpretationProfile",
 
     "variabilityPropagation": "fram:variabilityPropagation",
     "propagates": "fram:propagates",
@@ -197,6 +198,12 @@
     "about": "schema:about",
     "keywords": "schema:keywords",
     "isPartOf": { "@id": "schema:isPartOf", "@type": "@id" },
-    "hasPart": { "@id": "schema:hasPart", "@type": "@id" }
+    "hasPart": { "@id": "schema:hasPart", "@type": "@id" },
+
+    "isFunctionOf": { "@id": "fram:isFunctionOf", "@type": "@id" },
+    "isCouplingOf": { "@id": "fram:isCouplingOf", "@type": "@id" },
+    "isAspectOf": { "@id": "fram:isAspectOf", "@type": "@id" },
+    "isSourceOf": { "@id": "fram:isSourceOf", "@type": "@id" },
+    "isTargetOf": { "@id": "fram:isTargetOf", "@type": "@id" }
   }
 }
