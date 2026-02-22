@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="156" height="28" viewBox="0 0 156 28">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="100%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+      <stop offset=".1" stop-color="#aaa" stop-opacity=".1"/>
+    </linearGradient>
+    <clipPath id="r"><rect width="156" height="20" rx="3" fill="#fff"/></clipPath>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="62" height="20" fill="#555"/>
+    <rect x="62" width="94" height="20" fill="#4c1"/>
+  </g>
+  <rect width="156" height="20" fill="url(#bg)"/>
+  <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="11" text-rendering="geometricPrecision">
+    <text x="31" y="14" fill="#010101" fill-opacity=".3">OOPS!</text>
+    <text x="31" y="13">OOPS!</text>
+    <text x="108" y="14" fill="#010101" fill-opacity=".3">pitfall free</text>
+    <text x="108" y="13">pitfall free</text>
+  </g>
+  <text x="3" y="27" font-family="Verdana,Geneva,sans-serif" font-size="7" fill="#999">oops.linkeddata.es</text>
+</svg>
