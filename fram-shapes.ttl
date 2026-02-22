@@ -1,0 +1,162 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix fram: <https://flowfram.com/ontology/fram/> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# ============================================================================
+# SHACL Shapes for FRAM Ontology Validation (v2)
+# Validates ABox data against the structural rules of the FRAM ontology.
+# Shapes use sh:targetClass to match instances, but TBox-only named individuals
+# (e.g., fram:OnTime, fram:Precise) that are phenotype *values* (not instances
+# with data) are excluded via sh:not/owl:NamedIndividual filter where needed.
+# Coupling sourceAspect/targetAspect are inline blank nodes that only carry
+# aspectCode (no aspectType), so S4 targets only aspects within functions.
+# ============================================================================
+
+# --- Shape S1: FRAMModel must have a name and at least one function ---
+fram:FRAMModelShape
+    a sh:NodeShape ;
+    sh:targetClass fram:FRAMModel ;
+    sh:property [
+        sh:path schema:name ;
+        sh:minCount 1 ;
+        sh:message "S1: A FRAMModel must have a schema:name." ;
+    ] ;
+    sh:property [
+        sh:path fram:hasFunction ;
+        sh:minCount 1 ;
+        sh:message "S1: A FRAMModel must have at least one fram:hasFunction." ;
+    ] ;
+    sh:property [
+        sh:path fram:analysisType ;
+        sh:maxCount 1 ;
+        sh:message "S1: A FRAMModel must have at most one fram:analysisType." ;
+    ] .
+
+# --- Shape S2: Function must have a name and functionType ---
+fram:FunctionShape
+    a sh:NodeShape ;
+    sh:targetClass fram:Function ;
+    sh:property [
+        sh:path schema:name ;
+        sh:minCount 1 ;
+        sh:message "S2: A Function must have a schema:name." ;
+    ] ;
+    sh:property [
+        sh:path fram:functionType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "S2: A Function must have exactly one fram:functionType." ;
+    ] ;
+    sh:property [
+        sh:path fram:hasAspect ;
+        sh:minCount 1 ;
+        sh:message "S2: A Function must have at least one fram:hasAspect." ;
+    ] .
+
+# --- Shape S3: Coupling must have source and target ---
+fram:CouplingShape
+    a sh:NodeShape ;
+    sh:targetClass fram:Coupling ;
+    sh:property [
+        sh:path fram:sourceFunction ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "S3: A Coupling must have exactly one fram:sourceFunction." ;
+    ] ;
+    sh:property [
+        sh:path fram:targetFunction ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "S3: A Coupling must have exactly one fram:targetFunction." ;
+    ] ;
+    sh:property [
+        sh:path fram:sourceAspect ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "S3: A Coupling must have exactly one fram:sourceAspect." ;
+    ] ;
+    sh:property [
+        sh:path fram:targetAspect ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "S3: A Coupling must have exactly one fram:targetAspect." ;
+    ] ;
+    sh:property [
+        sh:path fram:couplingStrength ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "S3: couplingStrength must be a decimal between 0 and 1." ;
+    ] .
+
+# --- Shape S4: Aspect (within a function) must have aspectType and aspectCode ---
+# Uses SPARQL-based target to select only aspects that are linked via hasAspect
+# (i.e., ABox instances within functions, not inline coupling aspects)
+fram:FunctionAspectShape
+    a sh:NodeShape ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:select """
+            PREFIX fram: <https://flowfram.com/ontology/fram/>
+            SELECT ?this WHERE {
+                ?func fram:hasAspect ?this .
+            }
+        """ ;
+    ] ;
+    sh:property [
+        sh:path fram:aspectType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "Input" "Output" "Precondition" "Resource" "Control" "Time" ) ;
+        sh:message "S4: An Aspect (within a function) must have a valid aspectType." ;
+    ] ;
+    sh:property [
+        sh:path fram:aspectCode ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "I" "O" "P" "R" "C" "T" ) ;
+        sh:message "S4: An Aspect (within a function) must have a valid aspectCode." ;
+    ] .
+
+# --- Shape S5: NormalDistribution must have mean and stdDev ---
+fram:NormalDistributionShape
+    a sh:NodeShape ;
+    sh:targetClass fram:NormalDistribution ;
+    sh:property [
+        sh:path fram:distributionMean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "S5: A NormalDistribution must have exactly one distributionMean." ;
+    ] ;
+    sh:property [
+        sh:path fram:distributionStdDev ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "S5: A NormalDistribution must have a distributionStdDev." ;
+    ] .
+
+# --- Shape S6: Phenotype instance (ABox) must have a probability ---
+# Targets only ABox phenotype instances (blank nodes created from data),
+# not TBox named individuals like fram:OnTime, fram:Precise, etc.
+fram:PhenotypeInstanceShape
+    a sh:NodeShape ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:select """
+            PREFIX fram: <https://flowfram.com/ontology/fram/>
+            SELECT ?this WHERE {
+                ?var fram:hasPhenotype ?this .
+            }
+        """ ;
+    ] ;
+    sh:property [
+        sh:path fram:phenotypeProbability ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "S6: A Phenotype instance must have phenotypeProbability between 0 and 1." ;
+    ] .

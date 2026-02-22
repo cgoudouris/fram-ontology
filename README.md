@@ -27,7 +27,9 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | [`fram.ttl`](fram.ttl) | Canonical ontology definition in Turtle format |
 | [`context.jsonld`](context.jsonld) | JSON-LD context file for use in `@context` references |
 | [`fram-model.schema.json`](fram-model.schema.json) | JSON Schema (2020-12) for validating FRAM model documents |
+| [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (6 shapes) |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
+| [`validation/`](validation/) | 5-step automated validation benchmark (Python) |
 
 ## Quick Start
 
@@ -189,6 +191,30 @@ if (validate(data)) {
 | Tooling ecosystem | Protégé, reasoners | JSON-LD processors | ajv, IDE autocompletion |
 
 Using all three together provides **semantic precision** (OWL), **Linked Data interoperability** (JSON-LD), and **practical data validation** (JSON Schema).
+
+## Validation
+
+The [`validation/`](validation/) directory contains a **5-step automated benchmark** that verifies the ontology across multiple dimensions:
+
+| Step | Technique | What it validates |
+|------|-----------|-------------------|
+| 1 | JSON-LD → Turtle | Context resolution, serialization integrity |
+| 2 | OWL-RL Reasoning | Logical consistency, unsatisfiable classes |
+| 3 | SHACL Shapes | Structural constraints (6 shapes in [`fram-shapes.ttl`](fram-shapes.ttl)) |
+| 4 | SPARQL CQs | 6 competency questions against example model |
+| 5 | OOPS! Scanner | Common ontology design anti-patterns |
+
+```bash
+pip install rdflib pyld owlrl pyshacl requests
+cd validation
+python step1_jsonld_to_ttl.py
+python step2_reasoning_validation.py
+python step3_shacl_validation.py
+python step4_sparql_competency.py
+python step5_oops_validation.py
+```
+
+See [`validation/README.md`](validation/README.md) for full instructions and expected results.
 
 ## Background
 
