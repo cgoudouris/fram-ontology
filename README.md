@@ -26,6 +26,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 |------|-------------|
 | [`fram.ttl`](fram.ttl) | Canonical ontology definition in Turtle format |
 | [`context.jsonld`](context.jsonld) | JSON-LD context file for use in `@context` references |
+| [`fram-model.schema.json`](fram-model.schema.json) | JSON Schema (2020-12) for validating FRAM model documents |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
 
 ## Quick Start
@@ -136,6 +137,59 @@ owl:Thing
 
 **Precision**: `Precise`, `Acceptable`, `Imprecise`
 
+## JSON Schema Validation
+
+The `fram-model.schema.json` file provides a [JSON Schema (Draft 2020-12)](https://json-schema.org/draft/2020-12/json-schema-core) for validating FRAM model documents. While the OWL ontology (`fram.ttl`) defines the formal semantics and the JSON-LD context (`context.jsonld`) maps terms to IRIs, the JSON Schema enforces **structural constraints** — required fields, allowed values, data types, and cardinality — that are difficult to express in OWL alone.
+
+### What the Schema Validates
+
+- **Required properties**: every `Function` must have `name`, `@type`, and `functionType`
+- **Enumerated values**: `functionType` ∈ {human, technological, organisational, background}, `aspectCode` ∈ {I, O, P, R, C, T}, phenotype values, etc.
+- **Numeric constraints**: `couplingStrength` ∈ [0, 1], distribution parameters ≥ 0
+- **Conditional rules**: `NormalDistribution` requires `mean` + `stddev`; `UniformDistribution` requires `min` + `max`
+- **Structural integrity**: correct nesting of functions, aspects, couplings, variability, and scenarios
+
+### Validating a Model
+
+Using [ajv-cli](https://github.com/ajv-validator/ajv-cli):
+
+```bash
+npx -y ajv-cli validate -s ontology/fram-model.schema.json -d ontology/examples/boil-water-model.jsonld --spec=draft2020
+```
+
+Or programmatically with [ajv](https://ajv.js.org/):
+
+```javascript
+const fs = require('fs');
+const Ajv2020 = require('ajv/dist/2020').default;
+const addFormats = require('ajv-formats');
+
+const ajv = new Ajv2020({ allErrors: true });
+addFormats(ajv);
+
+const schema = JSON.parse(fs.readFileSync('ontology/fram-model.schema.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync('ontology/examples/boil-water-model.jsonld', 'utf8'));
+
+const validate = ajv.compile(schema);
+if (validate(data)) {
+  console.log('Valid FRAM model');
+} else {
+  console.error('Validation errors:', validate.errors);
+}
+```
+
+### Ontology vs. Schema: Complementary Roles
+
+| Concern | OWL Ontology (`fram.ttl`) | JSON-LD Context (`context.jsonld`) | JSON Schema (`fram-model.schema.json`) |
+|---------|--------------------------|-----------------------------------|---------------------------------------|
+| Formal semantics | ✅ Class hierarchy, axioms | — | — |
+| Term → IRI mapping | — | ✅ Compact ↔ expanded | — |
+| Structural validation | Limited | — | ✅ Required fields, types, enums |
+| Conditional constraints | Limited | — | ✅ if/then, oneOf |
+| Tooling ecosystem | Protégé, reasoners | JSON-LD processors | ajv, IDE autocompletion |
+
+Using all three together provides **semantic precision** (OWL), **Linked Data interoperability** (JSON-LD), and **practical data validation** (JSON Schema).
+
 ## Background
 
 The Functional Resonance Analysis Method was developed by Erik Hollnagel as a method for analyzing complex socio-technical systems. Unlike traditional methods that decompose systems into components, FRAM describes systems in terms of the functions that are performed and the couplings between them.
@@ -173,6 +227,8 @@ Contributions are welcome! Please:
 - Use English language tags (`@en`) for all labels and comments
 - Follow the existing naming conventions (PascalCase for classes, camelCase for properties)
 - Include `skos:definition` for core FRAM concepts that have formal definitions
+- Update `fram-model.schema.json` when adding new classes or properties
+- Validate examples against the JSON Schema after any structural changes
 
 ## License
 
