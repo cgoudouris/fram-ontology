@@ -1,5 +1,7 @@
 # FRAM Ontology
 
+<a href="http://oops.linkeddata.es"><img src="http://oops.linkeddata.es/resource/image/oops_free.png" alt="No pitfalls were found" height="69.6" width="100" /></a>
+
 An OWL 2 ontology for the **Functional Resonance Analysis Method (FRAM)**, enabling formal representation of FRAM models as Linked Data.
 
 ## Overview
