@@ -98,6 +98,7 @@
     "hasOutput": { "@id": "fram:hasOutput", "@type": "@id" },
     "hasInterpretationProfile": { "@id": "fram:hasInterpretationProfile", "@type": "@id" },
     "hasPassthrough": { "@id": "fram:hasPassthrough", "@type": "@id" },
+    "hasScenario": { "@id": "fram:hasScenario", "@type": "@id" },
     "originChain": { "@id": "fram:originChain", "@type": "@id" },
     "resonancePoint": { "@id": "fram:resonancePoint", "@type": "@id" },
     "criticalPath": { "@id": "fram:criticalPath", "@type": "@id" },
@@ -204,6 +205,24 @@
     "isCouplingOf": { "@id": "fram:isCouplingOf", "@type": "@id" },
     "isAspectOf": { "@id": "fram:isAspectOf", "@type": "@id" },
     "isSourceOf": { "@id": "fram:isSourceOf", "@type": "@id" },
-    "isTargetOf": { "@id": "fram:isTargetOf", "@type": "@id" }
+    "isTargetOf": { "@id": "fram:isTargetOf", "@type": "@id" },
+
+    "isVariabilityOf": { "@id": "fram:isVariabilityOf", "@type": "@id" },
+    "isPerformanceConditionOf": { "@id": "fram:isPerformanceConditionOf", "@type": "@id" },
+    "isSourceAspectOf": { "@id": "fram:isSourceAspectOf", "@type": "@id" },
+    "isTargetAspectOf": { "@id": "fram:isTargetAspectOf", "@type": "@id" },
+    "isDistributionOf": { "@id": "fram:isDistributionOf", "@type": "@id" },
+    "isPhenotypeOf": { "@id": "fram:isPhenotypeOf", "@type": "@id" },
+    "isContributingFactorTo": { "@id": "fram:isContributingFactorTo", "@type": "@id" },
+    "isConstantOf": { "@id": "fram:isConstantOf", "@type": "@id" },
+    "isVariableOf": { "@id": "fram:isVariableOf", "@type": "@id" },
+    "isOutputOf": { "@id": "fram:isOutputOf", "@type": "@id" },
+    "isScenarioOf": { "@id": "fram:isScenarioOf", "@type": "@id" },
+    "isInterpretationProfileOf": { "@id": "fram:isInterpretationProfileOf", "@type": "@id" },
+    "isPassthroughOf": { "@id": "fram:isPassthroughOf", "@type": "@id" },
+    "isOriginChainIn": { "@id": "fram:isOriginChainIn", "@type": "@id" },
+    "isResonancePointIn": { "@id": "fram:isResonancePointIn", "@type": "@id" },
+    "isCriticalPathIn": { "@id": "fram:isCriticalPathIn", "@type": "@id" },
+    "isVariabilityHotspotIn": { "@id": "fram:isVariabilityHotspotIn", "@type": "@id" }
   }
 }

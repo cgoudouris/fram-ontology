@@ -2,8 +2,6 @@
 
 An OWL 2 ontology for the **Functional Resonance Analysis Method (FRAM)**, enabling formal representation of FRAM models as Linked Data.
 
-**Current version: 1.1.0** — Validated with [OOPS! Ontology Pitfall Scanner](https://oops.linkeddata.es/).
-
 ## Overview
 
 The FRAM Ontology provides a formal vocabulary for describing FRAM models, including:
@@ -15,8 +13,6 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 - **Performance Conditions** — Common Performance Conditions (CPCs) that influence variability
 - **Functional Resonance** — emergent phenomena arising from the interaction of everyday variability
 - **Distributions** — probability distributions (Normal, Uniform, Triangular, LogNormal) for quantitative analysis
-- **Quantitative Metadata** — constants, variables, output messages, interpretation profiles, and passthroughs for computable FRAM models
-- **Scenarios** — FRAM scenario variants for comparative analysis
 
 ## Namespace
 
@@ -35,6 +31,8 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 ## Quick Start
 
 ### Using the JSON-LD Context
+
+The `context.jsonld` file is a **JSON-LD Context** — a mapping dictionary that translates concise, human-readable property names (e.g. `"Function"`, `"hasAspect"`, `"couplingStrength"`) into their full ontology IRIs. It also declares namespace prefixes, data types (`xsd:decimal`, `xsd:dateTime`), and container types (`@set`), so that JSON-LD processors can interpret your data as proper RDF without requiring verbose URIs everywhere.
 
 Reference the hosted context in your JSON-LD documents:
 
@@ -113,15 +111,9 @@ owl:Thing
 │   ├── fram:UniformDistribution
 │   ├── fram:TriangularDistribution
 │   └── fram:LogNormalDistribution
-├── fram:Phenotype
-│   ├── fram:TimingPhenotype
-│   └── fram:PrecisionPhenotype
-├── fram:Constant
-├── fram:Variable
-├── fram:OutputMessage
-├── fram:InterpretationProfile
-├── fram:Passthrough
-└── fram:FRAMScenario
+└── fram:Phenotype
+    ├── fram:TimingPhenotype
+    └── fram:PrecisionPhenotype
 ```
 
 ### Key Properties
@@ -136,46 +128,13 @@ owl:Thing
 | `hasVariability` | Function | Variability | Function's variability |
 | `hasDistribution` | Variability | Distribution | Quantitative distribution |
 | `hasPhenotype` | Variability | Phenotype | Qualitative phenotype |
-| `hasConstant` | Function | Constant | Function has constant |
-| `hasVariable` | Function | Variable | Function has variable |
-| `hasOutput` | Function | OutputMessage | Function has output message |
-| `hasInterpretationProfile` | Function | InterpretationProfile | Function interpretation logic |
-| `hasPassthrough` | OutputMessage | Passthrough | Output has passthrough |
-| `hasScenario` | FRAMModel | FRAMScenario | Model has scenario |
 | `couplingStrength` | Coupling | xsd:decimal | Strength (0–1) |
-
-### Inverse Properties (v1.1.0)
-
-| Property | Inverse Of | Domain | Range |
-|----------|-----------|--------|-------|
-| `isFunctionOf` | `hasFunction` | Function | FRAMModel |
-| `isCouplingOf` | `hasCoupling` | Coupling | FRAMModel |
-| `isAspectOf` | `hasAspect` | Aspect | Function |
-| `isSourceOf` | `sourceFunction` | Function | Coupling |
-| `isTargetOf` | `targetFunction` | Function | Coupling |
 
 ### Phenotype Individuals
 
 **Timing**: `TooEarly`, `OnTime`, `TooLate`, `NotAtAll`
 
 **Precision**: `Precise`, `Acceptable`, `Imprecise`
-
-## Changelog
-
-### v1.1.0 (2026-02-21)
-
-Quality improvements based on [OOPS!](https://oops.linkeddata.es/) ontology pitfall scanner analysis:
-
-- **P10 — Disjointness**: Added `owl:AllDisjointClasses` axioms for Function, Aspect, Phenotype, Distribution, and Variability subclasses
-- **P11 — Domain/Range**: Added missing `rdfs:domain` and `rdfs:range` for 12 properties (`originChain`, `resonancePoint`, `criticalPath`, `variabilityHotspot`, `formula`, `executionTimestamp`, `value`, `unit`, `dataType`, `semanticRole`, `semanticMeaning`, `position`)
-- **P04 — Unconnected Elements**: Connected `InterpretationProfile` and `Passthrough` via new object properties (`hasInterpretationProfile`, `hasPassthrough`); removed redundant `DataFlow` class (superseded by `OutputMessage`)
-- **P13 — Inverse Properties**: Added `isFunctionOf`, `isCouplingOf`, `isAspectOf`, `isSourceOf`, `isTargetOf` as inverses of core properties
-- New classes: `Constant`, `Variable`, `OutputMessage`, `InterpretationProfile`, `FRAMScenario`, `Passthrough`
-- Updated `context.jsonld` with all new terms and aliases
-
-### v1.0.0 (2025-01-01)
-
-- Initial release with core FRAM vocabulary
 
 ## Background
 

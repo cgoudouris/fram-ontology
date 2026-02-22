@@ -28,8 +28,8 @@
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.1.0> ;
-    owl:versionInfo "1.1.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.2.0> ;
+    owl:versionInfo "1.2.0" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
@@ -872,4 +872,144 @@ fram:isTargetOf a owl:ObjectProperty ;
     rdfs:domain fram:Function ;
     rdfs:range fram:Coupling ;
     owl:inverseOf fram:targetFunction ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# =============================================================================
+# P13 FIX (BATCH 2): REMAINING INVERSE RELATIONSHIPS (v1.2.0)
+# =============================================================================
+
+fram:isVariabilityOf a owl:ObjectProperty ;
+    rdfs:label "is variability of"@en ;
+    rdfs:comment "Relates a variability characterization back to its function."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range fram:Function ;
+    owl:inverseOf fram:hasVariability ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isPerformanceConditionOf a owl:ObjectProperty ;
+    rdfs:label "is performance condition of"@en ;
+    rdfs:comment "Relates a performance condition back to the function it influences."@en ;
+    rdfs:domain fram:PerformanceCondition ;
+    rdfs:range fram:Function ;
+    owl:inverseOf fram:hasPerformanceCondition ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isSourceAspectOf a owl:ObjectProperty ;
+    rdfs:label "is source aspect of"@en ;
+    rdfs:comment "Relates an output aspect back to the coupling where it is the source."@en ;
+    rdfs:domain fram:OutputAspect ;
+    rdfs:range fram:Coupling ;
+    owl:inverseOf fram:sourceAspect ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isTargetAspectOf a owl:ObjectProperty ;
+    rdfs:label "is target aspect of"@en ;
+    rdfs:comment "Relates an aspect back to the coupling where it is the target."@en ;
+    rdfs:domain fram:Aspect ;
+    rdfs:range fram:Coupling ;
+    owl:inverseOf fram:targetAspect ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isDistributionOf a owl:ObjectProperty ;
+    rdfs:label "is distribution of"@en ;
+    rdfs:comment "Relates a distribution back to the variability it characterizes."@en ;
+    rdfs:domain fram:Distribution ;
+    rdfs:range fram:Variability ;
+    owl:inverseOf fram:hasDistribution ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isPhenotypeOf a owl:ObjectProperty ;
+    rdfs:label "is phenotype of"@en ;
+    rdfs:comment "Relates a phenotype back to the variability it describes."@en ;
+    rdfs:domain fram:Phenotype ;
+    rdfs:range fram:Variability ;
+    owl:inverseOf fram:hasPhenotype ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isContributingFactorTo a owl:ObjectProperty ;
+    rdfs:label "is contributing factor to"@en ;
+    rdfs:comment "Relates a performance condition to the variability it contributes to."@en ;
+    rdfs:domain fram:PerformanceCondition ;
+    rdfs:range fram:Variability ;
+    owl:inverseOf fram:hasContributingFactor ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isConstantOf a owl:ObjectProperty ;
+    rdfs:label "is constant of"@en ;
+    rdfs:comment "Relates a constant back to its parent function."@en ;
+    rdfs:domain fram:Constant ;
+    rdfs:range fram:Function ;
+    owl:inverseOf fram:hasConstant ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isVariableOf a owl:ObjectProperty ;
+    rdfs:label "is variable of"@en ;
+    rdfs:comment "Relates a variable back to its parent function."@en ;
+    rdfs:domain fram:Variable ;
+    rdfs:range fram:Function ;
+    owl:inverseOf fram:hasVariable ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isOutputOf a owl:ObjectProperty ;
+    rdfs:label "is output of"@en ;
+    rdfs:comment "Relates an output message back to its parent function."@en ;
+    rdfs:domain fram:OutputMessage ;
+    rdfs:range fram:Function ;
+    owl:inverseOf fram:hasOutput ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isScenarioOf a owl:ObjectProperty ;
+    rdfs:label "is scenario of"@en ;
+    rdfs:comment "Relates a scenario back to its parent FRAM model."@en ;
+    rdfs:domain fram:FRAMScenario ;
+    rdfs:range fram:FRAMModel ;
+    owl:inverseOf fram:hasScenario ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isInterpretationProfileOf a owl:ObjectProperty ;
+    rdfs:label "is interpretation profile of"@en ;
+    rdfs:comment "Relates an interpretation profile back to its parent function."@en ;
+    rdfs:domain fram:InterpretationProfile ;
+    rdfs:range fram:Function ;
+    owl:inverseOf fram:hasInterpretationProfile ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isPassthroughOf a owl:ObjectProperty ;
+    rdfs:label "is passthrough of"@en ;
+    rdfs:comment "Relates a passthrough field back to its parent output message."@en ;
+    rdfs:domain fram:Passthrough ;
+    rdfs:range fram:OutputMessage ;
+    owl:inverseOf fram:hasPassthrough ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isOriginChainIn a owl:ObjectProperty ;
+    rdfs:label "is origin chain in"@en ;
+    rdfs:comment "Relates a function to the functional resonance where it appears in the origin chain."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:FunctionalResonance ;
+    owl:inverseOf fram:originChain ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isResonancePointIn a owl:ObjectProperty ;
+    rdfs:label "is resonance point in"@en ;
+    rdfs:comment "Relates a function to the functional resonance where it is a resonance point."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:FunctionalResonance ;
+    owl:inverseOf fram:resonancePoint ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isCriticalPathIn a owl:ObjectProperty ;
+    rdfs:label "is critical path in"@en ;
+    rdfs:comment "Relates a function to the functional resonance where it is on a critical path."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:FunctionalResonance ;
+    owl:inverseOf fram:criticalPath ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isVariabilityHotspotIn a owl:ObjectProperty ;
+    rdfs:label "is variability hotspot in"@en ;
+    rdfs:comment "Relates a function to the functional resonance where it is a variability hotspot."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:FunctionalResonance ;
+    owl:inverseOf fram:variabilityHotspot ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
