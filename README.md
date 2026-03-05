@@ -4,6 +4,8 @@
 
 An OWL 2 ontology for the **Functional Resonance Analysis Method (FRAM)**, enabling formal representation of FRAM models as Linked Data.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18880158.svg)](https://doi.org/10.5281/zenodo.18880158)
+
 ## Overview
 
 The FRAM Ontology provides a formal vocabulary for describing FRAM models, including:
