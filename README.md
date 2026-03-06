@@ -6,6 +6,8 @@ An OWL 2 ontology for the **Functional Resonance Analysis Method (FRAM)**, enabl
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18880158.svg)](https://doi.org/10.5281/zenodo.18880158)
 
+This badge links to the FRAM ontology — a formal OWL representation of the Functional Resonance Analysis Method — published as an open-access artifact on Zenodo with a persistent DOI.
+
 ## Overview
 
 The FRAM Ontology provides a formal vocabulary for describing FRAM models, including:
