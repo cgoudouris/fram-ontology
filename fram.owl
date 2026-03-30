@@ -8,124 +8,77 @@
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
    xmlns:vann="http://purl.org/vocab/vann/"
 >
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/unit">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">unit</rdfs:label>
-    <rdfs:comment xml:lang="en">The measurement unit of a constant or variable value.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/edgeId">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">edge ID</rdfs:label>
-    <rdfs:comment xml:lang="en">The internal identifier of a coupling edge in the visual editor.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/OutputMessage">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/FRAMModel">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Output Message</rdfs:label>
-    <rdfs:comment xml:lang="en">A message output from a function specifying which data is sent to a target function via a coupling.</rdfs:comment>
-    <skos:definition xml:lang="en">Describes the data payload (selected constants, variables, and passthrough fields) sent through a specific coupling to a target function's aspect.</skos:definition>
+    <rdfs:label xml:lang="en">FRAM Model</rdfs:label>
+    <rdfs:comment xml:lang="en">A complete FRAM model consisting of functions, aspects, and couplings. Represents a systemic description of how work is done (Work-as-Done) or imagined (Work-as-Imagined).</rdfs:comment>
+    <rdfs:comment xml:lang="en">A FRAM Model is a gufo:Object — an endurant that persists through time and aggregates functions, aspects, and couplings as a structured whole.</rdfs:comment>
+    <skos:definition xml:lang="en">A structured representation of a socio-technical system using the Functional Resonance Analysis Method, composed of interconnected functions characterized by six aspects.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasInterpretationProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has interpretation profile</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to its interpretation profile defining how incoming aspects are combined.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/InterpretationProfile"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/instantiationId">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/sourceAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">source aspect</rdfs:label>
+    <rdfs:comment xml:lang="en">The source aspect (always Output) of the coupling.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/OutputAspect"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/externalKey">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">instantiation ID</rdfs:label>
-    <rdfs:comment xml:lang="en">The unique identifier of a FRAM Model Instantiation (FMI) run.</rdfs:comment>
+    <rdfs:label xml:lang="en">external key</rdfs:label>
+    <rdfs:comment xml:lang="en">The flow context key for an external variable (e.g., 'sim_iteration').</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/distributionMin">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">distribution minimum</rdfs:label>
+    <rdfs:comment xml:lang="en">The minimum value of a probability distribution.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/analysisFocus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">analysis focus</rdfs:label>
+    <rdfs:comment xml:lang="en">The focus area of the FRAM analysis.</rdfs:comment>
     <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasConstant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has constant</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to a named constant in its quantitative metadata.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb30">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ExternalVariability"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isCriticalPathIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is critical path in</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to the functional resonance where it is on a critical path.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/criticalPath"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/value">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/codeType">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">value</rdfs:label>
-    <rdfs:comment xml:lang="en">The value of a constant or result of a computation.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anySimpleType"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/PerformanceCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Performance Condition</rdfs:label>
-    <rdfs:comment xml:lang="en">A Common Performance Condition (CPC) that influences the variability of function outputs.</rdfs:comment>
-    <rdfs:comment xml:lang="en">A CPC is a gufo:Disposition — a latent property that manifests under specific conditions, influencing the variability of function outputs. This adopts the Disposition mapping from Lališ et al. (2019), applied here to CPCs rather than Functions.</rdfs:comment>
-    <skos:definition xml:lang="en">Conditions in the work environment that affect how functions are performed and the variability of their outcomes. Based on Hollnagel's Common Performance Conditions framework.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Disposition"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb12">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/InputAspect"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb13"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/aspectType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">aspect type</rdfs:label>
-    <rdfs:comment xml:lang="en">The type code of an aspect: I (Input), O (Output), P (Precondition), R (Resource), C (Control), or T (Time).</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">code type</rdfs:label>
+    <rdfs:comment xml:lang="en">The type of code for a variable expression: 'expression' or 'block'.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Coupling">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Coupling</rdfs:label>
-    <rdfs:comment xml:lang="en">A coupling (connection) between the Output aspect of one function and an Input, Precondition, Resource, Control, or Time aspect of another function.</rdfs:comment>
-    <rdfs:comment xml:lang="en">A FRAM Coupling is a gufo:RelationalQuality — an externally dependent property that inheres in (and existentially depends on) two Functions simultaneously.</rdfs:comment>
-    <skos:definition xml:lang="en">A directed link between functions representing how the output of one function provides input, preconditions, resources, control, or timing for another. Couplings are the pathways through which variability propagates.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#RelationalQuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasPhenotype">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has phenotype</rdfs:label>
-    <rdfs:comment xml:lang="en">Associates variability with a timing or precision phenotype.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasContributingFactor">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has contributing factor</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates variability to a performance condition that contributes to it.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Acceptable">
-    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
-    <rdfs:label xml:lang="en">Acceptable</rdfs:label>
-    <rdfs:comment xml:lang="en">The function output is within acceptable bounds but not precise.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/variabilityType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">variability type</rdfs:label>
-    <rdfs:comment xml:lang="en">The type of variability: Internal, External, Upstream, or Downstream.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:versionIRI rdf:resource="https://flowfram.com/ontology/fram/1.3.0"/>
+    <owl:versionInfo>1.3.0</owl:versionInfo>
+    <dc:title xml:lang="en">FRAM Ontology</dc:title>
+    <dc:description xml:lang="en">An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns.</dc:description>
+    <dc:creator>César Goudouris</dc:creator>
+    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by-sa/4.0/"/>
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-01</dcterms:created>
+    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-03-29</dcterms:modified>
+    <vann:preferredNamespacePrefix>fram</vann:preferredNamespacePrefix>
+    <vann:preferredNamespaceUri>https://flowfram.com/ontology/fram/</vann:preferredNamespaceUri>
+    <rdfs:seeAlso rdf:resource="https://github.com/cgoudouris/fram-ontology"/>
+    <rdfs:seeAlso rdf:resource="https://flowfram.com"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/timingPhenotype">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -133,22 +86,6 @@
     <rdfs:comment xml:lang="en">The timing dimension of variability: too-early, on-time, too-late, or not-at-all.</rdfs:comment>
     <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/sourceType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">source type</rdfs:label>
-    <rdfs:comment xml:lang="en">The source type of a variable: 'calculated' or 'external'.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/PreconditionAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:label xml:lang="en">Precondition Aspect (P)</rdfs:label>
-    <rdfs:comment xml:lang="en">The Precondition aspect: conditions that must be fulfilled before the function can be carried out.</rdfs:comment>
-    <skos:definition xml:lang="en">Conditions that must exist before the function can be carried out. Unlike inputs, preconditions are not transformed by the function.</skos:definition>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/distributionStdDev">
@@ -167,28 +104,53 @@
     <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Passthrough"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/HumanFunction">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/UniformDistribution">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Event"/>
-    <rdfs:label xml:lang="en">Human Function</rdfs:label>
-    <rdfs:comment xml:lang="en">A function performed by a human actor, characterized by high adaptability but also high variability.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
+    <rdfs:label xml:lang="en">Uniform Distribution</rdfs:label>
+    <rdfs:comment xml:lang="en">A uniform probability distribution where all values in a range are equally likely.</rdfs:comment>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TechnologicalFunction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:label xml:lang="en">Technological Function</rdfs:label>
-    <rdfs:comment xml:lang="en">A function performed by a technological system, characterized by high precision but limited adaptability.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isDistributionOf">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isOriginChainIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is distribution of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a distribution back to the variability it characterizes.</rdfs:comment>
+    <rdfs:label xml:lang="en">is origin chain in</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to the functional resonance where it appears in the origin chain.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/originChain"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/amplification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">amplification</rdfs:label>
+    <rdfs:comment xml:lang="en">The amplification factor for variability propagation through a coupling.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/variabilityPotential">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">variability potential</rdfs:label>
+    <rdfs:comment xml:lang="en">The potential level of variability: low, medium, or high.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/distributionMax">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">distribution maximum</rdfs:label>
+    <rdfs:comment xml:lang="en">The maximum value of a probability distribution.</rdfs:comment>
     <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasDistribution"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isOutputOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is output of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates an output message back to its parent function.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasOutput"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/position">
@@ -199,12 +161,174 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasInterpretationProfile">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasScenario">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has interpretation profile</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to its interpretation profile defining how incoming aspects are combined.</rdfs:comment>
+    <rdfs:label xml:lang="en">has scenario</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a FRAM model to one of its scenarios.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMScenario"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isPhenotypeOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is phenotype of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a phenotype back to the variability it describes.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasPhenotype"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasVariability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has variability</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function output to its variability characterization.</rdfs:comment>
     <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/InterpretationProfile"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/value">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">value</rdfs:label>
+    <rdfs:comment xml:lang="en">The value of a constant or result of a computation.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anySimpleType"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/semanticMeaning">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">semantic meaning</rdfs:label>
+    <rdfs:comment xml:lang="en">A semantic description of the meaning of a constant or variable in the FRAM model context.</rdfs:comment>
+    <rdfs:domain rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b1"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/targetAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">target aspect</rdfs:label>
+    <rdfs:comment xml:lang="en">The target aspect of the coupling (Input, Precondition, Resource, Control, or Time).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/InternalVariability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:label xml:lang="en">Internal Variability</rdfs:label>
+    <rdfs:comment xml:lang="en">Variability arising from within the function itself (e.g., human performance variability).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isPassthroughOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is passthrough of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a passthrough field back to its parent output message.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Passthrough"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasPassthrough"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b13">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/OutputAspect"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b14"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#Event">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Event</rdfs:label>
+    <rdfs:comment xml:lang="en">A perdurant — an occurrence that unfolds in time. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#Object">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Object</rdfs:label>
+    <rdfs:comment xml:lang="en">An endurant that persists through time. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isCouplingOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is coupling of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a coupling back to its parent FRAM model.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasCoupling"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasConstant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has constant</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to a named constant in its quantitative metadata.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/resonanceFactor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">resonance factor</rdfs:label>
+    <rdfs:comment xml:lang="en">A numeric value representing the degree of functional resonance at a particular point.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/analysisType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">analysis type</rdfs:label>
+    <rdfs:comment xml:lang="en">The type of FRAM analysis: retrospective or prospective.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasOutput">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has output</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to an output message definition.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b22">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/NormalDistribution"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b23"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/OutputAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">Output Aspect (O)</rdfs:label>
+    <rdfs:comment xml:lang="en">The Output aspect: what the function produces. The only aspect that can be a source of couplings to other functions.</rdfs:comment>
+    <skos:definition xml:lang="en">That which is the result of the function, either an entity or a state change. The output of one function can provide the input, precondition, resource, control, or time for other functions.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/formula">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">formula</rdfs:label>
+    <rdfs:comment xml:lang="en">A formula for computing derived values in the FRAM model.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Variable">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Variable</rdfs:label>
+    <rdfs:comment xml:lang="en">A computed variable defined by an expression in the quantitative metadata of a FRAM function.</rdfs:comment>
+    <skos:definition xml:lang="en">A named variable computed from an expression, potentially depending on constants or other variables. Variables can be calculated or sourced from external flow context.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/FRAMScenario">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">FRAM Scenario</rdfs:label>
+    <rdfs:comment xml:lang="en">A scenario variant of a FRAM model with specific parameter settings.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A FRAM Scenario is a gufo:Object — a persistent configuration of parameter values for comparative analysis.</rdfs:comment>
+    <skos:definition xml:lang="en">A named configuration of a FRAM model that captures a specific set of conditions or parameter values for comparative analysis.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b26">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b27"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/couplingType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">coupling type</rdfs:label>
+    <rdfs:comment xml:lang="en">The semantic type of a coupling (e.g., informational, material, temporal).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isInterpretationProfileOf">
@@ -216,47 +340,152 @@
     <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasInterpretationProfile"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/distributionMax">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/PreconditionAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">Precondition Aspect (P)</rdfs:label>
+    <rdfs:comment xml:lang="en">The Precondition aspect: conditions that must be fulfilled before the function can be carried out.</rdfs:comment>
+    <skos:definition xml:lang="en">Conditions that must exist before the function can be carried out. Unlike inputs, preconditions are not transformed by the function.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/criticalPath">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">critical path</rdfs:label>
+    <rdfs:comment xml:lang="en">A sequence of coupled functions identified as a critical variability path.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Aspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Aspect</rdfs:label>
+    <rdfs:comment xml:lang="en">One of the six characterizing aspects of a FRAM function: Input (I), Output (O), Precondition (P), Resource (R), Control (C), or Time (T).</rdfs:comment>
+    <rdfs:comment xml:lang="en">A FRAM Aspect is a gufo:IntrinsicMode — a moment (property particular) that inheres in a single Function and characterizes one of its six facets.</rdfs:comment>
+    <skos:definition xml:lang="en">An aspect port on a FRAM function hexagon. Each function has exactly six aspects that describe the conditions necessary and sufficient for that function to be carried out.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#IntrinsicMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isVariableOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is variable of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a variable back to its parent function.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasVariable"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isFunctionOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is function of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function back to its parent FRAM model.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasFunction"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/functionType">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">distribution maximum</rdfs:label>
-    <rdfs:comment xml:lang="en">The maximum value of a probability distribution.</rdfs:comment>
+    <rdfs:label xml:lang="en">function type</rdfs:label>
+    <rdfs:comment xml:lang="en">The type of the function: human, technological, organisational, or background.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b12"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/dataType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">data type</rdfs:label>
+    <rdfs:comment xml:lang="en">The XSD data type of a value (e.g., xsd:decimal, xsd:string).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ExternalVariability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:label xml:lang="en">External Variability</rdfs:label>
+    <rdfs:comment xml:lang="en">Variability imposed on the function from outside (e.g., environmental conditions).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isTargetOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is target of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to couplings where it is the target.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/targetFunction"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/InterpretationProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Interpretation Profile</rdfs:label>
+    <rdfs:comment xml:lang="en">Defines how a function interprets incoming messages on each aspect.</rdfs:comment>
+    <skos:definition xml:lang="en">Specifies the activation logic for each input aspect (ALL, ANY, or NONE), determining how multiple incoming messages are combined before the function executes.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isSourceAspectOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is source aspect of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates an output aspect back to the coupling where it is the source.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/OutputAspect"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/sourceAspect"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isScenarioOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is scenario of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a scenario back to its parent FRAM model.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMScenario"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasScenario"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/InputAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">Input Aspect (I)</rdfs:label>
+    <rdfs:comment xml:lang="en">The Input aspect: what the function processes or transforms. Represented at the left side of the FRAM hexagon.</rdfs:comment>
+    <skos:definition xml:lang="en">That which the function processes or transforms or that which starts the function. A function can be linked to, or activated by, more than one input.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/resonancePoint">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">resonance point</rdfs:label>
+    <rdfs:comment xml:lang="en">A function identified as a potential point of functional resonance.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b16">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ControlAspect"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b17"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/distributionMean">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">distribution mean</rdfs:label>
+    <rdfs:comment xml:lang="en">The mean value of a probability distribution.</rdfs:comment>
     <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/semanticRole">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">semantic role</rdfs:label>
-    <rdfs:comment xml:lang="en">The semantic role of an aspect or coupling within the FRAM methodology.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isPerformanceConditionOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is performance condition of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a performance condition back to the function it influences.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasPerformanceCondition"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb7">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/OrganisationalFunction"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb8"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/codeType">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/phenotypeValue">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">code type</rdfs:label>
-    <rdfs:comment xml:lang="en">The type of code for a variable expression: 'expression' or 'block'.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/aspectCode">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">aspect code</rdfs:label>
-    <rdfs:comment xml:lang="en">The short code for an aspect type (I, O, P, R, C, T).</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/functionCategory">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">function category</rdfs:label>
-    <rdfs:comment xml:lang="en">An additional categorization of the function beyond its basic type.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:label xml:lang="en">phenotype value</rdfs:label>
+    <rdfs:comment xml:lang="en">The value of a phenotype (e.g., TooEarly, OnTime, Precise).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
@@ -269,48 +498,154 @@
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
     <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Event"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/sourceFunction">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TechnologicalFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:label xml:lang="en">Technological Function</rdfs:label>
+    <rdfs:comment xml:lang="en">A function performed by a technological system, characterized by high precision but limited adaptability.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b2">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/variabilityHotspot">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">source function</rdfs:label>
-    <rdfs:comment xml:lang="en">The function whose Output aspect is the source of this coupling.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:label xml:lang="en">variability hotspot</rdfs:label>
+    <rdfs:comment xml:lang="en">A function identified as a potential variability hotspot.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
     <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/executionTimestamp">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">execution timestamp</rdfs:label>
-    <rdfs:comment xml:lang="en">The timestamp when an instantiation or analysis was executed.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <owl:versionIRI rdf:resource="https://flowfram.com/ontology/fram/1.3.0"/>
-    <owl:versionInfo>1.3.0</owl:versionInfo>
-    <dc:title xml:lang="en">FRAM Ontology</dc:title>
-    <dc:description xml:lang="en">An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns.</dc:description>
-    <dc:creator>César Goudouris</dc:creator>
-    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by-sa/4.0/"/>
-    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-01</dcterms:created>
-    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-03-29</dcterms:modified>
-    <vann:preferredNamespacePrefix>fram</vann:preferredNamespacePrefix>
-    <vann:preferredNamespaceUri>https://flowfram.com/ontology/fram/</vann:preferredNamespaceUri>
-    <rdfs:seeAlso rdf:resource="https://github.com/cgoudouris/fram-ontology"/>
-    <rdfs:seeAlso rdf:resource="https://flowfram.com"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/UniformDistribution">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Function">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
-    <rdfs:label xml:lang="en">Uniform Distribution</rdfs:label>
-    <rdfs:comment xml:lang="en">A uniform probability distribution where all values in a range are equally likely.</rdfs:comment>
+    <rdfs:label xml:lang="en">Function</rdfs:label>
+    <rdfs:comment xml:lang="en">A FRAM function representing an activity or task in a socio-technical system. Each function is characterized by six aspects: Input, Output, Precondition, Resource, Control, and Time.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A FRAM Function is a gufo:Event — an occurrence that unfolds in time. This diverges from Lališ et al. (2019), who proposed Disposition; see design decision #1 above.</rdfs:comment>
+    <skos:definition xml:lang="en">The basic unit of a FRAM model describing what people, organizations, or technology do. Functions are described by their six aspects rather than by their structure.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Event"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b24">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/TriangularDistribution"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b25"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ControlAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">Control Aspect (C)</rdfs:label>
+    <rdfs:comment xml:lang="en">The Control aspect: what monitors or regulates the function.</rdfs:comment>
+    <skos:definition xml:lang="en">That which supervises or adjusts the function, e.g., plans, procedures, guidelines, other activities. Control constrains or regulates how the function is carried out.</skos:definition>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/precisionPhenotype">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Imprecise">
+    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
+    <rdfs:label xml:lang="en">Imprecise</rdfs:label>
+    <rdfs:comment xml:lang="en">The function output deviates significantly from what is expected.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/phenotypeProbability">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">precision phenotype</rdfs:label>
-    <rdfs:comment xml:lang="en">The precision dimension of variability: precise, acceptable, or imprecise.</rdfs:comment>
+    <rdfs:label xml:lang="en">phenotype probability</rdfs:label>
+    <rdfs:comment xml:lang="en">The probability (0-1) of a specific phenotype occurrence.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Acceptable">
+    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
+    <rdfs:label xml:lang="en">Acceptable</rdfs:label>
+    <rdfs:comment xml:lang="en">The function output is within acceptable bounds but not precise.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/aspectCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">aspect code</rdfs:label>
+    <rdfs:comment xml:lang="en">The short code for an aspect type (I, O, P, R, C, T).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/analysisScope">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">analysis scope</rdfs:label>
+    <rdfs:comment xml:lang="en">The scope of the FRAM analysis.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TooLate">
+    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
+    <rdfs:label xml:lang="en">Too Late</rdfs:label>
+    <rdfs:comment xml:lang="en">The function output occurs later than expected or needed.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isVariabilityHotspotIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is variability hotspot in</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to the functional resonance where it is a variability hotspot.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/variabilityHotspot"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasPerformanceCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has performance condition</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to a Common Performance Condition (CPC) that influences its variability.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/expression">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">expression</rdfs:label>
+    <rdfs:comment xml:lang="en">A mathematical expression or formula associated with variability calculations.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TimeAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">Time Aspect (T)</rdfs:label>
+    <rdfs:comment xml:lang="en">The Time aspect: temporal constraints that affect when the function is carried out.</rdfs:comment>
+    <skos:definition xml:lang="en">Temporal aspects that affect the function, including duration, start time, end time, rate, or temporal constraints from other functions.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/activationCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">activation condition</rdfs:label>
+    <rdfs:comment xml:lang="en">A condition expression that determines when a function output is activated.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ExitFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:label xml:lang="en">Exit Function</rdfs:label>
+    <rdfs:comment xml:lang="en">A function at the exit point of an FMI, representing final outputs of the instantiation.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isContributingFactorTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is contributing factor to</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a performance condition to the variability it contributes to.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasContributingFactor"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/edgeId">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">edge ID</rdfs:label>
+    <rdfs:comment xml:lang="en">The internal identifier of a coupling edge in the visual editor.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/variabilityType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">variability type</rdfs:label>
+    <rdfs:comment xml:lang="en">The type of variability: Internal, External, Upstream, or Downstream.</rdfs:comment>
     <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
@@ -323,210 +658,60 @@
     <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TimeAspect">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/LogNormalDistribution">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:label xml:lang="en">Time Aspect (T)</rdfs:label>
-    <rdfs:comment xml:lang="en">The Time aspect: temporal constraints that affect when the function is carried out.</rdfs:comment>
-    <skos:definition xml:lang="en">Temporal aspects that affect the function, including duration, start time, end time, rate, or temporal constraints from other functions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
+    <rdfs:label xml:lang="en">Log-Normal Distribution</rdfs:label>
+    <rdfs:comment xml:lang="en">A log-normal probability distribution where the logarithm of the variable is normally distributed.</rdfs:comment>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has aspect</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a FRAM function to one of its six characterizing aspects.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Aspect">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/PerformanceCondition">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Aspect</rdfs:label>
-    <rdfs:comment xml:lang="en">One of the six characterizing aspects of a FRAM function: Input (I), Output (O), Precondition (P), Resource (R), Control (C), or Time (T).</rdfs:comment>
-    <rdfs:comment xml:lang="en">A FRAM Aspect is a gufo:IntrinsicMode — a moment (property particular) that inheres in a single Function and characterizes one of its six facets.</rdfs:comment>
-    <skos:definition xml:lang="en">An aspect port on a FRAM function hexagon. Each function has exactly six aspects that describe the conditions necessary and sufficient for that function to be carried out.</skos:definition>
+    <rdfs:label xml:lang="en">Performance Condition</rdfs:label>
+    <rdfs:comment xml:lang="en">A Common Performance Condition (CPC) that influences the variability of function outputs.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A CPC is a gufo:Disposition — a latent property that manifests under specific conditions, influencing the variability of function outputs. This adopts the Disposition mapping from Lališ et al. (2019), applied here to CPCs rather than Functions.</rdfs:comment>
+    <skos:definition xml:lang="en">Conditions in the work environment that affect how functions are performed and the variability of their outcomes. Based on Hollnagel's Common Performance Conditions framework.</skos:definition>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#IntrinsicMode"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Disposition"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isPhenotypeOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is phenotype of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a phenotype back to the variability it describes.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasPhenotype"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b10">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ExitFunction"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Variability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Variability</rdfs:label>
-    <rdfs:comment xml:lang="en">The potential variability of a function's output, characterized by timing and precision phenotypes.</rdfs:comment>
-    <rdfs:comment xml:lang="en">Variability is a gufo:Quality — a measurable intrinsic property of a Function's output, with an associated quality space (timing × precision).</rdfs:comment>
-    <skos:definition xml:lang="en">Performance variability describes how the output of a function can vary in terms of timing (too early, on time, too late, not at all) and precision (precise, acceptable, imprecise). This variability propagates through couplings creating functional resonance.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Quality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/OrganisationalFunction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:label xml:lang="en">Organisational Function</rdfs:label>
-    <rdfs:comment xml:lang="en">A function representing organisational processes, rules, or procedures.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasCoupling">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has coupling</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a FRAM model to one of its couplings between functions.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isScenarioOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is scenario of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a scenario back to its parent FRAM model.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMScenario"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasScenario"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/distributionMin">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">distribution minimum</rdfs:label>
-    <rdfs:comment xml:lang="en">The minimum value of a probability distribution.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasPerformanceCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has performance condition</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to a Common Performance Condition (CPC) that influences its variability.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TimingPhenotype">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/PrecisionPhenotype">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
-    <rdfs:label xml:lang="en">Timing Phenotype</rdfs:label>
-    <rdfs:comment xml:lang="en">A phenotype describing variability in timing: Too Early, On Time, Too Late, or Not At All.</rdfs:comment>
+    <rdfs:label xml:lang="en">Precision Phenotype</rdfs:label>
+    <rdfs:comment xml:lang="en">A phenotype describing variability in precision: Precise, Acceptable, or Imprecise.</rdfs:comment>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/OutputAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:label xml:lang="en">Output Aspect (O)</rdfs:label>
-    <rdfs:comment xml:lang="en">The Output aspect: what the function produces. The only aspect that can be a source of couplings to other functions.</rdfs:comment>
-    <skos:definition xml:lang="en">That which is the result of the function, either an entity or a state change. The output of one function can provide the input, precondition, resource, control, or time for other functions.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/cycleNumber">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">cycle number</rdfs:label>
-    <rdfs:comment xml:lang="en">The FMI cycle number in which a function is activated (0 for entry functions).</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isOriginChainIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is origin chain in</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to the functional resonance where it appears in the origin chain.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/originChain"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/couplingStrength">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">coupling strength</rdfs:label>
-    <rdfs:comment xml:lang="en">A numeric value (0-1) representing the strength of a coupling between functions.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb25">
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b25">
     <rdf:first rdf:resource="https://flowfram.com/ontology/fram/LogNormalDistribution"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/analysisFocus">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">analysis focus</rdfs:label>
-    <rdfs:comment xml:lang="en">The focus area of the FRAM analysis.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Distribution">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Distribution</rdfs:label>
+    <rdfs:comment xml:lang="en">A probability distribution characterizing the quantitative variability of a function output or aspect.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A probability distribution is a gufo:AbstractIndividual — an abstract entity that does not exist in space-time but characterizes the quantitative profile of variability.</rdfs:comment>
+    <skos:definition xml:lang="en">A mathematical probability distribution (Normal, Uniform, Triangular, LogNormal) used to quantify the variability of function outputs for simulation and analysis.</skos:definition>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#AbstractIndividual"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isVariableOf">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasPhenotype">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is variable of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a variable back to its parent function.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasVariable"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/variabilityHotspot">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">variability hotspot</rdfs:label>
-    <rdfs:comment xml:lang="en">A function identified as a potential variability hotspot.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/originChain">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">origin chain</rdfs:label>
-    <rdfs:comment xml:lang="en">A chain of function IDs tracing the origin of data through couplings.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasOutput">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has output</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to an output message definition.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/variabilityPotential">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">variability potential</rdfs:label>
-    <rdfs:comment xml:lang="en">The potential level of variability: low, medium, or high.</rdfs:comment>
+    <rdfs:label xml:lang="en">has phenotype</rdfs:label>
+    <rdfs:comment xml:lang="en">Associates variability with a timing or precision phenotype.</rdfs:comment>
     <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/BackgroundFunction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:label xml:lang="en">Background Function</rdfs:label>
-    <rdfs:comment xml:lang="en">A function that operates in the background, providing context or conditions for other functions.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Constant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Constant</rdfs:label>
-    <rdfs:comment xml:lang="en">A named constant value in the quantitative metadata of a FRAM function.</rdfs:comment>
-    <skos:definition xml:lang="en">A fixed, named value used in a function's computation. Constants have a name, value, data type, and optional unit.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/analysisScope">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/functionCategory">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">analysis scope</rdfs:label>
-    <rdfs:comment xml:lang="en">The scope of the FRAM analysis.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <rdfs:label xml:lang="en">function category</rdfs:label>
+    <rdfs:comment xml:lang="en">An additional categorization of the function beyond its basic type.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ControlAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:label xml:lang="en">Control Aspect (C)</rdfs:label>
-    <rdfs:comment xml:lang="en">The Control aspect: what monitors or regulates the function.</rdfs:comment>
-    <skos:definition xml:lang="en">That which supervises or adjusts the function, e.g., plans, procedures, guidelines, other activities. Control constrains or regulates how the function is carried out.</skos:definition>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Phenotype">
@@ -538,22 +723,197 @@
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
     <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#QualityValue"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TooEarly">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Passthrough">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Passthrough</rdfs:label>
+    <rdfs:comment xml:lang="en">A passthrough field that forwards data from a source function without transformation.</rdfs:comment>
+    <skos:definition xml:lang="en">Represents a data field that is passed through from an upstream function's output to a downstream function without computation, maintaining data traceability.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Constant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Constant</rdfs:label>
+    <rdfs:comment xml:lang="en">A named constant value in the quantitative metadata of a FRAM function.</rdfs:comment>
+    <skos:definition xml:lang="en">A fixed, named value used in a function's computation. Constants have a name, value, data type, and optional unit.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Precise">
+    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
+    <rdfs:label xml:lang="en">Precise</rdfs:label>
+    <rdfs:comment xml:lang="en">The function output matches the expected result precisely.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ResourceAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">Resource Aspect (R)</rdfs:label>
+    <rdfs:comment xml:lang="en">The Resource aspect: what the function needs or consumes while it is carried out.</rdfs:comment>
+    <skos:definition xml:lang="en">That which the function needs or consumes when it is carried out (material, energy, manpower, software, tools, etc.).</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b15">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ResourceAspect"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b16"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/NotAtAll">
     <rdf:type rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
-    <rdfs:label xml:lang="en">Too Early</rdfs:label>
-    <rdfs:comment xml:lang="en">The function output occurs earlier than expected or needed.</rdfs:comment>
+    <rdfs:label xml:lang="en">Not At All</rdfs:label>
+    <rdfs:comment xml:lang="en">The function output does not occur (missing output).</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb22">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/NormalDistribution"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb23"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isTargetAspectOf">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isVariabilityOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is target aspect of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates an aspect back to the coupling where it is the target.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:label xml:lang="en">is variability of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a variability characterization back to its function.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasVariability"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TriangularDistribution">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
+    <rdfs:label xml:lang="en">Triangular Distribution</rdfs:label>
+    <rdfs:comment xml:lang="en">A triangular probability distribution characterized by minimum, mode, and maximum values.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/originChain">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">origin chain</rdfs:label>
+    <rdfs:comment xml:lang="en">A chain of function IDs tracing the origin of data through couplings.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#AbstractIndividual">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Abstract Individual</rdfs:label>
+    <rdfs:comment xml:lang="en">An entity that does not exist in space-time. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#IntrinsicMode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Intrinsic Mode</rdfs:label>
+    <rdfs:comment xml:lang="en">A moment (property particular) that inheres in a single individual. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/sourceType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">source type</rdfs:label>
+    <rdfs:comment xml:lang="en">The source type of a variable: 'calculated' or 'external'.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/cycleNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">cycle number</rdfs:label>
+    <rdfs:comment xml:lang="en">The FMI cycle number in which a function is activated (0 for entry functions).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/executionTimestamp">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">execution timestamp</rdfs:label>
+    <rdfs:comment xml:lang="en">The timestamp when an instantiation or analysis was executed.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/sourceFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">source function</rdfs:label>
+    <rdfs:comment xml:lang="en">The function whose Output aspect is the source of this coupling.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/BackgroundFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:label xml:lang="en">Background Function</rdfs:label>
+    <rdfs:comment xml:lang="en">A function that operates in the background, providing context or conditions for other functions.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Variability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Variability</rdfs:label>
+    <rdfs:comment xml:lang="en">The potential variability of a function's output, characterized by timing and precision phenotypes.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Variability is a gufo:Quality — a measurable intrinsic property of a Function's output, with an associated quality space (timing × precision).</rdfs:comment>
+    <skos:definition xml:lang="en">Performance variability describes how the output of a function can vary in terms of timing (too early, on time, too late, not at all) and precision (precise, acceptable, imprecise). This variability propagates through couplings creating functional resonance.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Quality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#Quality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Quality</rdfs:label>
+    <rdfs:comment xml:lang="en">A measurable intrinsic property with an associated quality space. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasContributingFactor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has contributing factor</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates variability to a performance condition that contributes to it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isConstantOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is constant of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a constant back to its parent function.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasConstant"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#Disposition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Disposition</rdfs:label>
+    <rdfs:comment xml:lang="en">A latent property that manifests under specific conditions. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isSourceOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is source of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to couplings where it is the source.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
     <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/targetAspect"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/sourceFunction"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TimingPhenotype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
+    <rdfs:label xml:lang="en">Timing Phenotype</rdfs:label>
+    <rdfs:comment xml:lang="en">A phenotype describing variability in timing: Too Early, On Time, Too Late, or Not At All.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasCoupling">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has coupling</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a FRAM model to one of its couplings between functions.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/targetFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">target function</rdfs:label>
+    <rdfs:comment xml:lang="en">The function whose Input, Precondition, Resource, Control, or Time aspect is the target of this coupling.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b6">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/TechnologicalFunction"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b7"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/unit">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">unit</rdfs:label>
+    <rdfs:comment xml:lang="en">The measurement unit of a constant or variable value.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/NormalDistribution">
@@ -561,6 +921,121 @@
     <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
     <rdfs:label xml:lang="en">Normal Distribution</rdfs:label>
     <rdfs:comment xml:lang="en">A Gaussian (normal) probability distribution characterized by mean and standard deviation.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b14">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/PreconditionAspect"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b15"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/aspectType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">aspect type</rdfs:label>
+    <rdfs:comment xml:lang="en">The type code of an aspect: I (Input), O (Output), P (Precondition), R (Resource), C (Control), or T (Time).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b30">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ExternalVariability"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasAspect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has aspect</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a FRAM function to one of its six characterizing aspects.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/DownstreamVariability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:label xml:lang="en">Downstream Variability</rdfs:label>
+    <rdfs:comment xml:lang="en">Variability propagated to downstream functions through couplings.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/UpstreamVariability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:label xml:lang="en">Upstream Variability</rdfs:label>
+    <rdfs:comment xml:lang="en">Variability propagated from upstream functions through couplings.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isAspectOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is aspect of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates an aspect back to its parent function.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasAspect"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b18">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b19"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/EntryFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:label xml:lang="en">Entry Function</rdfs:label>
+    <rdfs:comment xml:lang="en">A function at the entry point of an FMI (FRAM Model Instantiation), active from Cycle 0.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#RelationalQuality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Relational Quality</rdfs:label>
+    <rdfs:comment xml:lang="en">An externally dependent property that inheres in two or more individuals. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/nemo/gufo#QualityValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Quality Value</rdfs:label>
+    <rdfs:comment xml:lang="en">A point in the quality space of a quality. Defined in gUFO (Guizzardi et al., 2021).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/nemo/gufo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/precisionPhenotype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">precision phenotype</rdfs:label>
+    <rdfs:comment xml:lang="en">The precision dimension of variability: precise, acceptable, or imprecise.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/semanticRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">semantic role</rdfs:label>
+    <rdfs:comment xml:lang="en">The semantic role of an aspect or coupling within the FRAM methodology.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/OrganisationalFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:label xml:lang="en">Organisational Function</rdfs:label>
+    <rdfs:comment xml:lang="en">A function representing organisational processes, rules, or procedures.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isCriticalPathIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is critical path in</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a function to the functional resonance where it is on a critical path.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/criticalPath"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isDistributionOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is distribution of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates a distribution back to the variability it characterizes.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasDistribution"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isResonancePointIn">
@@ -572,443 +1047,6 @@
     <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/resonancePoint"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/DownstreamVariability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:label xml:lang="en">Downstream Variability</rdfs:label>
-    <rdfs:comment xml:lang="en">Variability propagated to downstream functions through couplings.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/activationCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">activation condition</rdfs:label>
-    <rdfs:comment xml:lang="en">A condition expression that determines when a function output is activated.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Imprecise">
-    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
-    <rdfs:label xml:lang="en">Imprecise</rdfs:label>
-    <rdfs:comment xml:lang="en">The function output deviates significantly from what is expected.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb11">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-    <owl:members rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb12"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isAspectOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is aspect of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates an aspect back to its parent function.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasAspect"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ExternalVariability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:label xml:lang="en">External Variability</rdfs:label>
-    <rdfs:comment xml:lang="en">Variability imposed on the function from outside (e.g., environmental conditions).</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Precise">
-    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
-    <rdfs:label xml:lang="en">Precise</rdfs:label>
-    <rdfs:comment xml:lang="en">The function output matches the expected result precisely.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb26">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-    <owl:members rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb27"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/couplingType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">coupling type</rdfs:label>
-    <rdfs:comment xml:lang="en">The semantic type of a coupling (e.g., informational, material, temporal).</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasScenario">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has scenario</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a FRAM model to one of its scenarios.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMScenario"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Variable">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Variable</rdfs:label>
-    <rdfs:comment xml:lang="en">A computed variable defined by an expression in the quantitative metadata of a FRAM function.</rdfs:comment>
-    <skos:definition xml:lang="en">A named variable computed from an expression, potentially depending on constants or other variables. Variables can be calculated or sourced from external flow context.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isVariabilityHotspotIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is variability hotspot in</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to the functional resonance where it is a variability hotspot.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/variabilityHotspot"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasVariability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has variability</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function output to its variability characterization.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isOutputOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is output of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates an output message back to its parent function.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasOutput"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/sourceAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">source aspect</rdfs:label>
-    <rdfs:comment xml:lang="en">The source aspect (always Output) of the coupling.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/OutputAspect"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/amplification">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">amplification</rdfs:label>
-    <rdfs:comment xml:lang="en">The amplification factor for variability propagation through a coupling.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb8">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/BackgroundFunction"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb9"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isPerformanceConditionOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is performance condition of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a performance condition back to the function it influences.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasPerformanceCondition"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/targetAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">target aspect</rdfs:label>
-    <rdfs:comment xml:lang="en">The target aspect of the coupling (Input, Precondition, Resource, Control, or Time).</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/FRAMScenario">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">FRAM Scenario</rdfs:label>
-    <rdfs:comment xml:lang="en">A scenario variant of a FRAM model with specific parameter settings.</rdfs:comment>
-    <rdfs:comment xml:lang="en">A FRAM Scenario is a gufo:Object — a persistent configuration of parameter values for comparative analysis.</rdfs:comment>
-    <skos:definition xml:lang="en">A named configuration of a FRAM model that captures a specific set of conditions or parameter values for comparative analysis.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Object"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isFunctionOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is function of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function back to its parent FRAM model.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasFunction"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/dataType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">data type</rdfs:label>
-    <rdfs:comment xml:lang="en">The XSD data type of a value (e.g., xsd:decimal, xsd:string).</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/semanticMeaning">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">semantic meaning</rdfs:label>
-    <rdfs:comment xml:lang="en">A semantic description of the meaning of a constant or variable in the FRAM model context.</rdfs:comment>
-    <rdfs:domain rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb1"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb19">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb20"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isTargetOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is target of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to couplings where it is the target.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/targetFunction"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/externalKey">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">external key</rdfs:label>
-    <rdfs:comment xml:lang="en">The flow context key for an external variable (e.g., 'sim_iteration').</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/analysisType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">analysis type</rdfs:label>
-    <rdfs:comment xml:lang="en">The type of FRAM analysis: retrospective or prospective.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb10">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ExitFunction"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/LogNormalDistribution">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
-    <rdfs:label xml:lang="en">Log-Normal Distribution</rdfs:label>
-    <rdfs:comment xml:lang="en">A log-normal probability distribution where the logarithm of the variable is normally distributed.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isSourceOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is source of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a function to couplings where it is the source.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/sourceFunction"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isPassthroughOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is passthrough of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a passthrough field back to its parent output message.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Passthrough"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/OutputMessage"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasPassthrough"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb27">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/UpstreamVariability"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb28"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb2"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Distribution">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Distribution</rdfs:label>
-    <rdfs:comment xml:lang="en">A probability distribution characterizing the quantitative variability of a function output or aspect.</rdfs:comment>
-    <rdfs:comment xml:lang="en">A probability distribution is a gufo:AbstractIndividual — an abstract entity that does not exist in space-time but characterizes the quantitative profile of variability.</rdfs:comment>
-    <skos:definition xml:lang="en">A mathematical probability distribution (Normal, Uniform, Triangular, LogNormal) used to quantify the variability of function outputs for simulation and analysis.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#AbstractIndividual"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/expression">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">expression</rdfs:label>
-    <rdfs:comment xml:lang="en">A mathematical expression or formula associated with variability calculations.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/FRAMModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">FRAM Model</rdfs:label>
-    <rdfs:comment xml:lang="en">A complete FRAM model consisting of functions, aspects, and couplings. Represents a systemic description of how work is done (Work-as-Done) or imagined (Work-as-Imagined).</rdfs:comment>
-    <rdfs:comment xml:lang="en">A FRAM Model is a gufo:Object — an endurant that persists through time and aggregates functions, aspects, and couplings as a structured whole.</rdfs:comment>
-    <skos:definition xml:lang="en">A structured representation of a socio-technical system using the Functional Resonance Analysis Method, composed of interconnected functions characterized by six aspects.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Object"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/UpstreamVariability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:label xml:lang="en">Upstream Variability</rdfs:label>
-    <rdfs:comment xml:lang="en">Variability propagated from upstream functions through couplings.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isVariabilityOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is variability of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a variability characterization back to its function.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasVariability"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ExitFunction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:label xml:lang="en">Exit Function</rdfs:label>
-    <rdfs:comment xml:lang="en">A function at the exit point of an FMI, representing final outputs of the instantiation.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb28">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/DownstreamVariability"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb29"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/InternalVariability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <rdfs:label xml:lang="en">Internal Variability</rdfs:label>
-    <rdfs:comment xml:lang="en">Variability arising from within the function itself (e.g., human performance variability).</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/phenotypeValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">phenotype value</rdfs:label>
-    <rdfs:comment xml:lang="en">The value of a phenotype (e.g., TooEarly, OnTime, Precise).</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/resonanceFactor">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">resonance factor</rdfs:label>
-    <rdfs:comment xml:lang="en">A numeric value representing the degree of functional resonance at a particular point.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/phenotypeProbability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">phenotype probability</rdfs:label>
-    <rdfs:comment xml:lang="en">The probability (0-1) of a specific phenotype occurrence.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/criticalPath">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">critical path</rdfs:label>
-    <rdfs:comment xml:lang="en">A sequence of coupled functions identified as a critical variability path.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isSourceAspectOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is source aspect of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates an output aspect back to the coupling where it is the source.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/OutputAspect"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/sourceAspect"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/functionType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">function type</rdfs:label>
-    <rdfs:comment xml:lang="en">The type of the function: human, technological, organisational, or background.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb3">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isCouplingOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is coupling of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a coupling back to its parent FRAM model.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasCoupling"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/targetFunction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">target function</rdfs:label>
-    <rdfs:comment xml:lang="en">The function whose Input, Precondition, Resource, Control, or Time aspect is the target of this coupling.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb13">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/OutputAspect"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb14"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/EntryFunction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <rdfs:label xml:lang="en">Entry Function</rdfs:label>
-    <rdfs:comment xml:lang="en">A function at the entry point of an FMI (FRAM Model Instantiation), active from Cycle 0.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/InputAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:label xml:lang="en">Input Aspect (I)</rdfs:label>
-    <rdfs:comment xml:lang="en">The Input aspect: what the function processes or transforms. Represented at the left side of the FRAM hexagon.</rdfs:comment>
-    <skos:definition xml:lang="en">That which the function processes or transforms or that which starts the function. A function can be linked to, or activated by, more than one input.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/ResourceAspect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
-    <rdfs:label xml:lang="en">Resource Aspect (R)</rdfs:label>
-    <rdfs:comment xml:lang="en">The Resource aspect: what the function needs or consumes while it is carried out.</rdfs:comment>
-    <skos:definition xml:lang="en">That which the function needs or consumes when it is carried out (material, energy, manpower, software, tools, etc.).</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb21">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-    <owl:members rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb22"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/PrecisionPhenotype">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Phenotype"/>
-    <rdfs:label xml:lang="en">Precision Phenotype</rdfs:label>
-    <rdfs:comment xml:lang="en">A phenotype describing variability in precision: Precise, Acceptable, or Imprecise.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Function">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Function</rdfs:label>
-    <rdfs:comment xml:lang="en">A FRAM function representing an activity or task in a socio-technical system. Each function is characterized by six aspects: Input, Output, Precondition, Resource, Control, and Time.</rdfs:comment>
-    <rdfs:comment xml:lang="en">A FRAM Function is a gufo:Event — an occurrence that unfolds in time. This diverges from Lališ et al. (2019), who proposed Disposition; see design decision #1 above.</rdfs:comment>
-    <skos:definition xml:lang="en">The basic unit of a FRAM model describing what people, organizations, or technology do. Functions are described by their six aspects rather than by their structure.</skos:definition>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Event"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TooLate">
-    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
-    <rdfs:label xml:lang="en">Too Late</rdfs:label>
-    <rdfs:comment xml:lang="en">The function output occurs later than expected or needed.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/distributionMean">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">distribution mean</rdfs:label>
-    <rdfs:comment xml:lang="en">The mean value of a probability distribution.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/formula">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label xml:lang="en">formula</rdfs:label>
-    <rdfs:comment xml:lang="en">A formula for computing derived values in the FRAM model.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb6">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/TechnologicalFunction"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb7"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasDistribution">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label xml:lang="en">has distribution</rdfs:label>
@@ -1017,13 +1055,22 @@
     <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/resonancePoint">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">resonance point</rdfs:label>
-    <rdfs:comment xml:lang="en">A function identified as a potential point of functional resonance.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FunctionalResonance"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/instantiationId">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">instantiation ID</rdfs:label>
+    <rdfs:comment xml:lang="en">The unique identifier of a FRAM Model Instantiation (FMI) run.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/FRAMModel"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Coupling">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Coupling</rdfs:label>
+    <rdfs:comment xml:lang="en">A coupling (connection) between the Output aspect of one function and an Input, Precondition, Resource, Control, or Time aspect of another function.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A FRAM Coupling is a gufo:RelationalQuality — an externally dependent property that inheres in (and existentially depends on) two Functions simultaneously.</rdfs:comment>
+    <skos:definition xml:lang="en">A directed link between functions representing how the output of one function provides input, preconditions, resources, control, or timing for another. Couplings are the pathways through which variability propagates.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#RelationalQuality"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/hasFunction">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -1033,105 +1080,106 @@
     <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/NotAtAll">
-    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
-    <rdfs:label xml:lang="en">Not At All</rdfs:label>
-    <rdfs:comment xml:lang="en">The function output does not occur (missing output).</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TriangularDistribution">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Distribution"/>
-    <rdfs:label xml:lang="en">Triangular Distribution</rdfs:label>
-    <rdfs:comment xml:lang="en">A triangular probability distribution characterized by minimum, mode, and maximum values.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isContributingFactorTo">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is contributing factor to</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a performance condition to the variability it contributes to.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/PerformanceCondition"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Variability"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasContributingFactor"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb20">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb5">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/HumanFunction"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb6"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isConstantOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">is constant of</rdfs:label>
-    <rdfs:comment xml:lang="en">Relates a constant back to its parent function.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
-    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Function"/>
-    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/hasConstant"/>
-    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://flowfram.com/ontology/fram/OnTime">
     <rdf:type rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
     <rdfs:label xml:lang="en">On Time</rdfs:label>
     <rdfs:comment xml:lang="en">The function output occurs at the expected time.</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/InterpretationProfile">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Interpretation Profile</rdfs:label>
-    <rdfs:comment xml:lang="en">Defines how a function interprets incoming messages on each aspect.</rdfs:comment>
-    <skos:definition xml:lang="en">Specifies the activation logic for each input aspect (ALL, ANY, or NONE), determining how multiple incoming messages are combined before the function executes.</skos:definition>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/couplingStrength">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">coupling strength</rdfs:label>
+    <rdfs:comment xml:lang="en">A numeric value (0-1) representing the strength of a coupling between functions.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb9">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/EntryFunction"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb10"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb16">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ControlAspect"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb17"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb14">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/PreconditionAspect"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb15"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb2">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/Constant"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb3"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb18">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-    <owl:members rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb19"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb24">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/TriangularDistribution"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb25"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb4">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-    <owl:members rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb5"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb15">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/ResourceAspect"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb16"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb23">
-    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/UniformDistribution"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb24"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/Passthrough">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/HumanFunction">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label xml:lang="en">Passthrough</rdfs:label>
-    <rdfs:comment xml:lang="en">A passthrough field that forwards data from a source function without transformation.</rdfs:comment>
-    <skos:definition xml:lang="en">Represents a data field that is passed through from an upstream function's output to a downstream function without computation, maintaining data traceability.</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://flowfram.com/ontology/fram/Function"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Event"/>
+    <rdfs:label xml:lang="en">Human Function</rdfs:label>
+    <rdfs:comment xml:lang="en">A function performed by a human actor, characterized by high adaptability but also high variability.</rdfs:comment>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb17">
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b17">
     <rdf:first rdf:resource="https://flowfram.com/ontology/fram/TimeAspect"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb29">
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/TooEarly">
+    <rdf:type rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
+    <rdfs:label xml:lang="en">Too Early</rdfs:label>
+    <rdfs:comment xml:lang="en">The function output occurs earlier than expected or needed.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/isTargetAspectOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">is target aspect of</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates an aspect back to the coupling where it is the target.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://flowfram.com/ontology/fram/Aspect"/>
+    <rdfs:range rdf:resource="https://flowfram.com/ontology/fram/Coupling"/>
+    <owl:inverseOf rdf:resource="https://flowfram.com/ontology/fram/targetAspect"/>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://flowfram.com/ontology/fram/OutputMessage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Output Message</rdfs:label>
+    <rdfs:comment xml:lang="en">A message output from a function specifying which data is sent to a target function via a coupling.</rdfs:comment>
+    <skos:definition xml:lang="en">Describes the data payload (selected constants, variables, and passthrough fields) sent through a specific coupling to a target function's aspect.</skos:definition>
+    <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b21">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b22"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b5">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/HumanFunction"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b23">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/UniformDistribution"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b24"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b12">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/InputAspect"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b13"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b29">
     <rdf:first rdf:resource="https://flowfram.com/ontology/fram/InternalVariability"/>
-    <rdf:rest rdf:nodeID="nd62b4e15cc6a412fb34178ef83529efcb30"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b30"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b7">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/OrganisationalFunction"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b9">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/EntryFunction"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b10"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b19">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/TimingPhenotype"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b8">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/BackgroundFunction"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b9"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b20">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/PrecisionPhenotype"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b3">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/Variable"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b28">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/DownstreamVariability"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b29"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b27">
+    <rdf:first rdf:resource="https://flowfram.com/ontology/fram/UpstreamVariability"/>
+    <rdf:rest rdf:nodeID="n49e90334eed349c2bd0d05e7f4474159b28"/>
   </rdf:Description>
 </rdf:RDF>

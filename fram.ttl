@@ -1073,6 +1073,51 @@ fram:isVariabilityHotspotIn a owl:ObjectProperty ;
 #     Safety Science, 117, 291-305.
 # =============================================================================
 
+# --- External gUFO class declarations ---
+# Declared as owl:Class with rdfs:label to satisfy OOPS! pitfall scanners
+# P34 (untyped class) and P08 (missing annotations). The authoritative
+# definitions reside in the gUFO ontology (<http://purl.org/nemo/gufo#>).
+
+gufo:Object a owl:Class ;
+    rdfs:label "Object"@en ;
+    rdfs:comment "An endurant that persists through time. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
+gufo:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A perdurant — an occurrence that unfolds in time. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
+gufo:IntrinsicMode a owl:Class ;
+    rdfs:label "Intrinsic Mode"@en ;
+    rdfs:comment "A moment (property particular) that inheres in a single individual. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
+gufo:RelationalQuality a owl:Class ;
+    rdfs:label "Relational Quality"@en ;
+    rdfs:comment "An externally dependent property that inheres in two or more individuals. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
+gufo:Quality a owl:Class ;
+    rdfs:label "Quality"@en ;
+    rdfs:comment "A measurable intrinsic property with an associated quality space. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
+gufo:Disposition a owl:Class ;
+    rdfs:label "Disposition"@en ;
+    rdfs:comment "A latent property that manifests under specific conditions. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
+gufo:AbstractIndividual a owl:Class ;
+    rdfs:label "Abstract Individual"@en ;
+    rdfs:comment "An entity that does not exist in space-time. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
+gufo:QualityValue a owl:Class ;
+    rdfs:label "Quality Value"@en ;
+    rdfs:comment "A point in the quality space of a quality. Defined in gUFO (Guizzardi et al., 2021)."@en ;
+    rdfs:isDefinedBy <http://purl.org/nemo/gufo#> .
+
 # --- Core class alignments ---
 
 fram:FRAMModel rdfs:subClassOf gufo:Object ;
