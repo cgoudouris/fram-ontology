@@ -27,6 +27,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | Prefix | IRI |
 |--------|-----|
 | `fram:` | `https://flowfram.com/ontology/fram/` |
+| `gufo:` | `http://purl.org/nemo/gufo#` |
 
 ## Files
 
@@ -35,6 +36,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | [`fram.ttl`](fram.ttl) | Canonical ontology definition in Turtle format |
 | [`context.jsonld`](context.jsonld) | JSON-LD context file for use in `@context` references |
 | [`fram-model.schema.json`](fram-model.schema.json) | JSON Schema (2020-12) for validating FRAM model documents |
+| [`fram.owl`](fram.owl) | OWL/RDF-XML serialization (auto-generated from `fram.ttl`) |
 | [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (6 shapes) |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
 | [`validation/`](validation/) | 5-step automated validation benchmark (Python) |
@@ -94,37 +96,38 @@ curl https://flowfram.com/ontology/fram/
 
 ```
 owl:Thing
-├── fram:FRAMModel
-├── fram:Function
+├── fram:FRAMModel ─────────────── rdfs:subClassOf gufo:Object
+├── fram:Function ─────────────── rdfs:subClassOf gufo:Event
 │   ├── fram:HumanFunction
 │   ├── fram:TechnologicalFunction
 │   ├── fram:OrganisationalFunction
 │   ├── fram:BackgroundFunction
 │   ├── fram:EntryFunction
 │   └── fram:ExitFunction
-├── fram:Aspect
+├── fram:Aspect ───────────────── rdfs:subClassOf gufo:IntrinsicMode
 │   ├── fram:InputAspect
 │   ├── fram:OutputAspect
 │   ├── fram:PreconditionAspect
 │   ├── fram:ResourceAspect
 │   ├── fram:ControlAspect
 │   └── fram:TimeAspect
-├── fram:Coupling
-├── fram:Variability
+├── fram:Coupling ─────────────── rdfs:subClassOf gufo:RelationalQuality
+├── fram:Variability ──────────── rdfs:subClassOf gufo:Quality
 │   ├── fram:InternalVariability
 │   ├── fram:ExternalVariability
 │   ├── fram:UpstreamVariability
 │   └── fram:DownstreamVariability
-├── fram:PerformanceCondition
-├── fram:FunctionalResonance
-├── fram:Distribution
+├── fram:PerformanceCondition ─── rdfs:subClassOf gufo:Disposition
+├── fram:FunctionalResonance ──── rdfs:subClassOf gufo:Event
+├── fram:Distribution ─────────── rdfs:subClassOf gufo:AbstractIndividual
 │   ├── fram:NormalDistribution
 │   ├── fram:UniformDistribution
 │   ├── fram:TriangularDistribution
 │   └── fram:LogNormalDistribution
-└── fram:Phenotype
-    ├── fram:TimingPhenotype
-    └── fram:PrecisionPhenotype
+├── fram:Phenotype ────────────── rdfs:subClassOf gufo:QualityValue
+│   ├── fram:TimingPhenotype
+│   └── fram:PrecisionPhenotype
+└── fram:FRAMScenario ─────────── rdfs:subClassOf gufo:Object
 ```
 
 ### Key Properties
@@ -223,6 +226,36 @@ python step5_oops_validation.py
 ```
 
 See [`validation/README.md`](validation/README.md) for full instructions and expected results.
+
+## Foundational Ontology Alignment (gUFO)
+
+Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unified Foundational Ontology** ([gUFO](https://purl.org/nemo/gufo)) — Guizzardi et al. (2021). This anchors FRAM domain concepts in well-established ontological categories.
+
+### Alignment Table
+
+| FRAM Class | gUFO Category | Rationale |
+|------------|--------------|----------|
+| `Function` | `gufo:Event` | Functions are activities that unfold in time |
+| `HumanFunction` | `gufo:Event` | Intentional event (via Function) |
+| `Aspect` | `gufo:IntrinsicMode` | Intrinsic property particular inhering in a Function |
+| `Coupling` | `gufo:RelationalQuality` | First-class relation between two Functions |
+| `Variability` | `gufo:Quality` | Measurable property with an associated quality space |
+| `PerformanceCondition` | `gufo:Disposition` | Latent property that manifests under specific conditions |
+| `FunctionalResonance` | `gufo:Event` | Emergent complex event |
+| `Distribution` | `gufo:AbstractIndividual` | Abstract entity (not in space-time) |
+| `Phenotype` | `gufo:QualityValue` | Point in the quality space of variability |
+| `FRAMModel` | `gufo:Object` | Persistent endurant aggregating functions and couplings |
+| `FRAMScenario` | `gufo:Object` | Persistent configuration for comparative analysis |
+
+### Design Decision: Function as Event (not Disposition)
+
+Lališ et al. (2019) proposed mapping FRAM Functions to UFO *Dispositions* — latent properties that manifest through events. We diverge: a FRAM Function is "what people have to do or what has to take place" (Hollnagel, 2012) — the activity itself, not the capacity to perform it. The Disposition mapping is reused for `PerformanceCondition` (CPC), which genuinely represents latent properties influencing variability.
+
+### References
+
+- Guizzardi, G. (2005). *Ontological Foundations for Structural Conceptual Models*. PhD Thesis, University of Twente.
+- Guizzardi, G. et al. (2021). gUFO: A Lightweight Implementation of the UFO. *Applied Ontology*, 17(1), 105-150.
+- Lališ, A. et al. (2019). Foundational ontological analysis of the FRAM. *Safety Science*, 117, 291-305.
 
 ## Background
 

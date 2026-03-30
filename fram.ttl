@@ -8,6 +8,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix schema: <https://schema.org/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # FRAM Ontology - Functional Resonance Analysis Method
@@ -25,17 +26,27 @@
 #   - Hollnagel, E. (2017). Safety-II in Practice.
 #   - W3C OWL 2 Web Ontology Language: https://www.w3.org/TR/owl2-overview/
 #   - W3C JSON-LD 1.1: https://www.w3.org/TR/json-ld11/
+#
+# Foundational Ontology Alignment:
+#   - Guizzardi, G. (2005). Ontological Foundations for Structural Conceptual
+#     Models. PhD Thesis, University of Twente (UFO).
+#   - Almeida, J. P. A.; Falbo, R. A.; Guizzardi, G. (2019). Events as Entities
+#     in Ontology-Driven Conceptual Modeling. ER 2019.
+#   - Guizzardi, G. et al. (2021). gUFO: A Lightweight Implementation of the
+#     Unified Foundational Ontology (UFO). https://purl.org/nemo/gufo
+#   - Lališ, A. et al. (2019). Foundational ontological analysis of FRAM.
+#     Safety Science, 117, 291–305.
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.2.0> ;
-    owl:versionInfo "1.2.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.3.0> ;
+    owl:versionInfo "1.3.0" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
     dcterms:created "2025-01-01"^^xsd:date ;
-    dcterms:modified "2026-02-21"^^xsd:date ;
+    dcterms:modified "2026-03-29"^^xsd:date ;
     vann:preferredNamespacePrefix "fram" ;
     vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
     rdfs:seeAlso <https://github.com/cgoudouris/fram-ontology> ;
@@ -1013,3 +1024,88 @@ fram:isVariabilityHotspotIn a owl:ObjectProperty ;
     rdfs:range fram:FunctionalResonance ;
     owl:inverseOf fram:variabilityHotspot ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
+# FOUNDATIONAL ONTOLOGY ALIGNMENT (gUFO — Guizzardi et al., 2021)
+# =============================================================================
+#
+# Lightweight alignment with the Unified Foundational Ontology (UFO) via its
+# OWL implementation gUFO (https://purl.org/nemo/gufo). This alignment anchors
+# FRAM domain concepts in well-established ontological categories, improving
+# semantic interoperability and conceptual clarity.
+#
+# Design decisions:
+#
+# 1. Function → gufo:Event (not gufo:Disposition).
+#    Lališ et al. (2019) proposed mapping FRAM Functions to UFO Dispositions
+#    (latent properties that manifest through events). We diverge: a FRAM
+#    Function, as defined by Hollnagel (2012, p. 37), is "what people —
+#    individually or collectively — have to do or what has to take place",
+#    i.e., the activity itself (an Event), not the latent capacity to perform
+#    it. The Disposition mapping is reused for PerformanceCondition (CPC),
+#    which genuinely represents latent properties that influence variability.
+#
+# 2. HumanFunction → gufo:Action (intentional event with agent).
+#    Non-human function types remain as gufo:Event (non-intentional).
+#
+# 3. Coupling → gufo:RelationalQuality.
+#    Couplings are first-class entities that mediate the relationship between
+#    two functions. In gUFO, RelationalQuality captures existentially
+#    dependent relations that inhere in their relata.
+#
+# 4. rdfs:subClassOf (not owl:equivalentClass).
+#    The alignment is specialization, not equivalence: every FRAM Function
+#    is an Event, but not every Event is a FRAM Function. This preserves
+#    the Open World Assumption.
+#
+# 5. No owl:imports of gUFO.
+#    The alignment is lightweight — only subsumption axioms — to avoid
+#    importing ~500 gUFO classes into the FRAM graph. Full import is
+#    available for users who need complete UFO reasoning.
+#
+# References:
+#   Guizzardi, G. (2005). Ontological Foundations for Structural Conceptual
+#     Models. PhD Thesis, University of Twente.
+#   Guizzardi, G. et al. (2021). gUFO: A Lightweight Implementation of the
+#     Unified Foundational Ontology. Applied Ontology, 17(1), 105-150.
+#   Lališ, A. et al. (2019). Foundational ontological analysis of the FRAM.
+#     Safety Science, 117, 291-305.
+# =============================================================================
+
+# --- Core class alignments ---
+
+fram:FRAMModel rdfs:subClassOf gufo:Object ;
+    rdfs:comment "A FRAM Model is a gufo:Object — an endurant that persists through time and aggregates functions, aspects, and couplings as a structured whole."@en .
+
+fram:Function rdfs:subClassOf gufo:Event ;
+    rdfs:comment "A FRAM Function is a gufo:Event — an occurrence that unfolds in time. This diverges from Lališ et al. (2019), who proposed Disposition; see design decision #1 above."@en .
+
+fram:HumanFunction rdfs:subClassOf gufo:Event .
+    # Note: gUFO does not distinguish Action from Event at the class level;
+    # intentionality is captured via participation relations. HumanFunction
+    # inherits gufo:Event via fram:Function.
+
+fram:Aspect rdfs:subClassOf gufo:IntrinsicMode ;
+    rdfs:comment "A FRAM Aspect is a gufo:IntrinsicMode — a moment (property particular) that inheres in a single Function and characterizes one of its six facets."@en .
+
+fram:Coupling rdfs:subClassOf gufo:RelationalQuality ;
+    rdfs:comment "A FRAM Coupling is a gufo:RelationalQuality — an externally dependent property that inheres in (and existentially depends on) two Functions simultaneously."@en .
+
+fram:Variability rdfs:subClassOf gufo:Quality ;
+    rdfs:comment "Variability is a gufo:Quality — a measurable intrinsic property of a Function's output, with an associated quality space (timing × precision)."@en .
+
+fram:PerformanceCondition rdfs:subClassOf gufo:Disposition ;
+    rdfs:comment "A CPC is a gufo:Disposition — a latent property that manifests under specific conditions, influencing the variability of function outputs. This adopts the Disposition mapping from Lališ et al. (2019), applied here to CPCs rather than Functions."@en .
+
+fram:FunctionalResonance rdfs:subClassOf gufo:Event ;
+    rdfs:comment "Functional Resonance is a gufo:Event — an emergent complex event arising from the temporal coincidence and mutual amplification of everyday variability across coupled functions."@en .
+
+fram:Distribution rdfs:subClassOf gufo:AbstractIndividual ;
+    rdfs:comment "A probability distribution is a gufo:AbstractIndividual — an abstract entity that does not exist in space-time but characterizes the quantitative profile of variability."@en .
+
+fram:Phenotype rdfs:subClassOf gufo:QualityValue ;
+    rdfs:comment "A phenotype is a gufo:QualityValue — a point in the quality space of variability (e.g., OnTime, Precise)."@en .
+
+fram:FRAMScenario rdfs:subClassOf gufo:Object ;
+    rdfs:comment "A FRAM Scenario is a gufo:Object — a persistent configuration of parameter values for comparative analysis."@en .
