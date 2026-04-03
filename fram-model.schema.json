@@ -157,9 +157,11 @@
                 "HumanFunction",
                 "TechnologicalFunction",
                 "OrganisationalFunction",
+                "SocialFunction",
                 "BackgroundFunction",
                 "EntryFunction",
-                "ExitFunction"
+                "ExitFunction",
+                "ForegroundFunction"
               ]
             },
             {
@@ -171,9 +173,11 @@
                   "HumanFunction",
                   "TechnologicalFunction",
                   "OrganisationalFunction",
+                  "SocialFunction",
                   "BackgroundFunction",
                   "EntryFunction",
-                  "ExitFunction"
+                  "ExitFunction",
+                  "ForegroundFunction"
                 ]
               },
               "contains": { "const": "Function" }
@@ -215,6 +219,16 @@
           "type": "array",
           "description": "Common Performance Conditions (CPCs) that influence this function's variability.",
           "items": { "$ref": "#/$defs/PerformanceCondition" }
+        },
+        "hasPhenotypeMappingRule": {
+          "type": "array",
+          "description": "Analyst-defined phenotype classification rules for this function.",
+          "items": { "$ref": "#/$defs/PhenotypeMappingRule" }
+        },
+        "hasWAIWADComparison": {
+          "type": "array",
+          "description": "WAI/WAD comparison results for this function.",
+          "items": { "$ref": "#/$defs/WAIWADComparison" }
         },
         "notes": {
           "oneOf": [
@@ -414,12 +428,23 @@
             "TimingPhenotypeClass",
             "PrecisionPhenotypeClass",
             "TimingPhenotype",
-            "PrecisionPhenotype"
+            "PrecisionPhenotype",
+            "DurationPhenotype",
+            "SequencePhenotype",
+            "ForcePhenotype",
+            "DistancePhenotype",
+            "DirectionPhenotype"
           ]
         },
         "phenotypeValue": {
           "type": "string",
-          "enum": ["too-early", "on-time", "too-late", "not-at-all", "precise", "acceptable", "imprecise"],
+          "enum": [
+            "too-early", "on-time", "too-late", "not-at-all",
+            "precise", "acceptable", "imprecise",
+            "too-short", "appropriate", "too-long",
+            "correct-order", "wrong-order", "skipped", "repeated",
+            "too-low", "on-target", "too-high"
+          ],
           "description": "The phenotype category."
         },
         "phenotypeProbability": {
@@ -546,6 +571,123 @@
         "hasCoupling": {
           "type": "array",
           "items": { "$ref": "#/$defs/Coupling" }
+        }
+      }
+    },
+
+    "PhenotypeMappingRule": {
+      "type": "object",
+      "description": "A rule that maps a metadata variable to phenotype classifications along a variability dimension.",
+      "required": ["@type", "mapsToVariable", "mapsToDimension"],
+      "additionalProperties": true,
+      "properties": {
+        "@type": {
+          "oneOf": [
+            { "const": "PhenotypeMappingRule" },
+            { "type": "array", "contains": { "const": "PhenotypeMappingRule" } }
+          ]
+        },
+        "@id": { "type": "string" },
+        "mapsToVariable": {
+          "type": "string",
+          "description": "The metadata variable or expression whose values are classified."
+        },
+        "mapsToDimension": {
+          "type": "string",
+          "description": "IRI or short name of the variability dimension (e.g. 'TimingDimension')."
+        },
+        "hasWAIDeclaration": {
+          "$ref": "#/$defs/WAIDeclaration",
+          "description": "The analyst's expected (Work-as-Imagined) phenotype."
+        },
+        "hasEmergentResult": {
+          "$ref": "#/$defs/EmergentPhenotypeResult",
+          "description": "The observed (Work-as-Done) phenotype distribution."
+        }
+      }
+    },
+
+    "WAIDeclaration": {
+      "type": "object",
+      "description": "The analyst's expected phenotype declaration (Work-as-Imagined).",
+      "required": ["@type", "dominantPhenotype", "waiConfidence"],
+      "additionalProperties": true,
+      "properties": {
+        "@type": {
+          "oneOf": [
+            { "const": "WAIDeclaration" },
+            { "type": "array", "contains": { "const": "WAIDeclaration" } }
+          ]
+        },
+        "@id": { "type": "string" },
+        "dominantPhenotype": {
+          "type": "string",
+          "description": "The expected dominant phenotype category."
+        },
+        "waiConfidence": {
+          "type": "string",
+          "enum": ["Low", "Medium", "High"],
+          "description": "Analyst's self-assessed confidence in the WAI declaration."
+        },
+        "waiRationale": {
+          "type": "string",
+          "description": "Free-text justification for the WAI expectation."
+        }
+      }
+    },
+
+    "EmergentPhenotypeResult": {
+      "type": "object",
+      "description": "The observed phenotype distribution from simulation (Work-as-Done).",
+      "additionalProperties": true,
+      "properties": {
+        "@type": {
+          "oneOf": [
+            { "const": "EmergentPhenotypeResult" },
+            { "type": "array", "contains": { "const": "EmergentPhenotypeResult" } }
+          ]
+        },
+        "@id": { "type": "string" },
+        "dominantPhenotype": {
+          "type": "string",
+          "description": "The most frequently observed phenotype category."
+        },
+        "dominantProbability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability of the dominant phenotype."
+        },
+        "sampleSize": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of simulation iterations classified."
+        }
+      }
+    },
+
+    "WAIWADComparison": {
+      "type": "object",
+      "description": "A comparison between expected (WAI) and observed (WAD) phenotypes.",
+      "additionalProperties": true,
+      "properties": {
+        "@type": {
+          "oneOf": [
+            { "const": "WAIWADComparison" },
+            { "type": "array", "contains": { "const": "WAIWADComparison" } }
+          ]
+        },
+        "@id": { "type": "string" },
+        "discordanceIndex": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Δ(WAI-WAD) = 1 - P_WAD(c_WAI). Range [0, 1]."
+        },
+        "concordanceLevel": {
+          "type": "string",
+          "enum": ["full", "partial", "discordant"],
+          "description": "Qualitative concordance classification."
         }
       }
     }

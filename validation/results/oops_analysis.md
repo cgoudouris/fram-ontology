@@ -1,6 +1,52 @@
 # OOPS! Pitfall Analysis — FRAM Ontology
 
-## v1.0 Results (Baseline)
+## v1.6.0 Results (Current)
+
+Submitted `fram.ttl` v1.6.0 (1133 triples, ~1560 lines) to [OOPS!](https://oops.linkeddata.es/).
+
+### Pitfalls Detected
+
+| Code | Name | Severity | # Elements | Details |
+|------|------|----------|------------|---------|
+| P04 | Unconnected ontology elements | Minor | 8 | 8 gUFO classes declared for foundational alignment — known false positive (see below) |
+
+### P04 Analysis (gUFO False Positive)
+
+The 8 flagged elements are external gUFO classes used as `rdfs:subClassOf` targets for foundational ontology alignment:
+
+| gUFO Class | Used by FRAM Class | Alignment Rationale |
+|------------|-------------------|---------------------|
+| `gufo:QualityValue` | `Phenotype` | Point in quality space |
+| `gufo:Object` | `FRAMModel`, `FRAMScenario` | Persistent endurants |
+| `gufo:Event` | `Function`, `FunctionalResonance`, `EmergentPhenotypeResult` | Temporal activities |
+| `gufo:IntrinsicMode` | `Aspect` | Intrinsic property of functions |
+| `gufo:Disposition` | `PerformanceCondition` | Latent condition |
+| `gufo:RelationalQuality` | `Coupling` | First-class relation |
+| `gufo:Quality` | `Variability`, `VariabilityDimension` | Measurable properties |
+| `gufo:AbstractIndividual` | `Distribution`, `PhenotypeMappingRule`, `WAIDeclaration`, `WAIWADComparison` | Abstract specifications |
+
+**Verdict**: **False positive**. These classes are intentionally declared without importing the full gUFO ontology, following a lightweight alignment pattern. OOPS! flags them as "unconnected" because they lack domain/range usage within the FRAM namespace, but they serve as superclass anchors for 16 `rdfs:subClassOf` axioms. This is a known limitation of OOPS! and was already present in v1.3.0.
+
+### Pitfalls Fixed During v1.6.0 Development
+
+| Code | Name | Cause | Fix |
+|------|------|-------|-----|
+| P13 | Missing inverses | 5 new v1.6.0 object properties (`hasPhenotypeMappingRule`, `hasWAIDeclaration`, `hasEmergentResult`, `hasWAIWADComparison`, `mapsToDimension`) lacked inverse declarations | Added 5 inverse properties: `isPhenotypeMappingRuleOf`, `isWAIDeclarationOf`, `isEmergentResultOf`, `isWAIWADComparisonOf`, `isMappingDimensionOf` |
+| P05 | Inverse property wrongly defined | Initially created `isDimensionOf` as inverse of `mapsToDimension`, conflicting with existing `isDimensionOf` (inverse of `hasDimension`) | Renamed to `isMappingDimensionOf` |
+| P19 | Multiple domain/range for property | Same `isDimensionOf` naming conflict caused dual domain declarations (VariabilityDimension→Phenotype AND VariabilityDimension→PhenotypeMappingRule) | Fixed by P05 rename |
+
+### v1.6.0 Summary
+
+- **Critical pitfalls**: 0
+- **Important pitfalls**: 0
+- **Minor pitfalls**: 1 (P04 — gUFO false positive, accepted)
+- **Total affected elements**: 8 (all external gUFO classes)
+- **Inverse declarations**: 27 (22 from v1.2.0 + 5 new in v1.6.0)
+- **Disjointness blocks**: 8 (5 from v1.2.0, 2 from v1.5.0, 1 new in v1.6.0)
+
+---
+
+## v1.2.0 Results (Baseline — Post-Fix)
 
 Submitted `fram.ttl` v1.0 (~558 triples) to [OOPS!](https://oops.linkeddata.es/).
 
@@ -117,20 +163,22 @@ Submitted `fram.ttl` v1.2.0 (793 triples, 1015 lines) to [OOPS!](https://oops.li
 
 ---
 
-## Comparison: v1.0 → v1.2.0
+## Comparison: v1.0 → v1.2.0 → v1.6.0
 
-| Pitfall | v1.0 | v1.2.0 | Status |
-|---------|------|--------|--------|
-| P04 (Unconnected elements) | 3 elements | 0 | ✅ Fixed |
-| P10 (Missing disjointness) | Ontology-wide | 0 | ✅ Fixed |
-| P11 (Missing domain/range) | 12 properties | 0 | ✅ Fixed |
-| P13 (Missing inverses) | 20 properties | 0 | ✅ Fixed |
-| **Total** | **36 elements** | **0** | **✅ All fixed** |
+| Pitfall | v1.0 | v1.2.0 | v1.6.0 | Status |
+|---------|------|--------|--------|--------|
+| P04 (Unconnected elements) | 3 elements | 0 | 8 (gUFO — false positive) | ⚠️ Accepted |
+| P10 (Missing disjointness) | Ontology-wide | 0 | 0 | ✅ Fixed |
+| P11 (Missing domain/range) | 12 properties | 0 | 0 | ✅ Fixed |
+| P13 (Missing inverses) | 20 properties | 0 | 0 (fixed during dev) | ✅ Fixed |
+| P05 (Wrong inverse) | — | — | 0 (fixed during dev) | ✅ Fixed |
+| P19 (Multiple domains) | — | — | 0 (fixed during dev) | ✅ Fixed |
 
-| Metric | v1.0 | v1.2.0 |
-|--------|------|--------|
-| Triples | ~558 | 793 |
-| Lines | ~600 | 1015 |
-| Pitfalls | 4 | 0 |
-| Inverse declarations | 0 | 22 |
-| Disjointness blocks | 0 | 5 |
+| Metric | v1.0 | v1.2.0 | v1.6.0 |
+|--------|------|--------|--------|
+| Triples | ~558 | 793 | 1133 |
+| Lines | ~600 | 1015 | ~1560 |
+| Pitfalls | 4 | 0 | 1 (false positive) |
+| Inverse declarations | 0 | 22 | 27 |
+| Disjointness blocks | 0 | 5 | 8 |
+| gUFO alignment axioms | 0 | 0 | 16 |

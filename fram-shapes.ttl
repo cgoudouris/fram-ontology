@@ -6,7 +6,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 # ============================================================================
-# SHACL Shapes for FRAM Ontology Validation (v2)
+# SHACL Shapes for FRAM Ontology Validation (v3 — updated for v1.6.0)
 # Validates ABox data against the structural rules of the FRAM ontology.
 # Shapes use sh:targetClass to match instances, but TBox-only named individuals
 # (e.g., fram:OnTime, fram:Precise) that are phenotype *values* (not instances
@@ -159,4 +159,43 @@ fram:PhenotypeInstanceShape
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:message "S6: A Phenotype instance must have phenotypeProbability between 0 and 1." ;
+    ] .
+
+# --- Shape S7: PhenotypeMappingRule must have mapsToVariable and mapsToDimension ---
+fram:PhenotypeMappingRuleShape
+    a sh:NodeShape ;
+    sh:targetClass fram:PhenotypeMappingRule ;
+    sh:property [
+        sh:path fram:mapsToVariable ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "S7: A PhenotypeMappingRule must have exactly one mapsToVariable (string)." ;
+    ] ;
+    sh:property [
+        sh:path fram:mapsToDimension ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class fram:VariabilityDimension ;
+        sh:message "S7: A PhenotypeMappingRule must have exactly one mapsToDimension (VariabilityDimension)." ;
+    ] .
+
+# --- Shape S8: WAIDeclaration must have dominantPhenotype and waiConfidence ---
+fram:WAIDeclarationShape
+    a sh:NodeShape ;
+    sh:targetClass fram:WAIDeclaration ;
+    sh:property [
+        sh:path fram:dominantPhenotype ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "S8: A WAIDeclaration must have exactly one dominantPhenotype (string)." ;
+    ] ;
+    sh:property [
+        sh:path fram:waiConfidence ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:in ( "Low" "Medium" "High" ) ;
+        sh:message "S8: A WAIDeclaration must have exactly one waiConfidence in {Low, Medium, High}." ;
     ] .

@@ -10,7 +10,7 @@ This benchmark verifies the FRAM Ontology across five complementary dimensions:
 |------|-----------|------|-------------------|
 | 1 | JSON-LD → Turtle conversion | pyld + rdflib | Context resolution, IRI expansion, serialization integrity |
 | 2 | OWL-RL Reasoning | owlrl | Logical consistency, unsatisfiable classes, inferred triples |
-| 3 | SHACL Shape Validation | pyshacl | Structural constraints via 6 custom shapes |
+| 3 | SHACL Shape Validation | pyshacl | Structural constraints via 8 custom shapes |
 | 4 | SPARQL Competency Questions | rdflib | 6 CQs covering functions, couplings, aspects, distributions, phenotypes |
 | 5 | OOPS! Pitfall Scanning | OOPS! REST API | Common ontology design anti-patterns |
 
@@ -79,12 +79,12 @@ validation/
 |------|------|
 | [`../fram.ttl`](../fram.ttl) | TBox — canonical ontology definition |
 | [`../context.jsonld`](../context.jsonld) | JSON-LD context for term resolution |
-| [`../fram-shapes.ttl`](../fram-shapes.ttl) | SHACL shapes (6 shapes: S1–S6) |
+| [`../fram-shapes.ttl`](../fram-shapes.ttl) | SHACL shapes (8 shapes: S1–S8) |
 | [`../examples/boil-water-model.jsonld`](../examples/boil-water-model.jsonld) | ABox — example FRAM model |
 
 ## SHACL Shapes
 
-The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 6 SHACL shapes:
+The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 8 SHACL shapes:
 
 | Shape | Target | Constraints |
 |-------|--------|-------------|
@@ -94,6 +94,8 @@ The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 6 SHACL shapes:
 | S4: AspectShape | `fram:Aspect` (via SPARQL) | Must have valid `aspectType` and `aspectCode` ∈ {I, O, P, R, C, T} |
 | S5: NormalDistShape | `fram:NormalDistribution` | Must have `distributionMean` and `distributionStdDev` > 0 |
 | S6: PhenotypeShape | `fram:Phenotype` (via SPARQL) | Must have `phenotypeProbability` ∈ [0, 1] |
+| S7: PhenotypeMappingRuleShape | `fram:PhenotypeMappingRule` | Must have `mapsToVariable` (string) and `mapsToDimension` (VariabilityDimension) |
+| S8: WAIDeclarationShape | `fram:WAIDeclaration` | Must have `dominantPhenotype` (string) and `waiConfidence` ∈ {Low, Medium, High} |
 
 ## Competency Questions
 
@@ -108,17 +110,17 @@ Step 4 validates the ontology against 6 SPARQL-based competency questions:
 | CQ5 | What are the phenotypes of "Fill kettle"? | 2 phenotypes (timing: on-time, precision: acceptable) |
 | CQ6 | Which functions receive input via couplings? | 2 functions (Heat water, Pour water) |
 
-## Expected Results (v1.2.0)
+## Expected Results (v1.6.0)
 
 All steps should pass with the current ontology version:
 
 | Step | Expected |
 |------|----------|
 | Step 1 | ~124 triples generated |
-| Step 2 | PASS — consistent, 0 unsatisfiable classes |
-| Step 3 | PASS — conforms to all 6 shapes |
+| Step 2 | PASS — TBox: 1133, ABox: 124, Inferred: ~1844, consistent, 0 unsatisfiable |
+| Step 3 | PASS — conforms to all 8 shapes (S7/S8 only validated when WAI/WAD ABox data is present) |
 | Step 4 | PASS — all 6 CQs answered correctly |
-| Step 5 | Improved — pitfalls P04, P10, P11, P13 found in v1.0 were fixed in v1.1–v1.2.0 |
+| Step 5 | P04 only (8 gUFO classes — known false positive for external foundational ontology alignment) |
 
 ## Generated Files
 

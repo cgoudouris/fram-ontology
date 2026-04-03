@@ -38,7 +38,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | [`context.jsonld`](context.jsonld) | JSON-LD context file for use in `@context` references |
 | [`fram-model.schema.json`](fram-model.schema.json) | JSON Schema (2020-12) for validating FRAM model documents |
 | [`fram.owl`](fram.owl) | OWL/RDF-XML serialization (auto-generated from `fram.ttl`) |
-| [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (6 shapes) |
+| [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (8 shapes) |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
 | [`validation/`](validation/) | 5-step automated validation benchmark (Python) |
 
@@ -102,9 +102,11 @@ owl:Thing
 │   ├── fram:HumanFunction
 │   ├── fram:TechnologicalFunction
 │   ├── fram:OrganisationalFunction
+│   ├── fram:SocialFunction
 │   ├── fram:BackgroundFunction
 │   ├── fram:EntryFunction
-│   └── fram:ExitFunction
+│   ├── fram:ExitFunction
+│   └── fram:ForegroundFunction
 ├── fram:Aspect ───────────────── rdfs:subClassOf gufo:IntrinsicMode
 │   ├── fram:InputAspect
 │   ├── fram:OutputAspect
@@ -118,7 +120,7 @@ owl:Thing
 │   ├── fram:ExternalVariability
 │   ├── fram:UpstreamVariability
 │   └── fram:DownstreamVariability
-├── fram:VariabilityDimension ─── rdfs:subClassOf gufo:Quality          ← NEW v1.5.0
+├── fram:VariabilityDimension ─── rdfs:subClassOf gufo:Quality
 │   ├── fram:TimingDimension
 │   ├── fram:DurationDimension
 │   ├── fram:SequenceDimension
@@ -135,12 +137,16 @@ owl:Thing
 │   └── fram:LogNormalDistribution
 ├── fram:Phenotype ────────────── rdfs:subClassOf gufo:QualityValue
 │   ├── fram:TimingPhenotype
-│   ├── fram:DurationPhenotype          ← NEW v1.5.0
-│   ├── fram:SequencePhenotype          ← NEW v1.5.0
+│   ├── fram:DurationPhenotype
+│   ├── fram:SequencePhenotype
 │   ├── fram:PrecisionPhenotype
-│   ├── fram:ForcePhenotype             ← NEW v1.5.0
-│   ├── fram:DistancePhenotype          ← NEW v1.5.0
-│   └── fram:DirectionPhenotype         ← NEW v1.5.0
+│   ├── fram:ForcePhenotype
+│   ├── fram:DistancePhenotype
+│   └── fram:DirectionPhenotype
+├── fram:PhenotypeMappingRule ──── rdfs:subClassOf gufo:AbstractIndividual  ← NEW v1.6.0
+├── fram:WAIDeclaration ────────── rdfs:subClassOf gufo:AbstractIndividual  ← NEW v1.6.0
+├── fram:EmergentPhenotypeResult ─ rdfs:subClassOf gufo:Event              ← NEW v1.6.0
+├── fram:WAIWADComparison ──────── rdfs:subClassOf gufo:AbstractIndividual  ← NEW v1.6.0
 └── fram:FRAMScenario ─────────── rdfs:subClassOf gufo:Object
 ```
 
@@ -156,7 +162,11 @@ owl:Thing
 | `hasVariability` | Function | Variability | Function's variability |
 | `hasDistribution` | Variability | Distribution | Quantitative distribution |
 | `hasPhenotype` | Variability | Phenotype | Qualitative phenotype |
-| `hasDimension` | Phenotype | VariabilityDimension | Dimension of this phenotype |
+| `hasPhenotypeMappingRule` | Function | PhenotypeMappingRule | Analyst-defined classification rule |
+| `hasWAIDeclaration` | PhenotypeMappingRule | WAIDeclaration | Expected phenotype (Work-as-Imagined) |
+| `hasEmergentResult` | PhenotypeMappingRule | EmergentPhenotypeResult | Observed phenotype (Work-as-Done) |
+| `hasWAIWADComparison` | Function | WAIWADComparison | WAI/WAD comparison result |
+| `discordanceIndex` | WAIWADComparison | xsd:decimal | Δ(WAI-WAD) in [0,1] |
 | `couplingStrength` | Coupling | xsd:decimal | Strength (0–1) |
 
 ### Phenotype Individuals
@@ -234,7 +244,7 @@ The [`validation/`](validation/) directory contains a **5-step automated benchma
 |------|-----------|-------------------|
 | 1 | JSON-LD → Turtle | Context resolution, serialization integrity |
 | 2 | OWL-RL Reasoning | Logical consistency, unsatisfiable classes |
-| 3 | SHACL Shapes | Structural constraints (6 shapes in [`fram-shapes.ttl`](fram-shapes.ttl)) |
+| 3 | SHACL Shapes | Structural constraints (8 shapes in [`fram-shapes.ttl`](fram-shapes.ttl)) |
 | 4 | SPARQL CQs | 6 competency questions against example model |
 | 5 | OOPS! Scanner | Common ontology design anti-patterns |
 
@@ -252,7 +262,7 @@ See [`validation/README.md`](validation/README.md) for full instructions and exp
 
 ## Foundational Ontology Alignment (gUFO)
 
-Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unified Foundational Ontology** ([gUFO](https://purl.org/nemo/gufo)) — Guizzardi et al. (2021). This anchors FRAM domain concepts in well-established ontological categories. As of v1.5.0, the alignment comprises **12 `rdfs:subClassOf` axioms**.
+Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unified Foundational Ontology** ([gUFO](https://purl.org/nemo/gufo)) — Guizzardi et al. (2021). This anchors FRAM domain concepts in well-established ontological categories. As of v1.6.0, the alignment comprises **16 `rdfs:subClassOf` axioms**.
 
 ### Alignment Table
 
@@ -268,6 +278,10 @@ Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unif
 | `Distribution` | `gufo:AbstractIndividual` | Abstract entity (not in space-time) |
 | `Phenotype` | `gufo:QualityValue` | Point in the quality space of variability |
 | `VariabilityDimension` | `gufo:Quality` | Measurable dimension of performance variability |
+| `PhenotypeMappingRule` | `gufo:AbstractIndividual` | Abstract classification specification |
+| `WAIDeclaration` | `gufo:AbstractIndividual` | Abstract expectation declaration |
+| `EmergentPhenotypeResult` | `gufo:Event` | Observed simulation outcome |
+| `WAIWADComparison` | `gufo:AbstractIndividual` | Comparison artifact with discordance index |
 | `FRAMModel` | `gufo:Object` | Persistent endurant aggregating functions and couplings |
 | `FRAMScenario` | `gufo:Object` | Persistent configuration for comparative analysis |
 
@@ -291,6 +305,7 @@ Lališ et al. (2019) proposed mapping FRAM Functions to UFO *Dispositions* — l
 | 1.3.0 | 2025-03 | gUFO foundational alignment (11 axioms); full inverse properties; disjointness axioms; OOPS! validation |
 | 1.4.0 | 2025-06 | Function taxonomy restructuring — orthogonal Nature (Human, Technological, Organisational) and Flow Role (Entry, Exit, Background, Foreground) dimensions; SocialFunction added |
 | 1.5.0 | 2025-07 | Multi-dimensional variability — VariabilityDimension class with 7 subclasses (Timing, Duration, Sequence, Precision, Force, Distance, Direction); 5 new Phenotype subclasses; 10 new individuals; 12th gUFO axiom; expanded disjointness axioms |
+| 1.6.0 | 2026-04 | Emergent phenotype classification — 4 new classes (PhenotypeMappingRule, WAIDeclaration, EmergentPhenotypeResult, WAIWADComparison); 6 new object properties; 7 new datatype properties; WAI/WAD comparison framework with discordance index Δ(WAI-WAD); 16 gUFO axioms |
 
 ## Background
 

@@ -39,8 +39,8 @@
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.5.0> ;
-    owl:versionInfo "1.5.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.6.0> ;
+    owl:versionInfo "1.6.0" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
@@ -1070,6 +1070,15 @@ fram:hasPassthrough a owl:ObjectProperty ;
         fram:ExternalVariability
     ) .
 
+# Disjoint WAI/WAD analysis classes (v1.6.0)
+[] a owl:AllDisjointClasses ;
+   owl:members (
+        fram:PhenotypeMappingRule
+        fram:WAIDeclaration
+        fram:EmergentPhenotypeResult
+        fram:WAIWADComparison
+    ) .
+
 
 # =============================================================================
 # P13 FIX: INVERSE RELATIONSHIPS (v1.1.0)
@@ -1389,3 +1398,159 @@ fram:Phenotype rdfs:subClassOf gufo:QualityValue ;
 
 fram:FRAMScenario rdfs:subClassOf gufo:Object ;
     rdfs:comment "A FRAM Scenario is a gufo:Object — a persistent configuration of parameter values for comparative analysis."@en .
+
+# ============================================================================
+# EMERGENT PHENOTYPE CLASSIFICATION & WAI/WAD ANALYSIS (v1.6.0)
+# ============================================================================
+# These classes support the emergent phenotype classification proposal:
+# analyst-defined interpretation rules map metadata values to phenotype
+# categories, enabling Work-as-Imagined vs. Work-as-Done comparison.
+# See: docs/proposals/EMERGENT-PHENOTYPE-WAI-WAD-PROPOSAL.md
+# ============================================================================
+
+fram:PhenotypeMappingRule a owl:Class ;
+    rdfs:subClassOf gufo:AbstractIndividual ;
+    rdfs:label "Phenotype Mapping Rule"@en ;
+    rdfs:comment "A rule that maps a metadata variable to phenotype classifications along a variability dimension, using threshold conditions to classify emergent values. PhenotypeMappingRules are abstract specifications that exist independently of any particular instantiation."@en ;
+    skos:definition "An analyst-defined classification rule that associates a computed metadata variable (e.g., RESPONSE_TIME) with a VariabilityDimension (e.g., TimingDimension) and specifies threshold conditions for each phenotype category (e.g., value < 0.7 → TooEarly, value >= 0.7 && value <= 1.3 → OnTime)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:WAIDeclaration a owl:Class ;
+    rdfs:subClassOf gufo:AbstractIndividual ;
+    rdfs:label "Work-as-Imagined Declaration"@en ;
+    rdfs:comment "An analyst's expectation about the dominant phenotype of a function along a specific variability dimension, prior to model instantiation. Represents the prescriptive aspect of FRAM Step 2 (Hollnagel, 2012), explicitly requalified as Work-as-Imagined."@en ;
+    skos:definition "A formal declaration of the analyst's expected dominant phenotype for a function's output, annotated with confidence level and rationale. WAI declarations are compared against emergent WAD results to quantify the gap between expectation and reality."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:EmergentPhenotypeResult a owl:Class ;
+    rdfs:subClassOf gufo:Event ;
+    rdfs:label "Emergent Phenotype Result"@en ;
+    rdfs:comment "The observed phenotype distribution computed from simulation results by applying a PhenotypeMappingRule. Represents Work-as-Done — the actual emergent behavior classified according to the analyst's interpretation rules."@en ;
+    skos:definition "A probability distribution over phenotype categories for a specific function and variability dimension, computed by classifying each simulation iteration's output value according to a PhenotypeMappingRule. The dominant phenotype is the most frequently observed category."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:WAIWADComparison a owl:Class ;
+    rdfs:subClassOf gufo:AbstractIndividual ;
+    rdfs:label "WAI/WAD Comparison"@en ;
+    rdfs:comment "A structured comparison between the analyst's expectation (WAI) and the emergent simulation result (WAD), including the quantitative discordance index Δ(WAI-WAD)."@en ;
+    skos:definition "A comparison artifact that pairs a WAIDeclaration with an EmergentPhenotypeResult for the same function and dimension, computing a discordance index Δ = 1 - P_WAD(c_WAI) where c_WAI is the expected phenotype category and P_WAD(c_WAI) is its observed probability."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# --- Object Properties for Emergent Phenotype Classification ---
+
+fram:hasPhenotypeMappingRule a owl:ObjectProperty ;
+    rdfs:label "has phenotype mapping rule"@en ;
+    rdfs:comment "Associates a Function with analyst-defined rules for classifying its output into phenotype categories."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:PhenotypeMappingRule .
+
+fram:hasWAIDeclaration a owl:ObjectProperty ;
+    rdfs:label "has WAI declaration"@en ;
+    rdfs:comment "Associates a PhenotypeMappingRule with the analyst's expected (Work-as-Imagined) phenotype."@en ;
+    rdfs:domain fram:PhenotypeMappingRule ;
+    rdfs:range fram:WAIDeclaration .
+
+fram:hasEmergentResult a owl:ObjectProperty ;
+    rdfs:label "has emergent result"@en ;
+    rdfs:comment "Associates a PhenotypeMappingRule with its computed emergent phenotype distribution (Work-as-Done)."@en ;
+    rdfs:domain fram:PhenotypeMappingRule ;
+    rdfs:range fram:EmergentPhenotypeResult .
+
+fram:hasWAIWADComparison a owl:ObjectProperty ;
+    rdfs:label "has WAI/WAD comparison"@en ;
+    rdfs:comment "Associates a Function with the structured comparison between expected and emergent phenotypes."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:WAIWADComparison .
+
+fram:mapsToVariable a owl:DatatypeProperty ;
+    rdfs:label "maps to variable"@en ;
+    rdfs:comment "The metadata variable or expression whose values are classified by this mapping rule."@en ;
+    rdfs:domain fram:PhenotypeMappingRule ;
+    rdfs:range xsd:string .
+
+fram:mapsToDimension a owl:ObjectProperty ;
+    rdfs:label "maps to dimension"@en ;
+    rdfs:comment "The variability dimension along which phenotype classification is performed."@en ;
+    rdfs:domain fram:PhenotypeMappingRule ;
+    rdfs:range fram:VariabilityDimension .
+
+# --- Datatype Properties for WAI/WAD Analysis ---
+
+fram:discordanceIndex a owl:DatatypeProperty ;
+    rdfs:label "discordance index"@en ;
+    rdfs:comment "Quantitative measure of the gap between WAI and WAD: Δ = 1 - P_WAD(WAI_category). Range [0, 1]. Δ = 0 means perfect concordance; Δ = 1 means complete discordance."@en ;
+    rdfs:domain fram:WAIWADComparison ;
+    rdfs:range xsd:decimal .
+
+fram:concordanceLevel a owl:DatatypeProperty ;
+    rdfs:label "concordance level"@en ;
+    rdfs:comment "Qualitative concordance classification: full (Δ ≤ 0.20), partial (0.20 < Δ ≤ 0.50), discordant (Δ > 0.50)."@en ;
+    rdfs:domain fram:WAIWADComparison ;
+    rdfs:range xsd:string .
+
+fram:waiConfidence a owl:DatatypeProperty ;
+    rdfs:label "WAI confidence"@en ;
+    rdfs:comment "Analyst's self-assessed confidence in the WAI declaration: Low, Medium, High."@en ;
+    rdfs:domain fram:WAIDeclaration ;
+    rdfs:range xsd:string .
+
+fram:waiRationale a owl:DatatypeProperty ;
+    rdfs:label "WAI rationale"@en ;
+    rdfs:comment "Free-text justification for the analyst's WAI expectation."@en ;
+    rdfs:domain fram:WAIDeclaration ;
+    rdfs:range xsd:string .
+
+fram:dominantPhenotype a owl:DatatypeProperty ;
+    rdfs:label "dominant phenotype"@en ;
+    rdfs:comment "The phenotype category with the highest observed probability in the emergent result distribution."@en ;
+    rdfs:domain fram:EmergentPhenotypeResult ;
+    rdfs:range xsd:string .
+
+fram:dominantProbability a owl:DatatypeProperty ;
+    rdfs:label "dominant probability"@en ;
+    rdfs:comment "The probability of the dominant phenotype in the emergent result distribution."@en ;
+    rdfs:domain fram:EmergentPhenotypeResult ;
+    rdfs:range xsd:decimal .
+
+fram:sampleSize a owl:DatatypeProperty ;
+    rdfs:label "sample size"@en ;
+    rdfs:comment "Number of simulation iterations classified to produce the emergent phenotype distribution."@en ;
+    rdfs:domain fram:EmergentPhenotypeResult ;
+    rdfs:range xsd:integer .
+
+# --- Inverse Properties for Emergent Phenotype Classification ---
+
+fram:isPhenotypeMappingRuleOf a owl:ObjectProperty ;
+    rdfs:label "is phenotype mapping rule of"@en ;
+    rdfs:comment "Inverse of hasPhenotypeMappingRule: links a PhenotypeMappingRule back to its Function."@en ;
+    owl:inverseOf fram:hasPhenotypeMappingRule ;
+    rdfs:domain fram:PhenotypeMappingRule ;
+    rdfs:range fram:Function .
+
+fram:isWAIDeclarationOf a owl:ObjectProperty ;
+    rdfs:label "is WAI declaration of"@en ;
+    rdfs:comment "Inverse of hasWAIDeclaration: links a WAIDeclaration back to its PhenotypeMappingRule."@en ;
+    owl:inverseOf fram:hasWAIDeclaration ;
+    rdfs:domain fram:WAIDeclaration ;
+    rdfs:range fram:PhenotypeMappingRule .
+
+fram:isEmergentResultOf a owl:ObjectProperty ;
+    rdfs:label "is emergent result of"@en ;
+    rdfs:comment "Inverse of hasEmergentResult: links an EmergentPhenotypeResult back to its PhenotypeMappingRule."@en ;
+    owl:inverseOf fram:hasEmergentResult ;
+    rdfs:domain fram:EmergentPhenotypeResult ;
+    rdfs:range fram:PhenotypeMappingRule .
+
+fram:isWAIWADComparisonOf a owl:ObjectProperty ;
+    rdfs:label "is WAI/WAD comparison of"@en ;
+    rdfs:comment "Inverse of hasWAIWADComparison: links a WAIWADComparison back to its Function."@en ;
+    owl:inverseOf fram:hasWAIWADComparison ;
+    rdfs:domain fram:WAIWADComparison ;
+    rdfs:range fram:Function .
+
+fram:isMappingDimensionOf a owl:ObjectProperty ;
+    rdfs:label "is mapping dimension of"@en ;
+    rdfs:comment "Inverse of mapsToDimension: links a VariabilityDimension back to PhenotypeMappingRules that classify along it."@en ;
+    owl:inverseOf fram:mapsToDimension ;
+    rdfs:domain fram:VariabilityDimension ;
+    rdfs:range fram:PhenotypeMappingRule .
