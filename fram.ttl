@@ -39,14 +39,14 @@
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.3.0> ;
-    owl:versionInfo "1.3.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.5.0> ;
+    owl:versionInfo "1.5.0" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
     dcterms:created "2025-01-01"^^xsd:date ;
-    dcterms:modified "2026-03-29"^^xsd:date ;
+    dcterms:modified "2026-04-03"^^xsd:date ;
     vann:preferredNamespacePrefix "fram" ;
     vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
     rdfs:seeAlso <https://github.com/cgoudouris/fram-ontology> ;
@@ -83,8 +83,8 @@ fram:Coupling a owl:Class ;
 
 fram:Variability a owl:Class ;
     rdfs:label "Variability"@en ;
-    rdfs:comment "The potential variability of a function's output, characterized by timing and precision phenotypes."@en ;
-    skos:definition "Performance variability describes how the output of a function can vary in terms of timing (too early, on time, too late, not at all) and precision (precise, acceptable, imprecise). This variability propagates through couplings creating functional resonance."@en ;
+    rdfs:comment "The potential variability of a function's output, characterized by phenotypes along one or more variability dimensions (e.g., timing, precision, force, sequence)."@en ;
+    skos:definition "Performance variability describes how the output of a function can vary along multiple dimensions. Hollnagel (2012, p. 34) defines four dimensions: timing, duration, sequence, and precision. Recent literature (Karevan & Nadeau, 2025; Delikhoon et al., 2024) extends these to include force, distance, and direction. The ontology supports an open set of dimensions."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:PerformanceCondition a owl:Class ;
@@ -107,49 +107,78 @@ fram:Distribution a owl:Class ;
 
 fram:Phenotype a owl:Class ;
     rdfs:label "Phenotype"@en ;
-    rdfs:comment "A qualitative characterization of output variability, classified as either a timing phenotype or a precision phenotype."@en ;
-    skos:definition "An observable expression of performance variability, categorized along two dimensions: timing and precision. Phenotypes provide a qualitative vocabulary for describing how function outputs vary."@en ;
+    rdfs:comment "A qualitative characterization of output variability along a specific variability dimension."@en ;
+    skos:definition "An observable expression of performance variability. Phenotypes are organized along variability dimensions (VariabilityDimension). Hollnagel (2012, p. 34) defined four canonical dimensions: timing, duration, sequence, and precision. The literature extends these with domain-specific dimensions such as force (Karevan & Nadeau, 2025), distance, and direction (Delikhoon et al., 2024). The ontology supports an open set of dimensions, allowing domain-specific extensions without modifying the TBox."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:VariabilityDimension a owl:Class ;
+    rdfs:label "Variability Dimension"@en ;
+    rdfs:comment "A named dimension along which output variability is characterized. Each dimension defines a set of possible phenotype values."@en ;
+    skos:definition "A classification axis for phenotypes. Hollnagel (2012) defines four canonical dimensions (timing, duration, sequence, precision). Recent quantitative FRAM literature introduces domain-specific dimensions such as force, distance, and direction. New dimensions can be added as subclasses without modifying the core ontology."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 
 # =============================================================================
-# FUNCTION TYPE SUBCLASSES
+# FUNCTION TYPE SUBCLASSES — Two Orthogonal Dimensions
 # =============================================================================
+# Design Decision (v1.4.0): The original flat hierarchy declared all six
+# function subtypes as mutually disjoint, which prevented a function from
+# being simultaneously e.g. HumanFunction AND EntryFunction. This is
+# ontologically incorrect: nature (who/what performs) and flow role (where
+# in the instantiation) are independent classification axes.
+#
+# The refactored hierarchy introduces two orthogonal dimensions:
+#   Dimension 1 — Nature: HumanFunction, TechnologicalFunction, OrganisationalFunction
+#   Dimension 2 — Flow Role: EntryFunction, ExitFunction, BackgroundFunction, ForegroundFunction
+#
+# Disjointness is enforced WITHIN each dimension but NOT across dimensions.
+# A function can thus be classified as e.g. [HumanFunction, EntryFunction].
+# =============================================================================
+
+# --- Dimension 1: Function Nature (who/what performs the function) ---
 
 fram:HumanFunction a owl:Class ;
     rdfs:subClassOf fram:Function ;
     rdfs:label "Human Function"@en ;
-    rdfs:comment "A function performed by a human actor, characterized by high adaptability but also high variability."@en ;
+    rdfs:comment "A function performed by a human actor, characterized by high adaptability but also high variability. Classification by nature (Hollnagel, 2012)."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:TechnologicalFunction a owl:Class ;
     rdfs:subClassOf fram:Function ;
     rdfs:label "Technological Function"@en ;
-    rdfs:comment "A function performed by a technological system, characterized by high precision but limited adaptability."@en ;
+    rdfs:comment "A function performed by a technological system, characterized by high precision but limited adaptability. Classification by nature (Hollnagel, 2012)."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:OrganisationalFunction a owl:Class ;
     rdfs:subClassOf fram:Function ;
     rdfs:label "Organisational Function"@en ;
-    rdfs:comment "A function representing organisational processes, rules, or procedures."@en ;
+    rdfs:comment "A function representing organisational processes, rules, or procedures. Classification by nature (Hollnagel, 2012)."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
-fram:BackgroundFunction a owl:Class ;
-    rdfs:subClassOf fram:Function ;
-    rdfs:label "Background Function"@en ;
-    rdfs:comment "A function that operates in the background, providing context or conditions for other functions."@en ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+# --- Dimension 2: Function Flow Role (position in the FMI instantiation) ---
 
 fram:EntryFunction a owl:Class ;
     rdfs:subClassOf fram:Function ;
     rdfs:label "Entry Function"@en ;
-    rdfs:comment "A function at the entry point of an FMI (FRAM Model Instantiation), active from Cycle 0."@en ;
+    rdfs:comment "A function at the entry point of an FMI (FRAM Model Instantiation), active from Cycle 0. Classification by flow role."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:ExitFunction a owl:Class ;
     rdfs:subClassOf fram:Function ;
     rdfs:label "Exit Function"@en ;
-    rdfs:comment "A function at the exit point of an FMI, representing final outputs of the instantiation."@en ;
+    rdfs:comment "A function at the exit point of an FMI, representing final outputs of the instantiation. Classification by flow role."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:BackgroundFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Background Function"@en ;
+    rdfs:comment "A function that operates in the background, providing context or conditions for other functions. Classification by flow role."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:ForegroundFunction a owl:Class ;
+    rdfs:subClassOf fram:Function ;
+    rdfs:label "Foreground Function"@en ;
+    rdfs:comment "A function that is activated during the main flow of an FMI instantiation (Cycle 1+), processing upstream outputs. Classification by flow role."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 
@@ -201,24 +230,117 @@ fram:TimeAspect a owl:Class ;
 
 
 # =============================================================================
+# VARIABILITY DIMENSION SUBCLASSES
+# =============================================================================
+# Design Decision (v1.5.0): Phenotypes are organized along named variability
+# dimensions. Hollnagel (2012, p. 34) defines four canonical dimensions:
+# Timing, Duration, Sequence, and Precision. Recent literature extends
+# these with domain-specific dimensions: Force (Karevan & Nadeau, 2025),
+# Distance, and Direction (Delikhoon et al., 2024). The hierarchy is open:
+# new dimensions can be added as subclasses of VariabilityDimension.
+# =============================================================================
+
+# --- Canonical dimensions (Hollnagel, 2012) ---
+
+fram:TimingDimension a owl:Class ;
+    rdfs:subClassOf fram:VariabilityDimension ;
+    rdfs:label "Timing Dimension"@en ;
+    rdfs:comment "Variability in when the output occurs: too early, on time, too late, or not at all (Hollnagel, 2012, p. 34)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:DurationDimension a owl:Class ;
+    rdfs:subClassOf fram:VariabilityDimension ;
+    rdfs:label "Duration Dimension"@en ;
+    rdfs:comment "Variability in how long the output takes: too short, appropriate, or too long (Hollnagel, 2012, p. 34)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:SequenceDimension a owl:Class ;
+    rdfs:subClassOf fram:VariabilityDimension ;
+    rdfs:label "Sequence Dimension"@en ;
+    rdfs:comment "Variability in execution order: correct order, wrong order, skipped, or repeated (Hollnagel, 2012, p. 34; Karevan & Nadeau, 2025)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:PrecisionDimension a owl:Class ;
+    rdfs:subClassOf fram:VariabilityDimension ;
+    rdfs:label "Precision Dimension"@en ;
+    rdfs:comment "Variability in output accuracy: precise, acceptable, or imprecise (Hollnagel, 2012, p. 34)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# --- Extended dimensions (recent literature) ---
+
+fram:ForceDimension a owl:Class ;
+    rdfs:subClassOf fram:VariabilityDimension ;
+    rdfs:label "Force Dimension"@en ;
+    rdfs:comment "Variability in the magnitude of effort or force applied: too low, on target, too high, or not at all (Karevan & Nadeau, 2025; Delikhoon et al., 2024)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:DistanceDimension a owl:Class ;
+    rdfs:subClassOf fram:VariabilityDimension ;
+    rdfs:label "Distance Dimension"@en ;
+    rdfs:comment "Variability in spatial displacement: too short, correct, or too far (Delikhoon et al., 2024)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:DirectionDimension a owl:Class ;
+    rdfs:subClassOf fram:VariabilityDimension ;
+    rdfs:label "Direction Dimension"@en ;
+    rdfs:comment "Variability in the direction of action or movement: correct direction, wrong direction, or reversed (Delikhoon et al., 2024)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+
+# =============================================================================
 # PHENOTYPE SUBCLASSES
+# =============================================================================
+# Each phenotype subclass is associated with a VariabilityDimension.
+# The original TimingPhenotype and PrecisionPhenotype are retained for
+# backward compatibility. New phenotype classes are added for the
+# extended dimensions.
 # =============================================================================
 
 fram:TimingPhenotype a owl:Class ;
     rdfs:subClassOf fram:Phenotype ;
     rdfs:label "Timing Phenotype"@en ;
-    rdfs:comment "A phenotype describing variability in timing: Too Early, On Time, Too Late, or Not At All."@en ;
+    rdfs:comment "A phenotype describing variability in timing: Too Early, On Time, Too Late, or Not At All (Hollnagel, 2012)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:DurationPhenotype a owl:Class ;
+    rdfs:subClassOf fram:Phenotype ;
+    rdfs:label "Duration Phenotype"@en ;
+    rdfs:comment "A phenotype describing variability in duration: Too Short, Appropriate, or Too Long (Hollnagel, 2012)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:SequencePhenotype a owl:Class ;
+    rdfs:subClassOf fram:Phenotype ;
+    rdfs:label "Sequence Phenotype"@en ;
+    rdfs:comment "A phenotype describing variability in execution order: Correct Order, Wrong Order, Skipped, or Repeated (Hollnagel, 2012; Karevan & Nadeau, 2025)."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:PrecisionPhenotype a owl:Class ;
     rdfs:subClassOf fram:Phenotype ;
     rdfs:label "Precision Phenotype"@en ;
-    rdfs:comment "A phenotype describing variability in precision: Precise, Acceptable, or Imprecise."@en ;
+    rdfs:comment "A phenotype describing variability in precision: Precise, Acceptable, or Imprecise (Hollnagel, 2012)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:ForcePhenotype a owl:Class ;
+    rdfs:subClassOf fram:Phenotype ;
+    rdfs:label "Force Phenotype"@en ;
+    rdfs:comment "A phenotype describing variability in applied force: Too Low, On Target, Too High, or Not At All (Karevan & Nadeau, 2025)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:DistancePhenotype a owl:Class ;
+    rdfs:subClassOf fram:Phenotype ;
+    rdfs:label "Distance Phenotype"@en ;
+    rdfs:comment "A phenotype describing variability in spatial displacement: Too Short, Correct, or Too Far (Delikhoon et al., 2024)."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:DirectionPhenotype a owl:Class ;
+    rdfs:subClassOf fram:Phenotype ;
+    rdfs:label "Direction Phenotype"@en ;
+    rdfs:comment "A phenotype describing variability in direction: Correct Direction, Wrong Direction, or Reversed (Delikhoon et al., 2024)."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 
 # =============================================================================
-# TIMING PHENOTYPE INDIVIDUALS
+# TIMING PHENOTYPE INDIVIDUALS (Hollnagel, 2012)
 # =============================================================================
 
 fram:TooEarly a fram:TimingPhenotype ;
@@ -239,7 +361,45 @@ fram:NotAtAll a fram:TimingPhenotype ;
 
 
 # =============================================================================
-# PRECISION PHENOTYPE INDIVIDUALS
+# DURATION PHENOTYPE INDIVIDUALS (Hollnagel, 2012)
+# =============================================================================
+
+fram:TooShort a fram:DurationPhenotype ;
+    rdfs:label "Too Short"@en ;
+    rdfs:comment "The function output duration is shorter than expected."@en .
+
+fram:Appropriate a fram:DurationPhenotype ;
+    rdfs:label "Appropriate"@en ;
+    rdfs:comment "The function output duration is within the expected range."@en .
+
+fram:TooLong a fram:DurationPhenotype ;
+    rdfs:label "Too Long"@en ;
+    rdfs:comment "The function output duration is longer than expected."@en .
+
+
+# =============================================================================
+# SEQUENCE PHENOTYPE INDIVIDUALS (Hollnagel, 2012; Karevan & Nadeau, 2025)
+# =============================================================================
+
+fram:CorrectOrder a fram:SequencePhenotype ;
+    rdfs:label "Correct Order"@en ;
+    rdfs:comment "The function output occurs in the expected sequence."@en .
+
+fram:WrongOrder a fram:SequencePhenotype ;
+    rdfs:label "Wrong Order"@en ;
+    rdfs:comment "The function output occurs out of the expected sequence."@en .
+
+fram:Skipped a fram:SequencePhenotype ;
+    rdfs:label "Skipped"@en ;
+    rdfs:comment "The function execution is skipped entirely."@en .
+
+fram:Repeated a fram:SequencePhenotype ;
+    rdfs:label "Repeated"@en ;
+    rdfs:comment "The function execution is repeated when it should not be."@en .
+
+
+# =============================================================================
+# PRECISION PHENOTYPE INDIVIDUALS (Hollnagel, 2012)
 # =============================================================================
 
 fram:Precise a fram:PrecisionPhenotype ;
@@ -253,6 +413,23 @@ fram:Acceptable a fram:PrecisionPhenotype ;
 fram:Imprecise a fram:PrecisionPhenotype ;
     rdfs:label "Imprecise"@en ;
     rdfs:comment "The function output deviates significantly from what is expected."@en .
+
+
+# =============================================================================
+# FORCE PHENOTYPE INDIVIDUALS (Karevan & Nadeau, 2025)
+# =============================================================================
+
+fram:TooLow a fram:ForcePhenotype ;
+    rdfs:label "Too Low"@en ;
+    rdfs:comment "The applied force or effort is insufficient for the task."@en .
+
+fram:OnTarget a fram:ForcePhenotype ;
+    rdfs:label "On Target"@en ;
+    rdfs:comment "The applied force or effort matches the expected level."@en .
+
+fram:TooHigh a fram:ForcePhenotype ;
+    rdfs:label "Too High"@en ;
+    rdfs:comment "The applied force or effort exceeds what is needed."@en .
 
 
 # =============================================================================
@@ -389,9 +566,25 @@ fram:hasDistribution a owl:ObjectProperty ;
 
 fram:hasPhenotype a owl:ObjectProperty ;
     rdfs:label "has phenotype"@en ;
-    rdfs:comment "Associates variability with a timing or precision phenotype."@en ;
+    rdfs:comment "Associates variability with a phenotype along any variability dimension."@en ;
     rdfs:domain fram:Variability ;
     rdfs:range fram:Phenotype ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:hasDimension a owl:ObjectProperty ;
+    rdfs:label "has dimension"@en ;
+    rdfs:comment "Associates a phenotype with its variability dimension (e.g., timing, precision, force, sequence)."@en ;
+    rdfs:domain fram:Phenotype ;
+    rdfs:range fram:VariabilityDimension ;
+    owl:inverseOf fram:isDimensionOf ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isDimensionOf a owl:ObjectProperty ;
+    rdfs:label "is dimension of"@en ;
+    rdfs:comment "Inverse of hasDimension: associates a variability dimension with its phenotypes."@en ;
+    rdfs:domain fram:VariabilityDimension ;
+    rdfs:range fram:Phenotype ;
+    owl:inverseOf fram:hasDimension ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:hasContributingFactor a owl:ObjectProperty ;
@@ -422,7 +615,14 @@ fram:aspectCode a owl:DatatypeProperty ;
 
 fram:functionType a owl:DatatypeProperty ;
     rdfs:label "function type"@en ;
-    rdfs:comment "The type of the function: human, technological, organisational, or background."@en ;
+    rdfs:comment "The nature of the function: human, technological, or organisational (Dimension 1). See also functionRole for flow role classification."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:functionRole a owl:DatatypeProperty ;
+    rdfs:label "function role"@en ;
+    rdfs:comment "The flow role of the function in the FMI instantiation: entry, exit, background, or foreground (Dimension 2). See also functionType for nature classification."@en ;
     rdfs:domain fram:Function ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
@@ -485,15 +685,22 @@ fram:distributionMax a owl:DatatypeProperty ;
 
 fram:timingPhenotype a owl:DatatypeProperty ;
     rdfs:label "timing phenotype"@en ;
-    rdfs:comment "The timing dimension of variability: too-early, on-time, too-late, or not-at-all."@en ;
+    rdfs:comment "The timing dimension of variability: too-early, on-time, too-late, or not-at-all (Hollnagel, 2012). Retained for backward compatibility; prefer hasPhenotype + hasDimension for extensible modeling."@en ;
     rdfs:domain fram:Variability ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:precisionPhenotype a owl:DatatypeProperty ;
     rdfs:label "precision phenotype"@en ;
-    rdfs:comment "The precision dimension of variability: precise, acceptable, or imprecise."@en ;
+    rdfs:comment "The precision dimension of variability: precise, acceptable, or imprecise (Hollnagel, 2012). Retained for backward compatibility; prefer hasPhenotype + hasDimension for extensible modeling."@en ;
     rdfs:domain fram:Variability ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:dimensionName a owl:DatatypeProperty ;
+    rdfs:label "dimension name"@en ;
+    rdfs:comment "The human-readable name of a variability dimension (e.g., 'timing', 'force', 'sequence')."@en ;
+    rdfs:domain fram:VariabilityDimension ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -798,14 +1005,21 @@ fram:hasPassthrough a owl:ObjectProperty ;
 # P10 FIX: DISJOINTNESS AXIOMS (v1.1.0)
 # =============================================================================
 
+# Dimension 1 — Nature: mutually disjoint (a function cannot be both Human and Technological)
 [] a owl:AllDisjointClasses ;
    owl:members (
         fram:HumanFunction
         fram:TechnologicalFunction
         fram:OrganisationalFunction
-        fram:BackgroundFunction
+    ) .
+
+# Dimension 2 — Flow Role: mutually disjoint (a function cannot be both Entry and Exit)
+[] a owl:AllDisjointClasses ;
+   owl:members (
         fram:EntryFunction
         fram:ExitFunction
+        fram:BackgroundFunction
+        fram:ForegroundFunction
     ) .
 
 [] a owl:AllDisjointClasses ;
@@ -821,7 +1035,23 @@ fram:hasPassthrough a owl:ObjectProperty ;
 [] a owl:AllDisjointClasses ;
    owl:members (
         fram:TimingPhenotype
+        fram:DurationPhenotype
+        fram:SequencePhenotype
         fram:PrecisionPhenotype
+        fram:ForcePhenotype
+        fram:DistancePhenotype
+        fram:DirectionPhenotype
+    ) .
+
+[] a owl:AllDisjointClasses ;
+   owl:members (
+        fram:TimingDimension
+        fram:DurationDimension
+        fram:SequenceDimension
+        fram:PrecisionDimension
+        fram:ForceDimension
+        fram:DistanceDimension
+        fram:DirectionDimension
     ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1046,8 +1276,10 @@ fram:isVariabilityHotspotIn a owl:ObjectProperty ;
 #    it. The Disposition mapping is reused for PerformanceCondition (CPC),
 #    which genuinely represents latent properties that influence variability.
 #
-# 2. HumanFunction → gufo:Action (intentional event with agent).
+# 2. HumanFunction → gufo:Event (intentional event with agent).
 #    Non-human function types remain as gufo:Event (non-intentional).
+#    Function subtypes are organized in two orthogonal dimensions:
+#    Nature (Human/Tech/Org) and FlowRole (Entry/Exit/Background/Foreground).
 #
 # 3. Coupling → gufo:RelationalQuality.
 #    Couplings are first-class entities that mediate the relationship between
@@ -1138,7 +1370,10 @@ fram:Coupling rdfs:subClassOf gufo:RelationalQuality ;
     rdfs:comment "A FRAM Coupling is a gufo:RelationalQuality — an externally dependent property that inheres in (and existentially depends on) two Functions simultaneously."@en .
 
 fram:Variability rdfs:subClassOf gufo:Quality ;
-    rdfs:comment "Variability is a gufo:Quality — a measurable intrinsic property of a Function's output, with an associated quality space (timing × precision)."@en .
+    rdfs:comment "Variability is a gufo:Quality — a measurable intrinsic property of a Function's output, with a multi-dimensional quality space (timing × duration × sequence × precision × ...)."@en .
+
+fram:VariabilityDimension rdfs:subClassOf gufo:Quality ;
+    rdfs:comment "A VariabilityDimension is a gufo:Quality — a named dimension of the variability quality space along which phenotype values are defined."@en .
 
 fram:PerformanceCondition rdfs:subClassOf gufo:Disposition ;
     rdfs:comment "A CPC is a gufo:Disposition — a latent property that manifests under specific conditions, influencing the variability of function outputs. This adopts the Disposition mapping from Lališ et al. (2019), applied here to CPCs rather than Functions."@en .
@@ -1150,7 +1385,7 @@ fram:Distribution rdfs:subClassOf gufo:AbstractIndividual ;
     rdfs:comment "A probability distribution is a gufo:AbstractIndividual — an abstract entity that does not exist in space-time but characterizes the quantitative profile of variability."@en .
 
 fram:Phenotype rdfs:subClassOf gufo:QualityValue ;
-    rdfs:comment "A phenotype is a gufo:QualityValue — a point in the quality space of variability (e.g., OnTime, Precise)."@en .
+    rdfs:comment "A phenotype is a gufo:QualityValue — a point in a specific dimension of the variability quality space (e.g., OnTime in TimingDimension, TooLow in ForceDimension)."@en .
 
 fram:FRAMScenario rdfs:subClassOf gufo:Object ;
     rdfs:comment "A FRAM Scenario is a gufo:Object — a persistent configuration of parameter values for comparative analysis."@en .
