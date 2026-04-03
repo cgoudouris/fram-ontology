@@ -6,9 +6,9 @@ An OWL 2 ontology for the **Functional Resonance Analysis Method (FRAM)**, enabl
 
 This badge certifies that the FRAM ontology was scanned with OOPS! (OntOlogy Pitfall Scanner), a tool that detects structural and semantic pitfalls in OWL ontologies.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18880157.svg)](https://doi.org/10.5281/zenodo.18880157)
+[![DOI](https://zenodo.org/badge/1162643093.svg)](https://zenodo.org/badge/latestdoi/1162643093)
 
-This badge links to the FRAM ontology on Zenodo using the **Concept DOI**, which always resolves to the latest version.
+This badge links to the FRAM ontology on Zenodo and always resolves to the latest version automatically.
 
 ## Overview
 
