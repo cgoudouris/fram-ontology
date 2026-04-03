@@ -17,7 +17,8 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 - **Functions** — human, technological, organisational, and background activities
 - **Aspects** — the six characterizing aspects of each function (Input, Output, Precondition, Resource, Control, Time)
 - **Couplings** — directed connections between function outputs and other functions' aspects
-- **Variability** — performance variability characterized by timing and precision phenotypes
+- **Variability** — multi-dimensional performance variability with seven dimensions (Timing, Duration, Sequence, Precision, Force, Distance, Direction) and corresponding phenotypes
+- **Variability Dimensions** — extensible hierarchy of variability dimensions based on Hollnagel (2012), Delikhoon et al. (2024), and Karevan & Nadeau (2025)
 - **Performance Conditions** — Common Performance Conditions (CPCs) that influence variability
 - **Functional Resonance** — emergent phenomena arising from the interaction of everyday variability
 - **Distributions** — probability distributions (Normal, Uniform, Triangular, LogNormal) for quantitative analysis
@@ -117,6 +118,14 @@ owl:Thing
 │   ├── fram:ExternalVariability
 │   ├── fram:UpstreamVariability
 │   └── fram:DownstreamVariability
+├── fram:VariabilityDimension ─── rdfs:subClassOf gufo:Quality          ← NEW v1.5.0
+│   ├── fram:TimingDimension
+│   ├── fram:DurationDimension
+│   ├── fram:SequenceDimension
+│   ├── fram:PrecisionDimension
+│   ├── fram:ForceDimension
+│   ├── fram:DistanceDimension
+│   └── fram:DirectionDimension
 ├── fram:PerformanceCondition ─── rdfs:subClassOf gufo:Disposition
 ├── fram:FunctionalResonance ──── rdfs:subClassOf gufo:Event
 ├── fram:Distribution ─────────── rdfs:subClassOf gufo:AbstractIndividual
@@ -126,7 +135,12 @@ owl:Thing
 │   └── fram:LogNormalDistribution
 ├── fram:Phenotype ────────────── rdfs:subClassOf gufo:QualityValue
 │   ├── fram:TimingPhenotype
-│   └── fram:PrecisionPhenotype
+│   ├── fram:DurationPhenotype          ← NEW v1.5.0
+│   ├── fram:SequencePhenotype          ← NEW v1.5.0
+│   ├── fram:PrecisionPhenotype
+│   ├── fram:ForcePhenotype             ← NEW v1.5.0
+│   ├── fram:DistancePhenotype          ← NEW v1.5.0
+│   └── fram:DirectionPhenotype         ← NEW v1.5.0
 └── fram:FRAMScenario ─────────── rdfs:subClassOf gufo:Object
 ```
 
@@ -142,13 +156,22 @@ owl:Thing
 | `hasVariability` | Function | Variability | Function's variability |
 | `hasDistribution` | Variability | Distribution | Quantitative distribution |
 | `hasPhenotype` | Variability | Phenotype | Qualitative phenotype |
+| `hasDimension` | Phenotype | VariabilityDimension | Dimension of this phenotype |
 | `couplingStrength` | Coupling | xsd:decimal | Strength (0–1) |
 
 ### Phenotype Individuals
 
 **Timing**: `TooEarly`, `OnTime`, `TooLate`, `NotAtAll`
 
+**Duration**: `TooShort`, `Appropriate`, `TooLong`
+
+**Sequence**: `CorrectOrder`, `WrongOrder`, `Skipped`, `Repeated`
+
 **Precision**: `Precise`, `Acceptable`, `Imprecise`
+
+**Force**: `TooLow`, `OnTarget`, `TooHigh`
+
+**Distance** and **Direction**: classes defined; individuals are domain-specific (extend as needed)
 
 ## JSON Schema Validation
 
@@ -229,7 +252,7 @@ See [`validation/README.md`](validation/README.md) for full instructions and exp
 
 ## Foundational Ontology Alignment (gUFO)
 
-Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unified Foundational Ontology** ([gUFO](https://purl.org/nemo/gufo)) — Guizzardi et al. (2021). This anchors FRAM domain concepts in well-established ontological categories.
+Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unified Foundational Ontology** ([gUFO](https://purl.org/nemo/gufo)) — Guizzardi et al. (2021). This anchors FRAM domain concepts in well-established ontological categories. As of v1.5.0, the alignment comprises **12 `rdfs:subClassOf` axioms**.
 
 ### Alignment Table
 
@@ -244,6 +267,7 @@ Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unif
 | `FunctionalResonance` | `gufo:Event` | Emergent complex event |
 | `Distribution` | `gufo:AbstractIndividual` | Abstract entity (not in space-time) |
 | `Phenotype` | `gufo:QualityValue` | Point in the quality space of variability |
+| `VariabilityDimension` | `gufo:Quality` | Measurable dimension of performance variability |
 | `FRAMModel` | `gufo:Object` | Persistent endurant aggregating functions and couplings |
 | `FRAMScenario` | `gufo:Object` | Persistent configuration for comparative analysis |
 
@@ -256,6 +280,17 @@ Lališ et al. (2019) proposed mapping FRAM Functions to UFO *Dispositions* — l
 - Guizzardi, G. (2005). *Ontological Foundations for Structural Conceptual Models*. PhD Thesis, University of Twente.
 - Guizzardi, G. et al. (2021). gUFO: A Lightweight Implementation of the UFO. *Applied Ontology*, 17(1), 105-150.
 - Lališ, A. et al. (2019). Foundational ontological analysis of the FRAM. *Safety Science*, 117, 291-305.
+
+## Version History
+
+| Version | Date | Highlights |
+|---------|------|------------|
+| 1.0.0 | 2025-02 | Initial release — core classes (Function, Aspect, Coupling, Variability) |
+| 1.1.0 | 2025-02 | Added quantitative metadata classes (Constant, Variable, OutputMessage, InterpretationProfile, Passthrough) |
+| 1.2.0 | 2025-03 | Added Distribution and Phenotype class hierarchies; FRAMScenario |
+| 1.3.0 | 2025-03 | gUFO foundational alignment (11 axioms); full inverse properties; disjointness axioms; OOPS! validation |
+| 1.4.0 | 2025-06 | Function taxonomy restructuring — orthogonal Nature (Human, Technological, Organisational) and Flow Role (Entry, Exit, Background, Foreground) dimensions; SocialFunction added |
+| 1.5.0 | 2025-07 | Multi-dimensional variability — VariabilityDimension class with 7 subclasses (Timing, Duration, Sequence, Precision, Force, Distance, Direction); 5 new Phenotype subclasses; 10 new individuals; 12th gUFO axiom; expanded disjointness axioms |
 
 ## Background
 
