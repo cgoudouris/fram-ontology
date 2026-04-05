@@ -24,7 +24,26 @@ pip install rdflib pyld owlrl pyshacl requests
 
 ## Running the Benchmark
 
-All scripts must be run **from the `validation/` directory**:
+### Unified Runner (recommended)
+
+The `validate_fram_model.py` script runs all 5 steps against **any** FRAM model in TTL or JSON-LD format:
+
+```bash
+cd validation
+
+# Validate a TTL model (Step 1 auto-skipped)
+python validate_fram_model.py /path/to/model.ttl
+
+# Validate a JSON-LD model (Step 1 converts to TTL first)
+python validate_fram_model.py /path/to/model.jsonld
+
+# Skip OOPS! API call (Step 5) for faster offline runs
+python validate_fram_model.py /path/to/model.ttl --skip-oops
+```
+
+### Individual Steps (legacy)
+
+The original per-step scripts are still available but are hardcoded for the legacy boil-water example (not included in current examples):
 
 ```bash
 cd validation
@@ -56,18 +75,19 @@ for step in step1_jsonld_to_ttl.py step2_reasoning_validation.py step3_shacl_val
 done
 ```
 
-> **Note:** Step 1 must run first because Steps 2–4 depend on the generated `boil-water-model.ttl` file. Step 5 is independent and can run at any time.
+> **Note:** Step 1 must run first because Steps 2–4 depend on the generated TTL file. Step 5 is independent and can run at any time.
 
 ## File Structure
 
 ```
 validation/
 ├── README.md                          # This file
-├── step1_jsonld_to_ttl.py             # JSON-LD → Turtle conversion
-├── step2_reasoning_validation.py      # OWL-RL reasoning & consistency
-├── step3_shacl_validation.py          # SHACL shape validation
-├── step4_sparql_competency.py         # SPARQL competency questions
-├── step5_oops_validation.py           # OOPS! pitfall scanning
+├── validate_fram_model.py             # Unified model-agnostic runner (all 5 steps)
+├── step1_jsonld_to_ttl.py             # JSON-LD → Turtle conversion (legacy, boil-water only)
+├── step2_reasoning_validation.py      # OWL-RL reasoning & consistency (legacy)
+├── step3_shacl_validation.py          # SHACL shape validation (legacy)
+├── step4_sparql_competency.py         # SPARQL competency questions (legacy)
+├── step5_oops_validation.py           # OOPS! pitfall scanning (legacy)
 └── results/
     ├── experiment_log.md              # Original experiment execution log
     └── oops_analysis.md               # OOPS! pitfall analysis (v1.0 → v1.2.0)
@@ -80,7 +100,9 @@ validation/
 | [`../fram.ttl`](../fram.ttl) | TBox — canonical ontology definition |
 | [`../context.jsonld`](../context.jsonld) | JSON-LD context for term resolution |
 | [`../fram-shapes.ttl`](../fram-shapes.ttl) | SHACL shapes (8 shapes: S1–S8) |
-| [`../examples/boil-water-model.jsonld`](../examples/boil-water-model.jsonld) | ABox — example FRAM model |
+| [`../examples/boil-water-model.jsonld`](../examples/boil-water-model.jsonld) | ABox — simple example (3 functions, 2 couplings) — **removed in v1.7.0** |
+| [`../examples/li-huang-2025.ttl`](../examples/li-huang-2025.ttl) | ABox — Li-Huang 2025 HSR FRAM model (20 functions, 34 couplings) |
+| [`../examples/li-huang-2025.jsonld`](../examples/li-huang-2025.jsonld) | ABox — Li-Huang 2025 (JSON-LD) |
 
 ## SHACL Shapes
 
@@ -110,7 +132,7 @@ Step 4 validates the ontology against 6 SPARQL-based competency questions:
 | CQ5 | What are the phenotypes of "Fill kettle"? | 2 phenotypes (timing: on-time, precision: acceptable) |
 | CQ6 | Which functions receive input via couplings? | 2 functions (Heat water, Pour water) |
 
-## Expected Results (v1.6.0)
+## Expected Results (v1.7.0)
 
 All steps should pass with the current ontology version:
 
@@ -126,7 +148,7 @@ All steps should pass with the current ontology version:
 
 Scripts may generate the following intermediate files (gitignored):
 
-- `boil-water-model.ttl` — Turtle conversion of the JSON-LD example (Step 1)
+- `*-model.ttl` — Turtle conversion of JSON-LD input (Step 1)
 - `fram_rdfxml.owl` — RDF/XML conversion for OOPS! submission (Step 5)
 - `oops_response.xml` — Raw OOPS! API response (Step 5)
 - `shacl_violations.txt` — SHACL violation report, if any (Step 3)

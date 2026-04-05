@@ -39,14 +39,14 @@
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.6.0> ;
-    owl:versionInfo "1.6.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.7.0> ;
+    owl:versionInfo "1.7.0" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
     dcterms:created "2025-01-01"^^xsd:date ;
-    dcterms:modified "2026-04-03"^^xsd:date ;
+    dcterms:modified "2026-04-05"^^xsd:date ;
     vann:preferredNamespacePrefix "fram" ;
     vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
     rdfs:seeAlso <https://github.com/cgoudouris/fram-ontology> ;
@@ -1517,6 +1517,50 @@ fram:sampleSize a owl:DatatypeProperty ;
     rdfs:comment "Number of simulation iterations classified to produce the emergent phenotype distribution."@en ;
     rdfs:domain fram:EmergentPhenotypeResult ;
     rdfs:range xsd:integer .
+
+# --- Semantic Purity: OutputMessage and InterpretationProfile properties (v1.7.0) ---
+
+fram:targetAspectType a owl:DatatypeProperty ;
+    rdfs:label "target aspect type"@en ;
+    rdfs:comment "The type of aspect (e.g. input, control, precondition, resource, time) on the target function that an output message connects to."@en ;
+    rdfs:domain fram:OutputMessage ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:input a owl:DatatypeProperty ;
+    rdfs:label "input aspect interpretation"@en ;
+    rdfs:comment "The interpretation mode for the Input aspect in an InterpretationProfile (e.g. ANY, NONE, ALL)."@en ;
+    rdfs:domain fram:InterpretationProfile ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:precondition a owl:DatatypeProperty ;
+    rdfs:label "precondition aspect interpretation"@en ;
+    rdfs:comment "The interpretation mode for the Precondition aspect in an InterpretationProfile (e.g. ANY, NONE, ALL)."@en ;
+    rdfs:domain fram:InterpretationProfile ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:resource a owl:DatatypeProperty ;
+    rdfs:label "resource aspect interpretation"@en ;
+    rdfs:comment "The interpretation mode for the Resource aspect in an InterpretationProfile (e.g. ANY, NONE, ALL)."@en ;
+    rdfs:domain fram:InterpretationProfile ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:control a owl:DatatypeProperty ;
+    rdfs:label "control aspect interpretation"@en ;
+    rdfs:comment "The interpretation mode for the Control aspect in an InterpretationProfile (e.g. ANY, NONE, ALL)."@en ;
+    rdfs:domain fram:InterpretationProfile ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:time a owl:DatatypeProperty ;
+    rdfs:label "time aspect interpretation"@en ;
+    rdfs:comment "The interpretation mode for the Time aspect in an InterpretationProfile (e.g. ANY, NONE, ALL)."@en ;
+    rdfs:domain fram:InterpretationProfile ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 # --- Inverse Properties for Emergent Phenotype Classification ---
 

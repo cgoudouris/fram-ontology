@@ -200,7 +200,7 @@ The `fram-model.schema.json` file provides a [JSON Schema (Draft 2020-12)](https
 Using [ajv-cli](https://github.com/ajv-validator/ajv-cli):
 
 ```bash
-npx -y ajv-cli validate -s ontology/fram-model.schema.json -d ontology/examples/boil-water-model.jsonld --spec=draft2020
+npx -y ajv-cli validate -s ontology/fram-model.schema.json -d ontology/examples/li-huang-2025.jsonld --spec=draft2020
 ```
 
 Or programmatically with [ajv](https://ajv.js.org/):
@@ -214,7 +214,7 @@ const ajv = new Ajv2020({ allErrors: true });
 addFormats(ajv);
 
 const schema = JSON.parse(fs.readFileSync('ontology/fram-model.schema.json', 'utf8'));
-const data = JSON.parse(fs.readFileSync('ontology/examples/boil-water-model.jsonld', 'utf8'));
+const data = JSON.parse(fs.readFileSync('ontology/examples/li-huang-2025.jsonld', 'utf8'));
 
 const validate = ajv.compile(schema);
 if (validate(data)) {
@@ -306,6 +306,7 @@ Lališ et al. (2019) proposed mapping FRAM Functions to UFO *Dispositions* — l
 | 1.4.0 | 2025-06 | Function taxonomy restructuring — orthogonal Nature (Human, Technological, Organisational) and Flow Role (Entry, Exit, Background, Foreground) dimensions; SocialFunction added |
 | 1.5.0 | 2025-07 | Multi-dimensional variability — VariabilityDimension class with 7 subclasses (Timing, Duration, Sequence, Precision, Force, Distance, Direction); 5 new Phenotype subclasses; 10 new individuals; 12th gUFO axiom; expanded disjointness axioms |
 | 1.6.0 | 2026-04 | Emergent phenotype classification — 4 new classes (PhenotypeMappingRule, WAIDeclaration, EmergentPhenotypeResult, WAIWADComparison); 6 new object properties; 7 new datatype properties; WAI/WAD comparison framework with discordance index Δ(WAI-WAD); 16 gUFO axioms |
+| 1.7.0 | 2026-04 | Semantic purity refinement — 6 new datatype properties for TBox completeness: `targetAspectType` (OutputMessage routing), `input`, `precondition`, `resource`, `control`, `time` (InterpretationProfile aspect modes); context.jsonld expanded with `model:` prefix for ABox IRIs; examples updated to Li-Huang-2025 cross-domain model; SPARQL equivalence validated (9/9 PASS) between TTL and JSON-LD serializations |
 
 ## Background
 

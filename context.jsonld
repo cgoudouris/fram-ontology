@@ -2,6 +2,7 @@
   "@context": {
     "@version": 1.1,
     "fram": "https://flowfram.com/ontology/fram/",
+    "model": "https://flowfram.com/models/",
     "schema": "https://schema.org/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
@@ -190,6 +191,13 @@
     "activationCondition": "fram:activationCondition",
     "isCustomActivation": "fram:isCustomActivation",
     "interpretationProfile": "fram:hasInterpretationProfile",
+    "targetAspectType": "fram:targetAspectType",
+
+    "input": "fram:input",
+    "precondition": "fram:precondition",
+    "resource": "fram:resource",
+    "time": "fram:time",
+    "control": "fram:control",
 
     "variabilityPropagation": "fram:variabilityPropagation",
     "propagates": "fram:propagates",
