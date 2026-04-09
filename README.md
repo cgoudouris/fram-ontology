@@ -40,7 +40,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | [`fram.owl`](fram.owl) | OWL/RDF-XML serialization (auto-generated from `fram.ttl`) |
 | [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (8 shapes) |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
-| [`validation/`](validation/) | 5-step automated validation benchmark (Python) |
+| [`validation/`](validation/) | 8-step automated validation benchmark (Python) |
 
 ## Quick Start
 
@@ -143,10 +143,14 @@ owl:Thing
 │   ├── fram:ForcePhenotype
 │   ├── fram:DistancePhenotype
 │   └── fram:DirectionPhenotype
-├── fram:PhenotypeMappingRule ──── rdfs:subClassOf gufo:AbstractIndividual  ← NEW v1.6.0
-├── fram:WAIDeclaration ────────── rdfs:subClassOf gufo:AbstractIndividual  ← NEW v1.6.0
-├── fram:EmergentPhenotypeResult ─ rdfs:subClassOf gufo:Event              ← NEW v1.6.0
-├── fram:WAIWADComparison ──────── rdfs:subClassOf gufo:AbstractIndividual  ← NEW v1.6.0
+├── fram:PhenotypeMappingRule ──── rdfs:subClassOf gufo:AbstractIndividual
+├── fram:WAIDeclaration ────────── rdfs:subClassOf gufo:AbstractIndividual
+├── fram:EmergentPhenotypeResult ─ rdfs:subClassOf gufo:Event
+├── fram:WAIWADComparison ──────── rdfs:subClassOf gufo:AbstractIndividual
+├── fram:ModelSummary ─────────── ← NEW v1.8.0
+├── fram:QuantitativeMetadata ──── ← NEW v1.8.0
+├── fram:VariabilityPropagation ── ← NEW v1.8.0
+├── fram:FRAMPrinciple ────────── ← NEW v1.8.0
 └── fram:FRAMScenario ─────────── rdfs:subClassOf gufo:Object
 ```
 
@@ -238,24 +242,25 @@ Using all three together provides **semantic precision** (OWL), **Linked Data in
 
 ## Validation
 
-The [`validation/`](validation/) directory contains a **5-step automated benchmark** that verifies the ontology across multiple dimensions:
+The [`validation/`](validation/) directory contains an **8-step automated benchmark** that verifies the ontology across multiple dimensions:
 
 | Step | Technique | What it validates |
 |------|-----------|-------------------|
 | 1 | JSON-LD → Turtle | Context resolution, serialization integrity |
 | 2 | OWL-RL Reasoning | Logical consistency, unsatisfiable classes |
 | 3 | SHACL Shapes | Structural constraints (8 shapes in [`fram-shapes.ttl`](fram-shapes.ttl)) |
-| 4 | SPARQL CQs | 6 competency questions against example model |
+| 4 | SPARQL CQs | 5 competency questions against example model |
 | 5 | OOPS! Scanner | Common ontology design anti-patterns |
+| 6 | Round-trip Fidelity | TTL ↔ JSON-LD serialization integrity |
+| 7 | Gap Analysis | Predicate-level coverage between serializations |
+| 8 | SPARQL Equivalence | Gold-standard semantic equivalence (10 queries) |
 
 ```bash
 pip install rdflib pyld owlrl pyshacl requests
 cd validation
-python step1_jsonld_to_ttl.py
-python step2_reasoning_validation.py
-python step3_shacl_validation.py
-python step4_sparql_competency.py
-python step5_oops_validation.py
+
+# Unified runner (recommended)
+python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld --skip-oops
 ```
 
 See [`validation/README.md`](validation/README.md) for full instructions and expected results.
@@ -307,6 +312,7 @@ Lališ et al. (2019) proposed mapping FRAM Functions to UFO *Dispositions* — l
 | 1.5.0 | 2025-07 | Multi-dimensional variability — VariabilityDimension class with 7 subclasses (Timing, Duration, Sequence, Precision, Force, Distance, Direction); 5 new Phenotype subclasses; 10 new individuals; 12th gUFO axiom; expanded disjointness axioms |
 | 1.6.0 | 2026-04 | Emergent phenotype classification — 4 new classes (PhenotypeMappingRule, WAIDeclaration, EmergentPhenotypeResult, WAIWADComparison); 6 new object properties; 7 new datatype properties; WAI/WAD comparison framework with discordance index Δ(WAI-WAD); 16 gUFO axioms |
 | 1.7.0 | 2026-04 | Semantic purity refinement — 6 new datatype properties for TBox completeness: `targetAspectType` (OutputMessage routing), `input`, `precondition`, `resource`, `control`, `time` (InterpretationProfile aspect modes); context.jsonld expanded with `model:` prefix for ABox IRIs; examples updated to Li-Huang-2025 cross-domain model; SPARQL equivalence validated (9/9 PASS) between TTL and JSON-LD serializations |
+| 1.8.0 | 2026-04 | ABox alignment and domain purity — 4 new classes (ModelSummary, QuantitativeMetadata, VariabilityPropagation, FRAMPrinciple), 9 new object properties, 11 new datatype properties; validation benchmark expanded from 5 to 8 steps with round-trip fidelity, gap analysis, and SPARQL equivalence; domain purity audit: platform-specific concepts (LLM prompts, AI insights) excluded from TBox by design; TBox: 59 classes, 129 properties (65 OP + 64 DP), 1309 triples |
 
 ## Background
 
@@ -316,6 +322,12 @@ Key references:
 - Hollnagel, E. (2012). *FRAM: The Functional Resonance Analysis Method*. Ashgate.
 - Hollnagel, E. (2014). *Safety-I and Safety-II*. Ashgate.
 - Hollnagel, E. (2017). *Safety-II in Practice*. Routledge.
+
+## Design Principle: Domain Purity
+
+The FRAM Ontology models **exclusively FRAM domain concepts** as defined in the methodology literature (Hollnagel, 2012; Hollnagel, 2014). Platform-specific concerns — such as LLM prompt templates, AI-generated insights, visual layout coordinates, and runtime execution state — are deliberately excluded from the TBox. This ensures the ontology is **technology-agnostic** and usable by any FRAM tool, researcher, or application without dependencies on any particular software platform.
+
+This design follows the principle articulated by Gruber (1993): *"an ontology should specify only the most fundamental domain concepts, independent of any particular application or use case."* Tools that consume the ontology may extend it locally for their own purposes, but the published vocabulary remains a pure, reusable domain model.
 
 ## Platform
 

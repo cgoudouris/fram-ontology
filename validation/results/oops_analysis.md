@@ -1,14 +1,31 @@
-# OOPS! Pitfall Analysis — FRAM Ontology
+# OOPS! Pitfall Analysis -- FRAM Ontology
 
-## v1.6.0 Results (Current)
+## v1.8.0 Results (Current)
 
-Submitted `fram.ttl` v1.6.0 (1133 triples, ~1560 lines) to [OOPS!](https://oops.linkeddata.es/).
+Submitted `fram.ttl` v1.8.0 (1357 triples, 65 classes, 132 properties) to [OOPS!](https://oops.linkeddata.es/).
 
 ### Pitfalls Detected
 
 | Code | Name | Severity | # Elements | Details |
 |------|------|----------|------------|---------|
-| P04 | Unconnected ontology elements | Minor | 8 | 8 gUFO classes declared for foundational alignment — known false positive (see below) |
+| -- | -- | -- | 0 | **No pitfalls detected at any severity level** |
+
+**Result:** PASS -- Zero pitfalls (Critical: 0, Important: 0, Minor: 0).
+
+The P04 false positive (gUFO classes flagged as "unconnected") that persisted from v1.3.0 through v1.6.0 is no longer reported. This is likely due to the 10 new classes added in v1.8.0 that increased the connectivity of the ontology graph and the usage of gUFO alignment classes as property domains/ranges.
+
+### OOPS! Evolution Summary
+
+| Version | TBox Triples | Critical | Important | Minor | Total Elements |
+|---------|-------------|----------|-----------|-------|----------------|
+| v1.0.0 | ~558 | 0 | 2 (P10, P11) | 2 (P04, P13) | 36 |
+| v1.2.0 | 669 | 0 | 0 | 0 | 0 |
+| v1.6.0 | 1133 | 0 | 0 | 1 (P04) | 8 (false positive) |
+| **v1.8.0** | **1357** | **0** | **0** | **0** | **0** |
+
+---
+
+## v1.6.0 Results (Previous)
 
 ### P04 Analysis (gUFO False Positive)
 

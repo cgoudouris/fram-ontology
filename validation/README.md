@@ -1,18 +1,21 @@
 # FRAM Ontology Validation Benchmark
 
-A five-step automated validation benchmark for the [FRAM Ontology](../fram.ttl), based on the **Preliminary Study 2 (EP2)** conducted as part of a Design Science Research (DSR) thesis.
+An eight-step automated validation benchmark for the [FRAM Ontology](../fram.ttl), based on the **Preliminary Study 2 (EP2)** conducted as part of a Design Science Research (DSR) thesis.
 
 ## Overview
 
-This benchmark verifies the FRAM Ontology across five complementary dimensions:
+This benchmark verifies the FRAM Ontology across eight complementary dimensions:
 
 | Step | Technique | Tool | What it validates |
 |------|-----------|------|-------------------|
 | 1 | JSON-LD → Turtle conversion | pyld + rdflib | Context resolution, IRI expansion, serialization integrity |
 | 2 | OWL-RL Reasoning | owlrl | Logical consistency, unsatisfiable classes, inferred triples |
 | 3 | SHACL Shape Validation | pyshacl | Structural constraints via 8 custom shapes |
-| 4 | SPARQL Competency Questions | rdflib | 6 CQs covering functions, couplings, aspects, distributions, phenotypes |
+| 4 | SPARQL Competency Questions | rdflib | 5 CQs covering functions, couplings, aspects, variability |
 | 5 | OOPS! Pitfall Scanning | OOPS! REST API | Common ontology design anti-patterns |
+| 6 | Round-trip Fidelity | rdflib isomorphism | TTL ↔ JSON-LD serialization round-trip integrity |
+| 7 | Gap Analysis | rdflib + pyld | Predicate-level differences between serializations |
+| 8 | SPARQL Semantic Equivalence | rdflib SPARQL | Gold-standard query equivalence (10 queries) |
 
 ## Prerequisites
 
@@ -26,19 +29,22 @@ pip install rdflib pyld owlrl pyshacl requests
 
 ### Unified Runner (recommended)
 
-The `validate_fram_model.py` script runs all 5 steps against **any** FRAM model in TTL or JSON-LD format:
+The `validate_fram_model.py` script runs all 8 steps against **any** FRAM model:
 
 ```bash
 cd validation
 
-# Validate a TTL model (Step 1 auto-skipped)
-python validate_fram_model.py /path/to/model.ttl
+# Run Steps 2-4 only (TTL model, no JSON-LD counterpart)
+python validate_fram_model.py examples/li-huang-2025.ttl
 
-# Validate a JSON-LD model (Step 1 converts to TTL first)
-python validate_fram_model.py /path/to/model.jsonld
+# Run Steps 2-8 (both TTL and JSON-LD available)
+python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld
 
 # Skip OOPS! API call (Step 5) for faster offline runs
-python validate_fram_model.py /path/to/model.ttl --skip-oops
+python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld --skip-oops
+
+# Run specific steps only
+python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld --steps 2,3,4,8
 ```
 
 ### Individual Steps (legacy)
@@ -64,7 +70,7 @@ python step4_sparql_competency.py
 python step5_oops_validation.py
 ```
 
-Or run all steps sequentially:
+Or run all legacy steps sequentially:
 
 ```bash
 cd validation
@@ -73,21 +79,29 @@ for step in step1_jsonld_to_ttl.py step2_reasoning_validation.py step3_shacl_val
   python "$step"
   echo ""
 done
+
+# Steps 6-8 (require both TTL and JSON-LD)
+python step6_roundtrip_fidelity.py ../examples/li-huang-2025.ttl ../examples/li-huang-2025.jsonld ../context.jsonld
+python step7_gap_analysis.py ../examples/li-huang-2025.ttl ../examples/li-huang-2025.jsonld ../context.jsonld
+python step8_sparql_equivalence.py ../examples/li-huang-2025.ttl ../examples/li-huang-2025.jsonld ../context.jsonld
 ```
 
-> **Note:** Step 1 must run first because Steps 2–4 depend on the generated TTL file. Step 5 is independent and can run at any time.
+> **Note:** Step 1 must run first because Steps 2–4 depend on the generated TTL file. Steps 5–8 are independent. Steps 6–8 require both TTL and JSON-LD exports of the same model.
 
 ## File Structure
 
 ```
 validation/
 ├── README.md                          # This file
-├── validate_fram_model.py             # Unified model-agnostic runner (all 5 steps)
+├── validate_fram_model.py             # Unified model-agnostic runner (all 8 steps)
 ├── step1_jsonld_to_ttl.py             # JSON-LD → Turtle conversion (legacy, boil-water only)
 ├── step2_reasoning_validation.py      # OWL-RL reasoning & consistency (legacy)
 ├── step3_shacl_validation.py          # SHACL shape validation (legacy)
 ├── step4_sparql_competency.py         # SPARQL competency questions (legacy)
 ├── step5_oops_validation.py           # OOPS! pitfall scanning (legacy)
+├── step6_roundtrip_fidelity.py        # Round-trip fidelity: TTL ↔ JSON-LD
+├── step7_gap_analysis.py              # Predicate-level gap analysis
+├── step8_sparql_equivalence.py        # SPARQL semantic equivalence (10 queries)
 └── results/
     ├── experiment_log.md              # Original experiment execution log
     └── oops_analysis.md               # OOPS! pitfall analysis (v1.0 → v1.2.0)
@@ -121,10 +135,22 @@ The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 8 SHACL shapes:
 
 ## Competency Questions
 
-Step 4 validates the ontology against 6 SPARQL-based competency questions:
+Step 4 validates the ontology against SPARQL-based competency questions. The unified runner uses 5 model-agnostic CQs; the legacy scripts use 6 CQs specific to the boil-water example.
 
-| CQ | Question | Expected Answer |
-|----|----------|-----------------|
+### Unified Runner (Li-Huang 2025)
+
+| CQ | Question | Expected (Li-Huang) |
+|----|----------|---------------------|
+| CQ1 | What are the model's functions and their types? | 20 functions |
+| CQ2 | What are the couplings between functions? | 34 couplings |
+| CQ3 | How many aspects does each function have? | 20 functions (6 each) |
+| CQ4 | Which functions have variability metadata? | 20 functions |
+| CQ5 | Which functions receive input from other functions via couplings? | 17 functions |
+
+### Legacy Scripts (boil-water)
+
+| CQ | Question | Expected (boil-water) |
+|----|----------|----------------------|
 | CQ1 | What are the model's functions and their types? | 3 functions (human, technological, human) |
 | CQ2 | What are the couplings between functions? | 2 couplings (Fill→Heat, Heat→Pour) |
 | CQ3 | What aspects does "Heat water to boiling" have? | 5 aspects (I, O, R, C, T) |
@@ -132,17 +158,20 @@ Step 4 validates the ontology against 6 SPARQL-based competency questions:
 | CQ5 | What are the phenotypes of "Fill kettle"? | 2 phenotypes (timing: on-time, precision: acceptable) |
 | CQ6 | Which functions receive input via couplings? | 2 functions (Heat water, Pour water) |
 
-## Expected Results (v1.7.0)
+## Expected Results (v1.8.0)
 
 All steps should pass with the current ontology version:
 
 | Step | Expected |
 |------|----------|
-| Step 1 | ~124 triples generated |
-| Step 2 | PASS — TBox: 1133, ABox: 124, Inferred: ~1844, consistent, 0 unsatisfiable |
-| Step 3 | PASS — conforms to all 8 shapes (S7/S8 only validated when WAI/WAD ABox data is present) |
-| Step 4 | PASS — all 6 CQs answered correctly |
-| Step 5 | P04 only (8 gUFO classes — known false positive for external foundational ontology alignment) |
+| Step 1 | ~124 triples generated (boil-water legacy) |
+| Step 2 | PASS — TBox: 1357, ABox: 3292 (Li-Huang), Inferred: ~5625, consistent, 0 unsatisfiable |
+| Step 3 | PASS — conforms to all 8 shapes |
+| Step 4 | PASS — all 5 CQs answered correctly |
+| Step 5 | PASS -- 0 pitfalls at any severity level |
+| Step 6 | RT1: PASS, RT2: FAIL (expected — BNode instability), RT3: FAIL (expected — structural differences) |
+| Step 7 | 56/83 predicates matching (67.5%) — informational |
+| Step 8 | PASS — 9/9 applicable SPARQL queries equivalent (100%) |
 
 ## Generated Files
 

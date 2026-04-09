@@ -39,14 +39,14 @@
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.7.0> ;
-    owl:versionInfo "1.7.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.8.0> ;
+    owl:versionInfo "1.8.0" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
     dcterms:created "2025-01-01"^^xsd:date ;
-    dcterms:modified "2026-04-05"^^xsd:date ;
+    dcterms:modified "2026-04-22"^^xsd:date ;
     vann:preferredNamespacePrefix "fram" ;
     vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
     rdfs:seeAlso <https://github.com/cgoudouris/fram-ontology> ;
@@ -791,6 +791,41 @@ fram:Passthrough a owl:Class ;
 
 
 # =============================================================================
+# v1.8.0: MODEL SUMMARY, QUANTITATIVE METADATA, AND ANALYSIS CLASSES
+# =============================================================================
+
+fram:ModelSummary a owl:Class ;
+    rdfs:label "Model Summary"@en ;
+    rdfs:comment "Aggregate statistics and structural metrics for a FRAM model."@en ;
+    skos:definition "Contains computed summary statistics such as function count, coupling count, and connectivity metrics for a FRAM model."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:QuantitativeMetadata a owl:Class ;
+    rdfs:label "Quantitative Metadata"@en ;
+    rdfs:comment "Quantitative analysis configuration for a FRAM function."@en ;
+    skos:definition "Contains variables, outputs, and computational metadata that define how a function's output is quantitatively computed during instantiation."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:VariabilityPropagation a owl:Class ;
+    rdfs:label "Variability Propagation"@en ;
+    rdfs:comment "Describes how variability propagates through a coupling between functions."@en ;
+    skos:definition "Captures the propagation of a specific variable's variability through an aspect coupling, linking the source variable to the downstream impact."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# NOTE: LLMPrompt excluded from TBox by design (domain purity principle — not a FRAM domain concept)
+
+fram:FRAMPrinciple a owl:Class ;
+    rdfs:label "FRAM Principle"@en ;
+    rdfs:comment "A core principle of the FRAM methodology."@en ;
+    skos:definition "Represents one of the foundational principles of the Functional Resonance Analysis Method as defined by Hollnagel."@en ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# NOTE: AnalysisRecommendation, EntryPointInsight, ExitPointInsight,
+#       ResonancePointInsight, VariabilityHotspotInsight
+#       excluded from TBox by design (domain purity principle — platform-specific, not FRAM domain concepts)
+
+
+# =============================================================================
 # ADDITIONAL OBJECT PROPERTIES
 # =============================================================================
 
@@ -847,6 +882,73 @@ fram:variabilityHotspot a owl:ObjectProperty ;
     rdfs:label "variability hotspot"@en ;
     rdfs:comment "A function identified as a potential variability hotspot."@en ;
     rdfs:domain fram:FunctionalResonance ;
+    rdfs:range fram:Function ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# --- v1.8.0: Model Summary, Quantitative Metadata, and Analysis Properties ---
+
+fram:summary a owl:ObjectProperty ;
+    rdfs:label "summary"@en ;
+    rdfs:comment "Relates a FRAM model to its aggregate summary statistics."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range fram:ModelSummary ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:quantitativeMetadata a owl:ObjectProperty ;
+    rdfs:label "quantitative metadata"@en ;
+    rdfs:comment "Relates a function to its quantitative analysis configuration."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range fram:QuantitativeMetadata ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:variabilityPropagation a owl:ObjectProperty ;
+    rdfs:label "variability propagation"@en ;
+    rdfs:comment "Relates a coupling to a description of how variability propagates through it."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range fram:VariabilityPropagation ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:propagates a owl:ObjectProperty ;
+    rdfs:label "propagates"@en ;
+    rdfs:comment "Relates a variability propagation to the variable being propagated."@en ;
+    rdfs:domain fram:VariabilityPropagation ;
+    rdfs:range fram:Variable ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:message a owl:ObjectProperty ;
+    rdfs:label "message"@en ;
+    rdfs:comment "Relates an output aspect to its output message definition."@en ;
+    rdfs:domain fram:OutputAspect ;
+    rdfs:range fram:OutputMessage ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:methodologyContext a owl:ObjectProperty ;
+    rdfs:label "methodology context"@en ;
+    rdfs:comment "Relates a FRAM model to its FRAM methodology context information."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range owl:Thing ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# NOTE: llmAnalysisPrompts excluded from TBox by design (domain purity principle)
+
+fram:functionsByType a owl:ObjectProperty ;
+    rdfs:label "functions by type"@en ;
+    rdfs:comment "Relates a model summary to a breakdown of functions by type."@en ;
+    rdfs:domain fram:ModelSummary ;
+    rdfs:range owl:Thing ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:couplingsByAspect a owl:ObjectProperty ;
+    rdfs:label "couplings by aspect"@en ;
+    rdfs:comment "Relates a model summary to a breakdown of couplings by aspect type."@en ;
+    rdfs:domain fram:ModelSummary ;
+    rdfs:range owl:Thing ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:relatedFunction a owl:ObjectProperty ;
+    rdfs:label "related function"@en ;
+    rdfs:comment "Relates an analysis insight to a FRAM function it concerns."@en ;
+    rdfs:domain owl:Thing ;
     rdfs:range fram:Function ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -980,6 +1082,87 @@ fram:phenotypeValue a owl:DatatypeProperty ;
     rdfs:domain fram:Phenotype ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# --- v1.8.0: Model Summary, Function, and Coupling Properties ---
+
+fram:functionCount a owl:DatatypeProperty ;
+    rdfs:label "function count"@en ;
+    rdfs:comment "The total number of functions in the model."@en ;
+    rdfs:domain fram:ModelSummary ;
+    rdfs:range xsd:integer ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:couplingCount a owl:DatatypeProperty ;
+    rdfs:label "coupling count"@en ;
+    rdfs:comment "The total number of couplings in the model."@en ;
+    rdfs:domain fram:ModelSummary ;
+    rdfs:range xsd:integer ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:averageConnectionsPerFunction a owl:DatatypeProperty ;
+    rdfs:label "average connections per function"@en ;
+    rdfs:comment "The average number of connections per function in the model."@en ;
+    rdfs:domain fram:ModelSummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:maxConnectionsFunction a owl:DatatypeProperty ;
+    rdfs:label "max connections function"@en ;
+    rdfs:comment "The name of the function with the most connections in the model."@en ;
+    rdfs:domain fram:ModelSummary ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:connectionCount a owl:DatatypeProperty ;
+    rdfs:label "connection count"@en ;
+    rdfs:comment "The number of connections for a specific function."@en ;
+    rdfs:domain fram:Function ;
+    rdfs:range xsd:integer ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:factors a owl:DatatypeProperty ;
+    rdfs:label "factors"@en ;
+    rdfs:comment "Factors affecting variability of a function."@en ;
+    rdfs:domain fram:Variability ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:isCustomActivation a owl:DatatypeProperty ;
+    rdfs:label "is custom activation"@en ;
+    rdfs:comment "Whether the interpretation profile uses a custom activation expression."@en ;
+    rdfs:domain fram:InterpretationProfile ;
+    rdfs:range xsd:boolean ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:sourceFunctionName a owl:DatatypeProperty ;
+    rdfs:label "source function name"@en ;
+    rdfs:comment "The display name of the source function in a coupling."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:targetFunctionName a owl:DatatypeProperty ;
+    rdfs:label "target function name"@en ;
+    rdfs:comment "The display name of the target function in a coupling."@en ;
+    rdfs:domain fram:Coupling ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:scenarioCount a owl:DatatypeProperty ;
+    rdfs:label "scenario count"@en ;
+    rdfs:comment "The number of scenarios defined for the FRAM model."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range xsd:integer ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+fram:scenariosEnabled a owl:DatatypeProperty ;
+    rdfs:label "scenarios enabled"@en ;
+    rdfs:comment "Whether scenarios are enabled for the FRAM model."@en ;
+    rdfs:domain fram:FRAMModel ;
+    rdfs:range xsd:boolean ;
+    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
+
+# NOTE: analysisInsights, analysisQuestions excluded from TBox by design (domain purity principle)
 
 
 # =============================================================================
