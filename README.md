@@ -249,18 +249,26 @@ The [`validation/`](validation/) directory contains an **8-step automated benchm
 | 1 | JSON-LD → Turtle | Context resolution, serialization integrity |
 | 2 | OWL-RL Reasoning | Logical consistency, unsatisfiable classes |
 | 3 | SHACL Shapes | Structural constraints (8 shapes in [`fram-shapes.ttl`](fram-shapes.ttl)) |
-| 4 | SPARQL CQs | 5 competency questions against example model |
+| 4 | SPARQL CQs | 6 competency questions against example model |
 | 5 | OOPS! Scanner | Common ontology design anti-patterns |
 | 6 | Round-trip Fidelity | TTL ↔ JSON-LD serialization integrity |
 | 7 | Gap Analysis | Predicate-level coverage between serializations |
 | 8 | SPARQL Equivalence | Gold-standard semantic equivalence (10 queries) |
 
+Each step is implemented as an independent module under `validation/steps/` and invoked through a thin orchestrator (`validate_fram_model.py`). Steps can also be executed standalone for debugging.
+
 ```bash
 pip install rdflib pyld owlrl pyshacl requests
 cd validation
 
-# Unified runner (recommended)
-python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld --skip-oops
+# Full benchmark via the orchestrator (recommended)
+python validate_fram_model.py \
+    ../examples/eac1-li-huang-2025-fresh.ttl \
+    ../examples/eac1-li-huang-2025-fresh.jsonld \
+    --skip-oops
+
+# Or run a single step standalone
+python -m validation.steps.step3_shacl ../examples/eac1-li-huang-2025-fresh.ttl
 ```
 
 See [`validation/README.md`](validation/README.md) for full instructions and expected results.

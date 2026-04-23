@@ -1,0 +1,3028 @@
+@prefix ns1: <https://flowfram.com/ontology/fram/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://flowfram.com/models/model_default> a ns1:FRAMModel ;
+    rdfs:comment "<p>FRAM model for Li &amp; Huang (2025) — Risk-accident emergence and prevention method of high-speed railway system. Case study: 7.23 Ningbo-Wenzhou railway accident. 20 functional modules covering pre-departure preparation, in-transit operation, and arrival management.</p><p><b>Method:</b> Risk Pulse + Site Percolation + Causal Emergence</p><p><b>Source:</b> Reliability Engineering and System Safety, 264, 111438</p>" ;
+    ns1:analysisType "prospective" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_02672b60_1a4a_4e48_981b_737ef20ed116>,
+        <https://flowfram.com/models/coupling_032460fa_6885_469b_8417_90d69af17155>,
+        <https://flowfram.com/models/coupling_061863cc_9c5a_4137_b0e6_090a880726d2>,
+        <https://flowfram.com/models/coupling_0ee95bf4_a6f2_4b2d_acfa_ca609758c194>,
+        <https://flowfram.com/models/coupling_13d223cc_c186_4cae_92ec_a3efb9c44c9e>,
+        <https://flowfram.com/models/coupling_246496ef_ea9c_49be_bc93_8b14905d1c2a>,
+        <https://flowfram.com/models/coupling_3d57502c_a927_4d0a_8fde_2c386276e503>,
+        <https://flowfram.com/models/coupling_42bc71d9_a7a6_4c0b_8541_041fcc9c8cbc>,
+        <https://flowfram.com/models/coupling_430a19b8_c32b_4b17_8185_d2fb5b50dcf6>,
+        <https://flowfram.com/models/coupling_44c33627_609e_443f_a369_f47225e844d5>,
+        <https://flowfram.com/models/coupling_4a74f6f7_1e58_400e_b5f9_e104f97201d1>,
+        <https://flowfram.com/models/coupling_4af715d7_9b88_47b0_ac5e_44054a1f28ef>,
+        <https://flowfram.com/models/coupling_64799a71_7201_4061_80fb_8c3addcc8b0e>,
+        <https://flowfram.com/models/coupling_726390b7_fec4_4194_9cb8_5fdba40ae6f6>,
+        <https://flowfram.com/models/coupling_749f73e1_60e8_4f1a_94a8_350c84ee6be4>,
+        <https://flowfram.com/models/coupling_7bedceb6_52d0_4ef5_80ad_fa17b138c99f>,
+        <https://flowfram.com/models/coupling_84fbc676_7bdb_4c33_b739_5f5a7e40b151>,
+        <https://flowfram.com/models/coupling_970dac6a_1932_47ec_9174_68f23428418a>,
+        <https://flowfram.com/models/coupling_988e431e_b498_41b6_8af6_39d43b105b64>,
+        <https://flowfram.com/models/coupling_9df8f3c7_713e_48e5_a54e_4d3eac50e273>,
+        <https://flowfram.com/models/coupling_a8c7a6c6_6ee4_45f0_b7c8_53190991580b>,
+        <https://flowfram.com/models/coupling_aae8f461_a08c_4764_b897_be8df3e6da43>,
+        <https://flowfram.com/models/coupling_b6d7ec38_a901_469f_b1de_65d3e8da8fd1>,
+        <https://flowfram.com/models/coupling_b7c3c661_4acd_43c4_bb14_bdc860ee0f8f>,
+        <https://flowfram.com/models/coupling_bff083ad_4ba8_46b0_9c05_5870e78d9cbd>,
+        <https://flowfram.com/models/coupling_c00fe9d3_d213_4cf1_b506_f642b33f2989>,
+        <https://flowfram.com/models/coupling_c1c320f2_28b1_4291_832f_7a64e3f19f3c>,
+        <https://flowfram.com/models/coupling_c4a9bb49_deca_4d42_96c9_0f6a48426319>,
+        <https://flowfram.com/models/coupling_d429c595_4375_4cc1_b863_a18011abef38>,
+        <https://flowfram.com/models/coupling_db430c18_3d40_48a8_88c1_26a3557f484d>,
+        <https://flowfram.com/models/coupling_ea2bd6bd_4c8a_41e9_b1cd_6ce910902796>,
+        <https://flowfram.com/models/coupling_ec96f9dd_94d6_4d9c_9f29_78af09d093d9>,
+        <https://flowfram.com/models/coupling_f5c69850_92f8_4b3f_9c40_8c09615d3a2e>,
+        <https://flowfram.com/models/coupling_f659b825_8917_49ea_a9fc_2437fb32aefd> ;
+    ns1:hasFunction <https://flowfram.com/models/function_0328367d_3e6d_44a9_9c78_ecdbf22a1043>,
+        <https://flowfram.com/models/function_07a260ed_35d6_45eb_93e9_f805cdd59adb>,
+        <https://flowfram.com/models/function_099185d7_b5e9_4588_b13a_4e5caf086df8>,
+        <https://flowfram.com/models/function_0ee94667_9d27_4221_af81_ec681e266926>,
+        <https://flowfram.com/models/function_18be4d32_9006_43ba_b962_d1c5779b1290>,
+        <https://flowfram.com/models/function_411bbd47_e4b9_449f_aa39_deb4c8253efb>,
+        <https://flowfram.com/models/function_4c0f27cc_ca27_46b6_bc27_4f0b74aea128>,
+        <https://flowfram.com/models/function_54cdda44_2fc1_4f67_91a2_6cd9907a0678>,
+        <https://flowfram.com/models/function_5ecb889f_5dbf_46fd_b043_6a11bf685014>,
+        <https://flowfram.com/models/function_7ceb8d83_4700_44a0_a0a7_f024ca275349>,
+        <https://flowfram.com/models/function_a5c1921e_6f5e_45b8_b03c_aa1e7273a711>,
+        <https://flowfram.com/models/function_b640de56_468f_43e4_8d4d_220ba3eac0c7>,
+        <https://flowfram.com/models/function_b7543578_f61c_4cf3_9d25_a53884b6ab56>,
+        <https://flowfram.com/models/function_b900e3a6_6f94_4ece_beb8_e005aed035d2>,
+        <https://flowfram.com/models/function_bbf8ea3e_659d_4b35_8ce7_76207a1c2933>,
+        <https://flowfram.com/models/function_bd439e61_c149_4446_a4c7_3ed581bbcd57>,
+        <https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253>,
+        <https://flowfram.com/models/function_d2b44e6e_399a_4f03_93ee_27643e9bbcd4>,
+        <https://flowfram.com/models/function_eead0611_27d2_40ed_a2f3_bd7ab7cccd02>,
+        <https://flowfram.com/models/function_fa705170_f417_403b_af72_02d684ae768e> ;
+    ns1:hasScenario <https://flowfram.com/models/scenario_cmnkpi0dh0003t510xgxnk8fp>,
+        <https://flowfram.com/models/scenario_cmnkpi0e20005t510dzszstv5>,
+        <https://flowfram.com/models/scenario_cmnkpi0el0007t5106tizjh2f>,
+        <https://flowfram.com/models/scenario_cmnkpi0f70009t510hmxgh3d1> ;
+    ns1:methodologyContext [ ns1:framPrinciples [ rdfs:comment """People - and organisations - have to adjust what they do to match 
+the actual conditions, resources and demands. Since resources and time are finite, 
+such adjustments will always be approximate. Because the adjustments are approximate, 
+they will also be variable - and this variability is essential for safety.""" ],
+                [ rdfs:comment """Functional resonance is defined as the detectable signal that emerges 
+from the unintended interaction of the variability of many functions. Functional resonance 
+can lead to both positive and negative outcomes. The resonance is not caused by failures 
+or malfunctions, but by the normal variability of functions.""" ],
+                [ rdfs:comment """Things that go right and things that go wrong happen in basically 
+the same way. Adverse outcomes (accidents, incidents) happen because something 
+goes wrong, i.e., because of malfunctions, failures, or errors. Things that go 
+well happen because the performance, or the functions, match the demands, 
+i.e., because functions do what they are supposed to do.""" ],
+                [ rdfs:comment """Both wanted and unwanted outcomes are emergent phenomena, arising 
+from the variability of everyday performance - also called normal performance 
+variability. The variability of multiple functions may combine in unexpected ways, 
+leading to disproportionately large consequences. This is called functional resonance.""" ] ] ;
+    ns1:scenarioCount 4 ;
+    ns1:scenariosEnabled true ;
+    ns1:summary [ ns1:averageConnectionsPerFunction 3.4e+00 ;
+            ns1:couplingCount 34 ;
+            ns1:couplingsByAspect [ ] ;
+            ns1:functionCount 20 ;
+            ns1:functionsByType [ ] ;
+            ns1:maxConnectionsFunction "M11-Train dispatch control" ] ;
+    schema:about "Functional Resonance Analysis Method (FRAM) model for socio-technical system analysis" ;
+    schema:dateCreated "2026-04-23T19:01:21.665Z" ;
+    schema:dateModified "2026-04-23T19:01:21.665Z" ;
+    schema:keywords "FRAM",
+        "resilience",
+        "safety",
+        "socio-technical systems" ;
+    schema:name "Li-Huang 2025 — HSR Risk-Accident Emergence (Ningbo-Wenzhou)" ;
+    schema:version "1.0" .
+
+<https://flowfram.com/models/aspect_control_0328367d_3e6d_44a9_9c78_ecdbf22a1043> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_061863cc_9c5a_4137_b0e6_090a880726d2> ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_07a260ed_35d6_45eb_93e9_f805cdd59adb> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_246496ef_ea9c_49be_bc93_8b14905d1c2a> ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_099185d7_b5e9_4588_b13a_4e5caf086df8> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_0ee94667_9d27_4221_af81_ec681e266926> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_18be4d32_9006_43ba_b962_d1c5779b1290> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_411bbd47_e4b9_449f_aa39_deb4c8253efb> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_02672b60_1a4a_4e48_981b_737ef20ed116> ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_54cdda44_2fc1_4f67_91a2_6cd9907a0678> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_5ecb889f_5dbf_46fd_b043_6a11bf685014> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_3d57502c_a927_4d0a_8fde_2c386276e503> ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_7ceb8d83_4700_44a0_a0a7_f024ca275349> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_b640de56_468f_43e4_8d4d_220ba3eac0c7> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_b7543578_f61c_4cf3_9d25_a53884b6ab56> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_b900e3a6_6f94_4ece_beb8_e005aed035d2> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_42bc71d9_a7a6_4c0b_8541_041fcc9c8cbc> ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_bd439e61_c149_4446_a4c7_3ed581bbcd57> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_d2092504_be37_42b8_8d4e_1c2026074253> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_64799a71_7201_4061_80fb_8c3addcc8b0e> ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_control_fa705170_f417_403b_af72_02d684ae768e> a ns1:ControlAspect ;
+    rdfs:comment """Control (C) is how the function is monitored, supervised, or 
+regulated so that it can adjust to produce the required Output. Control represents 
+the regulation or governance of the function.
+Examples: Procedures, guidelines, supervisory oversight, feedback loops, 
+monitoring systems, regulations.""" ;
+    ns1:aspectCode "C" ;
+    ns1:aspectType "Control" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_44c33627_609e_443f_a369_f47225e844d5> ;
+    ns1:semanticRole "How the function is monitored, supervised, or regulated" .
+
+<https://flowfram.com/models/aspect_input_0328367d_3e6d_44a9_9c78_ecdbf22a1043> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_d429c595_4375_4cc1_b863_a18011abef38> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_07a260ed_35d6_45eb_93e9_f805cdd59adb> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_bff083ad_4ba8_46b0_9c05_5870e78d9cbd> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_099185d7_b5e9_4588_b13a_4e5caf086df8> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_c4a9bb49_deca_4d42_96c9_0f6a48426319> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_0ee94667_9d27_4221_af81_ec681e266926> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_9df8f3c7_713e_48e5_a54e_4d3eac50e273> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_18be4d32_9006_43ba_b962_d1c5779b1290> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_411bbd47_e4b9_449f_aa39_deb4c8253efb> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_c1c320f2_28b1_4291_832f_7a64e3f19f3c> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_0ee95bf4_a6f2_4b2d_acfa_ca609758c194> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_54cdda44_2fc1_4f67_91a2_6cd9907a0678> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_b6d7ec38_a901_469f_b1de_65d3e8da8fd1> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_5ecb889f_5dbf_46fd_b043_6a11bf685014> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_84fbc676_7bdb_4c33_b739_5f5a7e40b151> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_7ceb8d83_4700_44a0_a0a7_f024ca275349> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_032460fa_6885_469b_8417_90d69af17155> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_b640de56_468f_43e4_8d4d_220ba3eac0c7> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_db430c18_3d40_48a8_88c1_26a3557f484d> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_b7543578_f61c_4cf3_9d25_a53884b6ab56> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_b900e3a6_6f94_4ece_beb8_e005aed035d2> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_726390b7_fec4_4194_9cb8_5fdba40ae6f6> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_749f73e1_60e8_4f1a_94a8_350c84ee6be4> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_bd439e61_c149_4446_a4c7_3ed581bbcd57> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_4a74f6f7_1e58_400e_b5f9_e104f97201d1> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_d2092504_be37_42b8_8d4e_1c2026074253> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_13d223cc_c186_4cae_92ec_a3efb9c44c9e> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_f5c69850_92f8_4b3f_9c40_8c09615d3a2e> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_aae8f461_a08c_4764_b897_be8df3e6da43> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_input_fa705170_f417_403b_af72_02d684ae768e> a ns1:InputAspect ;
+    rdfs:comment """Input (I) is that which the function processes or transforms, 
+or that which starts or triggers the function. The Input activates the function 
+and/or provides the material (physical or informational) that the function processes.
+Examples: A signal, a request, raw materials, data, a patient arriving.""" ;
+    ns1:aspectCode "I" ;
+    ns1:aspectType "Input" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_970dac6a_1932_47ec_9174_68f23428418a> ;
+    ns1:semanticRole "What activates the function or what the function processes/transforms" .
+
+<https://flowfram.com/models/aspect_output_0328367d_3e6d_44a9_9c78_ecdbf22a1043> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_84fbc676_7bdb_4c33_b739_5f5a7e40b151> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_07a260ed_35d6_45eb_93e9_f805cdd59adb> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_099185d7_b5e9_4588_b13a_4e5caf086df8> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_726390b7_fec4_4194_9cb8_5fdba40ae6f6> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_0ee94667_9d27_4221_af81_ec681e266926> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_b7c3c661_4acd_43c4_bb14_bdc860ee0f8f>,
+        <https://flowfram.com/models/coupling_ec96f9dd_94d6_4d9c_9f29_78af09d093d9> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_18be4d32_9006_43ba_b962_d1c5779b1290> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_032460fa_6885_469b_8417_90d69af17155> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_411bbd47_e4b9_449f_aa39_deb4c8253efb> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_ea2bd6bd_4c8a_41e9_b1cd_6ce910902796> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_54cdda44_2fc1_4f67_91a2_6cd9907a0678> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_3d57502c_a927_4d0a_8fde_2c386276e503>,
+        <https://flowfram.com/models/coupling_42bc71d9_a7a6_4c0b_8541_041fcc9c8cbc>,
+        <https://flowfram.com/models/coupling_4af715d7_9b88_47b0_ac5e_44054a1f28ef> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_5ecb889f_5dbf_46fd_b043_6a11bf685014> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_0ee95bf4_a6f2_4b2d_acfa_ca609758c194> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_7ceb8d83_4700_44a0_a0a7_f024ca275349> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_aae8f461_a08c_4764_b897_be8df3e6da43> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_02672b60_1a4a_4e48_981b_737ef20ed116>,
+        <https://flowfram.com/models/coupling_061863cc_9c5a_4137_b0e6_090a880726d2>,
+        <https://flowfram.com/models/coupling_246496ef_ea9c_49be_bc93_8b14905d1c2a>,
+        <https://flowfram.com/models/coupling_44c33627_609e_443f_a369_f47225e844d5>,
+        <https://flowfram.com/models/coupling_64799a71_7201_4061_80fb_8c3addcc8b0e> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_b640de56_468f_43e4_8d4d_220ba3eac0c7> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_430a19b8_c32b_4b17_8185_d2fb5b50dcf6>,
+        <https://flowfram.com/models/coupling_7bedceb6_52d0_4ef5_80ad_fa17b138c99f> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_b7543578_f61c_4cf3_9d25_a53884b6ab56> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_4a74f6f7_1e58_400e_b5f9_e104f97201d1>,
+        <https://flowfram.com/models/coupling_9df8f3c7_713e_48e5_a54e_4d3eac50e273>,
+        <https://flowfram.com/models/coupling_b6d7ec38_a901_469f_b1de_65d3e8da8fd1>,
+        <https://flowfram.com/models/coupling_c1c320f2_28b1_4291_832f_7a64e3f19f3c>,
+        <https://flowfram.com/models/coupling_c4a9bb49_deca_4d42_96c9_0f6a48426319> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_b900e3a6_6f94_4ece_beb8_e005aed035d2> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_a8c7a6c6_6ee4_45f0_b7c8_53190991580b>,
+        <https://flowfram.com/models/coupling_f659b825_8917_49ea_a9fc_2437fb32aefd> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_bff083ad_4ba8_46b0_9c05_5870e78d9cbd> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_bd439e61_c149_4446_a4c7_3ed581bbcd57> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_988e431e_b498_41b6_8af6_39d43b105b64>,
+        <https://flowfram.com/models/coupling_c00fe9d3_d213_4cf1_b506_f642b33f2989> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_d2092504_be37_42b8_8d4e_1c2026074253> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_970dac6a_1932_47ec_9174_68f23428418a>,
+        <https://flowfram.com/models/coupling_d429c595_4375_4cc1_b863_a18011abef38>,
+        <https://flowfram.com/models/coupling_f5c69850_92f8_4b3f_9c40_8c09615d3a2e> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_db430c18_3d40_48a8_88c1_26a3557f484d> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_13d223cc_c186_4cae_92ec_a3efb9c44c9e> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_output_fa705170_f417_403b_af72_02d684ae768e> a ns1:OutputAspect ;
+    rdfs:comment """Output (O) is that which is the result of the function, either 
+as an entity or as a state change. The Output is typically what the function is 
+supposed to produce or achieve, and it serves as Input, Precondition, Resource, 
+Control, or Time for downstream functions.
+Examples: A product, a decision, information, a state change, a treated patient.""" ;
+    ns1:aspectCode "O" ;
+    ns1:aspectType "Output" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_749f73e1_60e8_4f1a_94a8_350c84ee6be4> ;
+    ns1:semanticRole "The result or product of the function's execution" .
+
+<https://flowfram.com/models/aspect_precondition_0328367d_3e6d_44a9_9c78_ecdbf22a1043> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_7bedceb6_52d0_4ef5_80ad_fa17b138c99f> ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_07a260ed_35d6_45eb_93e9_f805cdd59adb> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_f659b825_8917_49ea_a9fc_2437fb32aefd> ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_099185d7_b5e9_4588_b13a_4e5caf086df8> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_0ee94667_9d27_4221_af81_ec681e266926> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_18be4d32_9006_43ba_b962_d1c5779b1290> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_411bbd47_e4b9_449f_aa39_deb4c8253efb> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_a8c7a6c6_6ee4_45f0_b7c8_53190991580b> ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_54cdda44_2fc1_4f67_91a2_6cd9907a0678> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_5ecb889f_5dbf_46fd_b043_6a11bf685014> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_7ceb8d83_4700_44a0_a0a7_f024ca275349> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_b640de56_468f_43e4_8d4d_220ba3eac0c7> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_b7543578_f61c_4cf3_9d25_a53884b6ab56> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_b900e3a6_6f94_4ece_beb8_e005aed035d2> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_bd439e61_c149_4446_a4c7_3ed581bbcd57> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_d2092504_be37_42b8_8d4e_1c2026074253> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_ea2bd6bd_4c8a_41e9_b1cd_6ce910902796> ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_precondition_fa705170_f417_403b_af72_02d684ae768e> a ns1:PreconditionAspect ;
+    rdfs:comment """Precondition (P) represents the conditions that must be verified 
+to exist before a function can be carried out. Preconditions are system conditions 
+that must be fulfilled, rather than things that are used or consumed.
+Examples: Access rights verified, safety checks completed, equipment ready, 
+environmental conditions met.""" ;
+    ns1:aspectCode "P" ;
+    ns1:aspectType "Precondition" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_430a19b8_c32b_4b17_8185_d2fb5b50dcf6> ;
+    ns1:semanticRole "Conditions that must exist before the function can execute" .
+
+<https://flowfram.com/models/aspect_resource_0328367d_3e6d_44a9_9c78_ecdbf22a1043> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_988e431e_b498_41b6_8af6_39d43b105b64> ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_07a260ed_35d6_45eb_93e9_f805cdd59adb> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_099185d7_b5e9_4588_b13a_4e5caf086df8> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_0ee94667_9d27_4221_af81_ec681e266926> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_18be4d32_9006_43ba_b962_d1c5779b1290> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_411bbd47_e4b9_449f_aa39_deb4c8253efb> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_4af715d7_9b88_47b0_ac5e_44054a1f28ef> ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_54cdda44_2fc1_4f67_91a2_6cd9907a0678> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_5ecb889f_5dbf_46fd_b043_6a11bf685014> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_ec96f9dd_94d6_4d9c_9f29_78af09d093d9> ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_7ceb8d83_4700_44a0_a0a7_f024ca275349> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_b640de56_468f_43e4_8d4d_220ba3eac0c7> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_b7543578_f61c_4cf3_9d25_a53884b6ab56> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_b900e3a6_6f94_4ece_beb8_e005aed035d2> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_b7c3c661_4acd_43c4_bb14_bdc860ee0f8f> ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_bd439e61_c149_4446_a4c7_3ed581bbcd57> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_d2092504_be37_42b8_8d4e_1c2026074253> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_resource_fa705170_f417_403b_af72_02d684ae768e> a ns1:ResourceAspect ;
+    rdfs:comment """Resource (R) is what the function needs when it is carried out 
+or what it consumes to produce the Output. Unlike Preconditions, Resources are 
+typically used up or occupied during function execution.
+Examples: Tools, equipment, energy, money, manpower, software, time allocation.""" ;
+    ns1:aspectCode "R" ;
+    ns1:aspectType "Resource" ;
+    ns1:hasCoupling <https://flowfram.com/models/coupling_c00fe9d3_d213_4cf1_b506_f642b33f2989> ;
+    ns1:semanticRole "What the function needs or consumes during execution" .
+
+<https://flowfram.com/models/aspect_time_0328367d_3e6d_44a9_9c78_ecdbf22a1043> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_07a260ed_35d6_45eb_93e9_f805cdd59adb> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_099185d7_b5e9_4588_b13a_4e5caf086df8> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_0ee94667_9d27_4221_af81_ec681e266926> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_18be4d32_9006_43ba_b962_d1c5779b1290> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_411bbd47_e4b9_449f_aa39_deb4c8253efb> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_54cdda44_2fc1_4f67_91a2_6cd9907a0678> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_5ecb889f_5dbf_46fd_b043_6a11bf685014> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_7ceb8d83_4700_44a0_a0a7_f024ca275349> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_b640de56_468f_43e4_8d4d_220ba3eac0c7> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_b7543578_f61c_4cf3_9d25_a53884b6ab56> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_b900e3a6_6f94_4ece_beb8_e005aed035d2> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_bd439e61_c149_4446_a4c7_3ed581bbcd57> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_d2092504_be37_42b8_8d4e_1c2026074253> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/aspect_time_fa705170_f417_403b_af72_02d684ae768e> a ns1:TimeAspect ;
+    rdfs:comment """Time (T) represents the various temporal aspects that affect 
+how a function is carried out. This can include duration constraints, deadlines, 
+synchronization requirements, or temporal dependencies.
+Examples: Deadlines, time windows, synchronization with other functions, 
+sequence requirements, duration limits.""" ;
+    ns1:aspectCode "T" ;
+    ns1:aspectType "Time" ;
+    ns1:semanticRole "Temporal aspects affecting the function's execution" .
+
+<https://flowfram.com/models/scenario_cmnkpi0dh0003t510xgxnk8fp> a ns1:FRAMScenario ;
+    schema:name "Baseline (Article)" ;
+    schema:version 1 .
+
+<https://flowfram.com/models/scenario_cmnkpi0e20005t510dzszstv5> a ns1:FRAMScenario ;
+    schema:name "Reduced Machine Risk" ;
+    schema:version 1 .
+
+<https://flowfram.com/models/scenario_cmnkpi0el0007t5106tizjh2f> a ns1:FRAMScenario ;
+    schema:name "Barrier Active" ;
+    schema:version 1 .
+
+<https://flowfram.com/models/scenario_cmnkpi0f70009t510hmxgh3d1> a ns1:FRAMScenario ;
+    schema:name "Combined Risk Increase" ;
+    schema:version 1 .
+
+<https://flowfram.com/models/function_18be4d32_9006_43ba_b962_d1c5779b1290> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M1] Pre-departure security checking of passengers." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_18be4d32_9006_43ba_b962_d1c5779b1290>,
+        <https://flowfram.com/models/aspect_input_18be4d32_9006_43ba_b962_d1c5779b1290>,
+        <https://flowfram.com/models/aspect_output_18be4d32_9006_43ba_b962_d1c5779b1290>,
+        <https://flowfram.com/models/aspect_precondition_18be4d32_9006_43ba_b962_d1c5779b1290>,
+        <https://flowfram.com/models/aspect_resource_18be4d32_9006_43ba_b962_d1c5779b1290>,
+        <https://flowfram.com/models/aspect_time_18be4d32_9006_43ba_b962_d1c5779b1290> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "032460fa-6885-469b-8417-90d69af17155" ;
+                    ns1:message [ ns1:hasVariable "OV_M1" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M2-To secure passenger ticket checking and boarding" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M1" ] ] ;
+    schema:name "M1-To secure passenger checking" .
+
+<https://flowfram.com/models/coupling_02672b60_1a4a_4e48_981b_737ef20ed116> a ns1:Coupling ;
+    rdfs:label "M14→M17" ;
+    rdfs:comment "Connection from M14-Personnel organization and training (Output) to M17-D3115 train braking (Control)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> ;
+    ns1:sourceFunctionName "M14-Personnel organization and training" ;
+    ns1:targetAspect [ a ns1:ControlAspect ;
+            ns1:aspectCode "C" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> ;
+    ns1:targetFunctionName "M17-D3115 train braking" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M14-Personnel organization and training may propagate to M17-D3115 train braking's Control aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_032460fa_6885_469b_8417_90d69af17155> a ns1:Coupling ;
+    rdfs:label "M1→M2" ;
+    rdfs:comment "Connection from M1-To secure passenger checking (Output) to M2-To secure passenger ticket checking and boarding (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_18be4d32_9006_43ba_b962_d1c5779b1290> ;
+    ns1:sourceFunctionName "M1-To secure passenger checking" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_7ceb8d83_4700_44a0_a0a7_f024ca275349> ;
+    ns1:targetFunctionName "M2-To secure passenger ticket checking and boarding" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M1-To secure passenger checking may propagate to M2-To secure passenger ticket checking and boarding's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_061863cc_9c5a_4137_b0e6_090a880726d2> a ns1:Coupling ;
+    rdfs:label "M14→M15" ;
+    rdfs:comment "Connection from M14-Personnel organization and training (Output) to M15-D3115 train departure (Control)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> ;
+    ns1:sourceFunctionName "M14-Personnel organization and training" ;
+    ns1:targetAspect [ a ns1:ControlAspect ;
+            ns1:aspectCode "C" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_0328367d_3e6d_44a9_9c78_ecdbf22a1043> ;
+    ns1:targetFunctionName "M15-D3115 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M14-Personnel organization and training may propagate to M15-D3115 train departure's Control aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_0ee95bf4_a6f2_4b2d_acfa_ca609758c194> a ns1:Coupling ;
+    rdfs:label "M16→M17" ;
+    rdfs:comment "Connection from M16-D3115 train operation (Output) to M17-D3115 train braking (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_5ecb889f_5dbf_46fd_b043_6a11bf685014> ;
+    ns1:sourceFunctionName "M16-D3115 train operation" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> ;
+    ns1:targetFunctionName "M17-D3115 train braking" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M16-D3115 train operation may propagate to M17-D3115 train braking's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_13d223cc_c186_4cae_92ec_a3efb9c44c9e> a ns1:Coupling ;
+    rdfs:label "M3→M11" ;
+    rdfs:comment "Connection from M3-Station terminal confirms train status (Output) to M11-Train dispatch control (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> ;
+    ns1:sourceFunctionName "M3-Station terminal confirms train status" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253> ;
+    ns1:targetFunctionName "M11-Train dispatch control" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M3-Station terminal confirms train status may propagate to M11-Train dispatch control's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_246496ef_ea9c_49be_bc93_8b14905d1c2a> a ns1:Coupling ;
+    rdfs:label "M14→M20" ;
+    rdfs:comment "Connection from M14-Personnel organization and training (Output) to M20-D301 train braking (Control)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> ;
+    ns1:sourceFunctionName "M14-Personnel organization and training" ;
+    ns1:targetAspect [ a ns1:ControlAspect ;
+            ns1:aspectCode "C" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_07a260ed_35d6_45eb_93e9_f805cdd59adb> ;
+    ns1:targetFunctionName "M20-D301 train braking" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M14-Personnel organization and training may propagate to M20-D301 train braking's Control aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_3d57502c_a927_4d0a_8fde_2c386276e503> a ns1:Coupling ;
+    rdfs:label "M10→M16" ;
+    rdfs:comment "Connection from M10-GSM-R wireless communication (Output) to M16-D3115 train operation (Control)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_54cdda44_2fc1_4f67_91a2_6cd9907a0678> ;
+    ns1:sourceFunctionName "M10-GSM-R wireless communication" ;
+    ns1:targetAspect [ a ns1:ControlAspect ;
+            ns1:aspectCode "C" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_5ecb889f_5dbf_46fd_b043_6a11bf685014> ;
+    ns1:targetFunctionName "M16-D3115 train operation" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M10-GSM-R wireless communication may propagate to M16-D3115 train operation's Control aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_42bc71d9_a7a6_4c0b_8541_041fcc9c8cbc> a ns1:Coupling ;
+    rdfs:label "M10→M19" ;
+    rdfs:comment "Connection from M10-GSM-R wireless communication (Output) to M19-D301 train operation (Control)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_54cdda44_2fc1_4f67_91a2_6cd9907a0678> ;
+    ns1:sourceFunctionName "M10-GSM-R wireless communication" ;
+    ns1:targetAspect [ a ns1:ControlAspect ;
+            ns1:aspectCode "C" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> ;
+    ns1:targetFunctionName "M19-D301 train operation" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M10-GSM-R wireless communication may propagate to M19-D301 train operation's Control aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_430a19b8_c32b_4b17_8185_d2fb5b50dcf6> a ns1:Coupling ;
+    rdfs:label "M13→M10" ;
+    rdfs:comment "Connection from M13-Route control (Output) to M18-D301 train departure (Precondition)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b640de56_468f_43e4_8d4d_220ba3eac0c7> ;
+    ns1:sourceFunctionName "M13-Route control" ;
+    ns1:targetAspect [ a ns1:PreconditionAspect ;
+            ns1:aspectCode "P" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_fa705170_f417_403b_af72_02d684ae768e> ;
+    ns1:targetFunctionName "M18-D301 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M13-Route control may propagate to M18-D301 train departure's Precondition aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_44c33627_609e_443f_a369_f47225e844d5> a ns1:Coupling ;
+    rdfs:label "M14→M10" ;
+    rdfs:comment "Connection from M14-Personnel organization and training (Output) to M18-D301 train departure (Control)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> ;
+    ns1:sourceFunctionName "M14-Personnel organization and training" ;
+    ns1:targetAspect [ a ns1:ControlAspect ;
+            ns1:aspectCode "C" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_fa705170_f417_403b_af72_02d684ae768e> ;
+    ns1:targetFunctionName "M18-D301 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M14-Personnel organization and training may propagate to M18-D301 train departure's Control aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_4a74f6f7_1e58_400e_b5f9_e104f97201d1> a ns1:Coupling ;
+    rdfs:label "M4→M6" ;
+    rdfs:comment "Connection from M4-Driving environment inspection (Output) to M6-Power supply for traction power supply equipment (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b7543578_f61c_4cf3_9d25_a53884b6ab56> ;
+    ns1:sourceFunctionName "M4-Driving environment inspection" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_bd439e61_c149_4446_a4c7_3ed581bbcd57> ;
+    ns1:targetFunctionName "M6-Power supply for traction power supply equipment" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M4-Driving environment inspection may propagate to M6-Power supply for traction power supply equipment's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_4af715d7_9b88_47b0_ac5e_44054a1f28ef> a ns1:Coupling ;
+    rdfs:label "M10→M5" ;
+    rdfs:comment "Connection from M10-GSM-R wireless communication (Output) to M5-Dispatch center issues departure command (Resource)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_54cdda44_2fc1_4f67_91a2_6cd9907a0678> ;
+    ns1:sourceFunctionName "M10-GSM-R wireless communication" ;
+    ns1:targetAspect [ a ns1:ResourceAspect ;
+            ns1:aspectCode "R" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_411bbd47_e4b9_449f_aa39_deb4c8253efb> ;
+    ns1:targetFunctionName "M5-Dispatch center issues departure command" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M10-GSM-R wireless communication may propagate to M5-Dispatch center issues departure command's Resource aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_64799a71_7201_4061_80fb_8c3addcc8b0e> a ns1:Coupling ;
+    rdfs:label "M14→M11" ;
+    rdfs:comment "Connection from M14-Personnel organization and training (Output) to M11-Train dispatch control (Control)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> ;
+    ns1:sourceFunctionName "M14-Personnel organization and training" ;
+    ns1:targetAspect [ a ns1:ControlAspect ;
+            ns1:aspectCode "C" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253> ;
+    ns1:targetFunctionName "M11-Train dispatch control" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M14-Personnel organization and training may propagate to M11-Train dispatch control's Control aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_726390b7_fec4_4194_9cb8_5fdba40ae6f6> a ns1:Coupling ;
+    rdfs:label "M7→M8" ;
+    rdfs:comment "Connection from M7-Track circuit information transmission and reception (Output) to M8-Identification of section track occupation (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_099185d7_b5e9_4588_b13a_4e5caf086df8> ;
+    ns1:sourceFunctionName "M7-Track circuit information transmission and reception" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_b900e3a6_6f94_4ece_beb8_e005aed035d2> ;
+    ns1:targetFunctionName "M8-Identification of section track occupation" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M7-Track circuit information transmission and reception may propagate to M8-Identification of section track occupation's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_749f73e1_60e8_4f1a_94a8_350c84ee6be4> a ns1:Coupling ;
+    rdfs:label "M18→M19" ;
+    rdfs:comment "Connection from M18-D301 train departure (Output) to M19-D301 train operation (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_fa705170_f417_403b_af72_02d684ae768e> ;
+    ns1:sourceFunctionName "M18-D301 train departure" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> ;
+    ns1:targetFunctionName "M19-D301 train operation" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M18-D301 train departure may propagate to M19-D301 train operation's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_7bedceb6_52d0_4ef5_80ad_fa17b138c99f> a ns1:Coupling ;
+    rdfs:label "M13→M15" ;
+    rdfs:comment "Connection from M13-Route control (Output) to M15-D3115 train departure (Precondition)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b640de56_468f_43e4_8d4d_220ba3eac0c7> ;
+    ns1:sourceFunctionName "M13-Route control" ;
+    ns1:targetAspect [ a ns1:PreconditionAspect ;
+            ns1:aspectCode "P" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_0328367d_3e6d_44a9_9c78_ecdbf22a1043> ;
+    ns1:targetFunctionName "M15-D3115 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M13-Route control may propagate to M15-D3115 train departure's Precondition aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_84fbc676_7bdb_4c33_b739_5f5a7e40b151> a ns1:Coupling ;
+    rdfs:label "M15→M16" ;
+    rdfs:comment "Connection from M15-D3115 train departure (Output) to M16-D3115 train operation (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_0328367d_3e6d_44a9_9c78_ecdbf22a1043> ;
+    ns1:sourceFunctionName "M15-D3115 train departure" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_5ecb889f_5dbf_46fd_b043_6a11bf685014> ;
+    ns1:targetFunctionName "M16-D3115 train operation" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M15-D3115 train departure may propagate to M16-D3115 train operation's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_970dac6a_1932_47ec_9174_68f23428418a> a ns1:Coupling ;
+    rdfs:label "M11→M10" ;
+    rdfs:comment "Connection from M11-Train dispatch control (Output) to M18-D301 train departure (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253> ;
+    ns1:sourceFunctionName "M11-Train dispatch control" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_fa705170_f417_403b_af72_02d684ae768e> ;
+    ns1:targetFunctionName "M18-D301 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M11-Train dispatch control may propagate to M18-D301 train departure's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_988e431e_b498_41b6_8af6_39d43b105b64> a ns1:Coupling ;
+    rdfs:label "M6→M15" ;
+    rdfs:comment "Connection from M6-Power supply for traction power supply equipment (Output) to M15-D3115 train departure (Resource)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_bd439e61_c149_4446_a4c7_3ed581bbcd57> ;
+    ns1:sourceFunctionName "M6-Power supply for traction power supply equipment" ;
+    ns1:targetAspect [ a ns1:ResourceAspect ;
+            ns1:aspectCode "R" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_0328367d_3e6d_44a9_9c78_ecdbf22a1043> ;
+    ns1:targetFunctionName "M15-D3115 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M6-Power supply for traction power supply equipment may propagate to M15-D3115 train departure's Resource aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_9df8f3c7_713e_48e5_a54e_4d3eac50e273> a ns1:Coupling ;
+    rdfs:label "M4→M9" ;
+    rdfs:comment "Connection from M4-Driving environment inspection (Output) to M9-Ground responder information transmission and reception (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b7543578_f61c_4cf3_9d25_a53884b6ab56> ;
+    ns1:sourceFunctionName "M4-Driving environment inspection" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_0ee94667_9d27_4221_af81_ec681e266926> ;
+    ns1:targetFunctionName "M9-Ground responder information transmission and reception" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M4-Driving environment inspection may propagate to M9-Ground responder information transmission and reception's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_a8c7a6c6_6ee4_45f0_b7c8_53190991580b> a ns1:Coupling ;
+    rdfs:label "M8→M17" ;
+    rdfs:comment "Connection from M8-Identification of section track occupation (Output) to M17-D3115 train braking (Precondition)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b900e3a6_6f94_4ece_beb8_e005aed035d2> ;
+    ns1:sourceFunctionName "M8-Identification of section track occupation" ;
+    ns1:targetAspect [ a ns1:PreconditionAspect ;
+            ns1:aspectCode "P" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> ;
+    ns1:targetFunctionName "M17-D3115 train braking" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M8-Identification of section track occupation may propagate to M17-D3115 train braking's Precondition aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_aae8f461_a08c_4764_b897_be8df3e6da43> a ns1:Coupling ;
+    rdfs:label "M2→M3" ;
+    rdfs:comment "Connection from M2-To secure passenger ticket checking and boarding (Output) to M3-Station terminal confirms train status (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_7ceb8d83_4700_44a0_a0a7_f024ca275349> ;
+    ns1:sourceFunctionName "M2-To secure passenger ticket checking and boarding" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> ;
+    ns1:targetFunctionName "M3-Station terminal confirms train status" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M2-To secure passenger ticket checking and boarding may propagate to M3-Station terminal confirms train status's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_b6d7ec38_a901_469f_b1de_65d3e8da8fd1> a ns1:Coupling ;
+    rdfs:label "M4→M10" ;
+    rdfs:comment "Connection from M4-Driving environment inspection (Output) to M10-GSM-R wireless communication (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b7543578_f61c_4cf3_9d25_a53884b6ab56> ;
+    ns1:sourceFunctionName "M4-Driving environment inspection" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_54cdda44_2fc1_4f67_91a2_6cd9907a0678> ;
+    ns1:targetFunctionName "M10-GSM-R wireless communication" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M4-Driving environment inspection may propagate to M10-GSM-R wireless communication's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_b7c3c661_4acd_43c4_bb14_bdc860ee0f8f> a ns1:Coupling ;
+    rdfs:label "M9→M19" ;
+    rdfs:comment "Connection from M9-Ground responder information transmission and reception (Output) to M19-D301 train operation (Resource)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_0ee94667_9d27_4221_af81_ec681e266926> ;
+    ns1:sourceFunctionName "M9-Ground responder information transmission and reception" ;
+    ns1:targetAspect [ a ns1:ResourceAspect ;
+            ns1:aspectCode "R" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> ;
+    ns1:targetFunctionName "M19-D301 train operation" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M9-Ground responder information transmission and reception may propagate to M19-D301 train operation's Resource aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_bff083ad_4ba8_46b0_9c05_5870e78d9cbd> a ns1:Coupling ;
+    rdfs:label "M19→M20" ;
+    rdfs:comment "Connection from M19-D301 train operation (Output) to M20-D301 train braking (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> ;
+    ns1:sourceFunctionName "M19-D301 train operation" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_07a260ed_35d6_45eb_93e9_f805cdd59adb> ;
+    ns1:targetFunctionName "M20-D301 train braking" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M19-D301 train operation may propagate to M20-D301 train braking's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_c00fe9d3_d213_4cf1_b506_f642b33f2989> a ns1:Coupling ;
+    rdfs:label "M6→M18" ;
+    rdfs:comment "Connection from M6-Power supply for traction power supply equipment (Output) to M18-D301 train departure (Resource)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_bd439e61_c149_4446_a4c7_3ed581bbcd57> ;
+    ns1:sourceFunctionName "M6-Power supply for traction power supply equipment" ;
+    ns1:targetAspect [ a ns1:ResourceAspect ;
+            ns1:aspectCode "R" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_fa705170_f417_403b_af72_02d684ae768e> ;
+    ns1:targetFunctionName "M18-D301 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M6-Power supply for traction power supply equipment may propagate to M18-D301 train departure's Resource aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_c1c320f2_28b1_4291_832f_7a64e3f19f3c> a ns1:Coupling ;
+    rdfs:label "M4→M5" ;
+    rdfs:comment "Connection from M4-Driving environment inspection (Output) to M5-Dispatch center issues departure command (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b7543578_f61c_4cf3_9d25_a53884b6ab56> ;
+    ns1:sourceFunctionName "M4-Driving environment inspection" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_411bbd47_e4b9_449f_aa39_deb4c8253efb> ;
+    ns1:targetFunctionName "M5-Dispatch center issues departure command" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M4-Driving environment inspection may propagate to M5-Dispatch center issues departure command's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_c4a9bb49_deca_4d42_96c9_0f6a48426319> a ns1:Coupling ;
+    rdfs:label "M4→M7" ;
+    rdfs:comment "Connection from M4-Driving environment inspection (Output) to M7-Track circuit information transmission and reception (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b7543578_f61c_4cf3_9d25_a53884b6ab56> ;
+    ns1:sourceFunctionName "M4-Driving environment inspection" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_099185d7_b5e9_4588_b13a_4e5caf086df8> ;
+    ns1:targetFunctionName "M7-Track circuit information transmission and reception" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M4-Driving environment inspection may propagate to M7-Track circuit information transmission and reception's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_d429c595_4375_4cc1_b863_a18011abef38> a ns1:Coupling ;
+    rdfs:label "M11→M15" ;
+    rdfs:comment "Connection from M11-Train dispatch control (Output) to M15-D3115 train departure (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253> ;
+    ns1:sourceFunctionName "M11-Train dispatch control" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_0328367d_3e6d_44a9_9c78_ecdbf22a1043> ;
+    ns1:targetFunctionName "M15-D3115 train departure" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M11-Train dispatch control may propagate to M15-D3115 train departure's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_db430c18_3d40_48a8_88c1_26a3557f484d> a ns1:Coupling ;
+    rdfs:label "M12→M13" ;
+    rdfs:comment "Connection from M12-Station interlocking (Output) to M13-Route control (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> ;
+    ns1:sourceFunctionName "M12-Station interlocking" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_b640de56_468f_43e4_8d4d_220ba3eac0c7> ;
+    ns1:targetFunctionName "M13-Route control" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M12-Station interlocking may propagate to M13-Route control's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_ea2bd6bd_4c8a_41e9_b1cd_6ce910902796> a ns1:Coupling ;
+    rdfs:label "M5→M11" ;
+    rdfs:comment "Connection from M5-Dispatch center issues departure command (Output) to M11-Train dispatch control (Precondition)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_411bbd47_e4b9_449f_aa39_deb4c8253efb> ;
+    ns1:sourceFunctionName "M5-Dispatch center issues departure command" ;
+    ns1:targetAspect [ a ns1:PreconditionAspect ;
+            ns1:aspectCode "P" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253> ;
+    ns1:targetFunctionName "M11-Train dispatch control" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M5-Dispatch center issues departure command may propagate to M11-Train dispatch control's Precondition aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_ec96f9dd_94d6_4d9c_9f29_78af09d093d9> a ns1:Coupling ;
+    rdfs:label "M9→M16" ;
+    rdfs:comment "Connection from M9-Ground responder information transmission and reception (Output) to M16-D3115 train operation (Resource)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_0ee94667_9d27_4221_af81_ec681e266926> ;
+    ns1:sourceFunctionName "M9-Ground responder information transmission and reception" ;
+    ns1:targetAspect [ a ns1:ResourceAspect ;
+            ns1:aspectCode "R" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_5ecb889f_5dbf_46fd_b043_6a11bf685014> ;
+    ns1:targetFunctionName "M16-D3115 train operation" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M9-Ground responder information transmission and reception may propagate to M16-D3115 train operation's Resource aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_f5c69850_92f8_4b3f_9c40_8c09615d3a2e> a ns1:Coupling ;
+    rdfs:label "M11→M12" ;
+    rdfs:comment "Connection from M11-Train dispatch control (Output) to M12-Station interlocking (Input)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253> ;
+    ns1:sourceFunctionName "M11-Train dispatch control" ;
+    ns1:targetAspect [ a ns1:InputAspect ;
+            ns1:aspectCode "I" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> ;
+    ns1:targetFunctionName "M12-Station interlocking" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M11-Train dispatch control may propagate to M12-Station interlocking's Input aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/coupling_f659b825_8917_49ea_a9fc_2437fb32aefd> a ns1:Coupling ;
+    rdfs:label "M8→M20" ;
+    rdfs:comment "Connection from M8-Identification of section track occupation (Output) to M20-D301 train braking (Precondition)" ;
+    ns1:couplingStrength 1.0 ;
+    ns1:couplingType "Linear" ;
+    ns1:sourceAspect [ a ns1:OutputAspect ;
+            ns1:aspectCode "O" ] ;
+    ns1:sourceFunction <https://flowfram.com/models/function_b900e3a6_6f94_4ece_beb8_e005aed035d2> ;
+    ns1:sourceFunctionName "M8-Identification of section track occupation" ;
+    ns1:targetAspect [ a ns1:PreconditionAspect ;
+            ns1:aspectCode "P" ] ;
+    ns1:targetFunction <https://flowfram.com/models/function_07a260ed_35d6_45eb_93e9_f805cdd59adb> ;
+    ns1:targetFunctionName "M20-D301 train braking" ;
+    ns1:variabilityPropagation [ rdfs:comment "Variability from M8-Identification of section track occupation may propagate to M20-D301 train braking's Precondition aspect" ;
+            ns1:amplification 1.0 ;
+            ns1:propagates true ] .
+
+<https://flowfram.com/models/function_099185d7_b5e9_4588_b13a_4e5caf086df8> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M7] Track circuit system for signaling information. CRITICAL — affected by Machine/Equipment (M1) and Environment (E) risk factors." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_099185d7_b5e9_4588_b13a_4e5caf086df8>,
+        <https://flowfram.com/models/aspect_input_099185d7_b5e9_4588_b13a_4e5caf086df8>,
+        <https://flowfram.com/models/aspect_output_099185d7_b5e9_4588_b13a_4e5caf086df8>,
+        <https://flowfram.com/models/aspect_precondition_099185d7_b5e9_4588_b13a_4e5caf086df8>,
+        <https://flowfram.com/models/aspect_resource_099185d7_b5e9_4588_b13a_4e5caf086df8>,
+        <https://flowfram.com/models/aspect_time_099185d7_b5e9_4588_b13a_4e5caf086df8> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasConstant [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Harsh environment" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Harsh environment" ;
+                    ns1:value 2.1e-05 ;
+                    schema:name "DC_E" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:value 7.52e-05 ;
+                    schema:name "DC_M1" ] ;
+            ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "726390b7-fec4-4194-9cb8-5fdba40ae6f6" ;
+                    ns1:message [ ns1:hasConstant "DC_E",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M7",
+                                "V_prime_M7" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M8-Identification of section track occupation" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Self-variability from coupled risk factors DC_M1 and DC_E (Eq. 3, W=2)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "Math.sqrt( (DC_M1 * DC_E) / (DC_M1 + DC_E) )" ;
+                    ns1:semanticMeaning "Self-variability from coupled risk factors DC_M1 and DC_E (Eq. 3, W=2)" ;
+                    schema:name "V_prime_M7" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Total variability — no upstream transmission" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "V_prime_M7" ;
+                    ns1:semanticMeaning "Total variability — no upstream transmission" ;
+                    schema:name "OV_M7" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M7-Track circuit information transmission and reception" .
+
+<https://flowfram.com/models/function_7ceb8d83_4700_44a0_a0a7_f024ca275349> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M2] Ticket verification, validation and passenger boarding process." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_7ceb8d83_4700_44a0_a0a7_f024ca275349>,
+        <https://flowfram.com/models/aspect_input_7ceb8d83_4700_44a0_a0a7_f024ca275349>,
+        <https://flowfram.com/models/aspect_output_7ceb8d83_4700_44a0_a0a7_f024ca275349>,
+        <https://flowfram.com/models/aspect_precondition_7ceb8d83_4700_44a0_a0a7_f024ca275349>,
+        <https://flowfram.com/models/aspect_resource_7ceb8d83_4700_44a0_a0a7_f024ca275349>,
+        <https://flowfram.com/models/aspect_time_7ceb8d83_4700_44a0_a0a7_f024ca275349> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "aae8f461-a08c-4764-b897-be8df3e6da43" ;
+                    ns1:message [ ns1:hasVariable "OV_M2" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M3-Station terminal confirms train status" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M2" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M2-To secure passenger ticket checking and boarding" .
+
+<https://flowfram.com/models/function_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M12] Station interlocking system ensures safe route setting." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_d2b44e6e_399a_4f03_93ee_27643e9bbcd4>,
+        <https://flowfram.com/models/aspect_input_d2b44e6e_399a_4f03_93ee_27643e9bbcd4>,
+        <https://flowfram.com/models/aspect_output_d2b44e6e_399a_4f03_93ee_27643e9bbcd4>,
+        <https://flowfram.com/models/aspect_precondition_d2b44e6e_399a_4f03_93ee_27643e9bbcd4>,
+        <https://flowfram.com/models/aspect_resource_d2b44e6e_399a_4f03_93ee_27643e9bbcd4>,
+        <https://flowfram.com/models/aspect_time_d2b44e6e_399a_4f03_93ee_27643e9bbcd4> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "db430c18-3d40-48a8-88c1-26a3557f484d" ;
+                    ns1:message [ ns1:hasVariable "OV_M12" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M13-Route control" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M12" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M12-Station interlocking" .
+
+<https://flowfram.com/models/function_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M3] Station terminal equipment confirms train operational status before departure." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_eead0611_27d2_40ed_a2f3_bd7ab7cccd02>,
+        <https://flowfram.com/models/aspect_input_eead0611_27d2_40ed_a2f3_bd7ab7cccd02>,
+        <https://flowfram.com/models/aspect_output_eead0611_27d2_40ed_a2f3_bd7ab7cccd02>,
+        <https://flowfram.com/models/aspect_precondition_eead0611_27d2_40ed_a2f3_bd7ab7cccd02>,
+        <https://flowfram.com/models/aspect_resource_eead0611_27d2_40ed_a2f3_bd7ab7cccd02>,
+        <https://flowfram.com/models/aspect_time_eead0611_27d2_40ed_a2f3_bd7ab7cccd02> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "13d223cc-c186-4cae-92ec-a3efb9c44c9e" ;
+                    ns1:message [ ns1:hasVariable "OV_M3" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M11-Train dispatch control" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M3" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M3-Station terminal confirms train status" .
+
+<https://flowfram.com/models/function_07a260ed_35d6_45eb_93e9_f805cdd59adb> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M20] D301 braking execution. Receives variability from upstream M8 and M19." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_07a260ed_35d6_45eb_93e9_f805cdd59adb>,
+        <https://flowfram.com/models/aspect_input_07a260ed_35d6_45eb_93e9_f805cdd59adb>,
+        <https://flowfram.com/models/aspect_output_07a260ed_35d6_45eb_93e9_f805cdd59adb>,
+        <https://flowfram.com/models/aspect_precondition_07a260ed_35d6_45eb_93e9_f805cdd59adb>,
+        <https://flowfram.com/models/aspect_resource_07a260ed_35d6_45eb_93e9_f805cdd59adb>,
+        <https://flowfram.com/models/aspect_time_07a260ed_35d6_45eb_93e9_f805cdd59adb> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M19 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M19 != null) ? (1 - Math.exp(-Math.pow(OV_M19, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M19 (Eq. 4)" ;
+                    schema:name "P_up_M19" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Total variability — transmitted only" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M8 != null) ? OV_M8 * P_up_M8 : 0) + ((OV_M19 != null) ? OV_M19 * P_up_M19 : 0)" ;
+                    ns1:semanticMeaning "Total variability — transmitted only" ;
+                    schema:name "OV_M20" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M8 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M8 != null) ? (1 - Math.exp(-Math.pow(OV_M8, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M8 (Eq. 4)" ;
+                    schema:name "P_up_M8" ] ] ;
+    schema:name "M20-D301 train braking" .
+
+<https://flowfram.com/models/function_0ee94667_9d27_4221_af81_ec681e266926> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M9] Ground-based transponder system for train position reporting and speed limit enforcement." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_0ee94667_9d27_4221_af81_ec681e266926>,
+        <https://flowfram.com/models/aspect_input_0ee94667_9d27_4221_af81_ec681e266926>,
+        <https://flowfram.com/models/aspect_output_0ee94667_9d27_4221_af81_ec681e266926>,
+        <https://flowfram.com/models/aspect_precondition_0ee94667_9d27_4221_af81_ec681e266926>,
+        <https://flowfram.com/models/aspect_resource_0ee94667_9d27_4221_af81_ec681e266926>,
+        <https://flowfram.com/models/aspect_time_0ee94667_9d27_4221_af81_ec681e266926> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "b7c3c661-4acd-43c4-bb14-bdc860ee0f8f" ;
+                    ns1:message [ ns1:hasVariable "OV_M9" ] ;
+                    ns1:targetAspectType "resource" ;
+                    ns1:targetFunctionName "M19-D301 train operation" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "ec96f9dd-94d6-4d9c-9f29-78af09d093d9" ;
+                    ns1:message [ ns1:hasVariable "OV_M9" ] ;
+                    ns1:targetAspectType "resource" ;
+                    ns1:targetFunctionName "M16-D3115 train operation" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M9" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M9-Ground responder information transmission and reception" .
+
+<https://flowfram.com/models/function_411bbd47_e4b9_449f_aa39_deb4c8253efb> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M5] Central dispatch center issues departure commands. CRITICAL — affected by Human (H) and Environment (E) risk factors, plus upstream variability from M10." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_411bbd47_e4b9_449f_aa39_deb4c8253efb>,
+        <https://flowfram.com/models/aspect_input_411bbd47_e4b9_449f_aa39_deb4c8253efb>,
+        <https://flowfram.com/models/aspect_output_411bbd47_e4b9_449f_aa39_deb4c8253efb>,
+        <https://flowfram.com/models/aspect_precondition_411bbd47_e4b9_449f_aa39_deb4c8253efb>,
+        <https://flowfram.com/models/aspect_resource_411bbd47_e4b9_449f_aa39_deb4c8253efb>,
+        <https://flowfram.com/models/aspect_time_411bbd47_e4b9_449f_aa39_deb4c8253efb> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasConstant [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Harsh environment" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Harsh environment" ;
+                    ns1:value 2.1e-05 ;
+                    schema:name "DC_E" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:value 6.9e-05 ;
+                    schema:name "DC_H" ] ;
+            ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "ANY" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "ea2bd6bd-4c8a-41e9-b1cd-6ce910902796" ;
+                    ns1:message [ ns1:hasConstant "DC_E",
+                                "DC_H" ;
+                            ns1:hasVariable "OV_M5",
+                                "P_up_M10",
+                                "V_prime_M5",
+                                "V_transmitted_M5" ] ;
+                    ns1:targetAspectType "precondition" ;
+                    ns1:targetFunctionName "M11-Train dispatch control" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M10 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M10 != null) ? (1 - Math.exp(-Math.pow(OV_M10, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M10 (Eq. 4)" ;
+                    schema:name "P_up_M10" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Self-variability from coupled risk factors DC_H and DC_E (Eq. 3, W=2)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "Math.sqrt( (DC_H * DC_E) / (DC_H + DC_E) )" ;
+                    ns1:semanticMeaning "Self-variability from coupled risk factors DC_H and DC_E (Eq. 3, W=2)" ;
+                    schema:name "V_prime_M5" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Total variability (self + transmitted) (Eq. 6)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "V_prime_M5 + V_transmitted_M5" ;
+                    ns1:semanticMeaning "Total variability (self + transmitted) (Eq. 6)" ;
+                    schema:name "OV_M5" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Variability received from upstream (Eq. 5)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M10 != null) ? OV_M10 * P_up_M10 : 0)" ;
+                    ns1:semanticMeaning "Variability received from upstream (Eq. 5)" ;
+                    schema:name "V_transmitted_M5" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M5-Dispatch center issues departure command" .
+
+<https://flowfram.com/models/function_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M17] D3115 braking execution. Receives variability from upstream M8 and M16." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_4c0f27cc_ca27_46b6_bc27_4f0b74aea128>,
+        <https://flowfram.com/models/aspect_input_4c0f27cc_ca27_46b6_bc27_4f0b74aea128>,
+        <https://flowfram.com/models/aspect_output_4c0f27cc_ca27_46b6_bc27_4f0b74aea128>,
+        <https://flowfram.com/models/aspect_precondition_4c0f27cc_ca27_46b6_bc27_4f0b74aea128>,
+        <https://flowfram.com/models/aspect_resource_4c0f27cc_ca27_46b6_bc27_4f0b74aea128>,
+        <https://flowfram.com/models/aspect_time_4c0f27cc_ca27_46b6_bc27_4f0b74aea128> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Total variability — transmitted only" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M8 != null) ? OV_M8 * P_up_M8 : 0) + ((OV_M16 != null) ? OV_M16 * P_up_M16 : 0)" ;
+                    ns1:semanticMeaning "Total variability — transmitted only" ;
+                    schema:name "OV_M17" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M8 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M8 != null) ? (1 - Math.exp(-Math.pow(OV_M8, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M8 (Eq. 4)" ;
+                    schema:name "P_up_M8" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M16 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M16 != null) ? (1 - Math.exp(-Math.pow(OV_M16, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M16 (Eq. 4)" ;
+                    schema:name "P_up_M16" ] ] ;
+    schema:name "M17-D3115 train braking" .
+
+<https://flowfram.com/models/function_b640de56_468f_43e4_8d4d_220ba3eac0c7> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M13] Route setting and control for train movements." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_b640de56_468f_43e4_8d4d_220ba3eac0c7>,
+        <https://flowfram.com/models/aspect_input_b640de56_468f_43e4_8d4d_220ba3eac0c7>,
+        <https://flowfram.com/models/aspect_output_b640de56_468f_43e4_8d4d_220ba3eac0c7>,
+        <https://flowfram.com/models/aspect_precondition_b640de56_468f_43e4_8d4d_220ba3eac0c7>,
+        <https://flowfram.com/models/aspect_resource_b640de56_468f_43e4_8d4d_220ba3eac0c7>,
+        <https://flowfram.com/models/aspect_time_b640de56_468f_43e4_8d4d_220ba3eac0c7> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "430a19b8-c32b-4b17-8185-d2fb5b50dcf6" ;
+                    ns1:message [ ns1:hasVariable "OV_M13" ] ;
+                    ns1:targetAspectType "precondition" ;
+                    ns1:targetFunctionName "M18-D301 train departure" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "7bedceb6-52d0-4ef5-80ad-fa17b138c99f" ;
+                    ns1:message [ ns1:hasVariable "OV_M13" ] ;
+                    ns1:targetAspectType "precondition" ;
+                    ns1:targetFunctionName "M15-D3115 train departure" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M13" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M13-Route control" .
+
+<https://flowfram.com/models/function_b900e3a6_6f94_4ece_beb8_e005aed035d2> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M8] Identifies section track occupation. CRITICAL — affected by Human (H) and Machine/Equipment (M1) risk factors, plus upstream from M7." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_b900e3a6_6f94_4ece_beb8_e005aed035d2>,
+        <https://flowfram.com/models/aspect_input_b900e3a6_6f94_4ece_beb8_e005aed035d2>,
+        <https://flowfram.com/models/aspect_output_b900e3a6_6f94_4ece_beb8_e005aed035d2>,
+        <https://flowfram.com/models/aspect_precondition_b900e3a6_6f94_4ece_beb8_e005aed035d2>,
+        <https://flowfram.com/models/aspect_resource_b900e3a6_6f94_4ece_beb8_e005aed035d2>,
+        <https://flowfram.com/models/aspect_time_b900e3a6_6f94_4ece_beb8_e005aed035d2> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasConstant [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:value 6.9e-05 ;
+                    schema:name "DC_H" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:value 7.52e-05 ;
+                    schema:name "DC_M1" ] ;
+            ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "a8c7a6c6-6ee4-45f0-b7c8-53190991580b" ;
+                    ns1:message [ ns1:hasConstant "DC_H",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M8",
+                                "P_up_M7",
+                                "V_prime_M8",
+                                "V_transmitted_M8" ] ;
+                    ns1:targetAspectType "precondition" ;
+                    ns1:targetFunctionName "M17-D3115 train braking" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "f659b825-8917-49ea-a9fc-2437fb32aefd" ;
+                    ns1:message [ ns1:hasConstant "DC_H",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M8",
+                                "P_up_M7",
+                                "V_prime_M8",
+                                "V_transmitted_M8" ] ;
+                    ns1:targetAspectType "precondition" ;
+                    ns1:targetFunctionName "M20-D301 train braking" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Self-variability from coupled risk factors DC_H and DC_M1 (Eq. 3, W=2)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "Math.sqrt( (DC_H * DC_M1) / (DC_H + DC_M1) )" ;
+                    ns1:semanticMeaning "Self-variability from coupled risk factors DC_H and DC_M1 (Eq. 3, W=2)" ;
+                    schema:name "V_prime_M8" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Variability received from upstream (Eq. 5)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M7 != null) ? OV_M7 * P_up_M7 : 0)" ;
+                    ns1:semanticMeaning "Variability received from upstream (Eq. 5)" ;
+                    schema:name "V_transmitted_M8" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Total variability (self + transmitted) (Eq. 6)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "V_prime_M8 + V_transmitted_M8" ;
+                    ns1:semanticMeaning "Total variability (self + transmitted) (Eq. 6)" ;
+                    schema:name "OV_M8" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M7 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M7 != null) ? (1 - Math.exp(-Math.pow(OV_M7, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M7 (Eq. 4)" ;
+                    schema:name "P_up_M7" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M8-Identification of section track occupation" .
+
+<https://flowfram.com/models/function_bd439e61_c149_4446_a4c7_3ed581bbcd57> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M6] Traction power supply system provides electrical power for train operation." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_bd439e61_c149_4446_a4c7_3ed581bbcd57>,
+        <https://flowfram.com/models/aspect_input_bd439e61_c149_4446_a4c7_3ed581bbcd57>,
+        <https://flowfram.com/models/aspect_output_bd439e61_c149_4446_a4c7_3ed581bbcd57>,
+        <https://flowfram.com/models/aspect_precondition_bd439e61_c149_4446_a4c7_3ed581bbcd57>,
+        <https://flowfram.com/models/aspect_resource_bd439e61_c149_4446_a4c7_3ed581bbcd57>,
+        <https://flowfram.com/models/aspect_time_bd439e61_c149_4446_a4c7_3ed581bbcd57> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated moderate variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "Moderate" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "c00fe9d3-d213-4cf1-b506-f642b33f2989" ;
+                    ns1:message [ ns1:hasVariable "OV_M6" ] ;
+                    ns1:targetAspectType "resource" ;
+                    ns1:targetFunctionName "M18-D301 train departure" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "988e431e-b498-41b6-8af6-39d43b105b64" ;
+                    ns1:message [ ns1:hasVariable "OV_M6" ] ;
+                    ns1:targetAspectType "resource" ;
+                    ns1:targetFunctionName "M15-D3115 train departure" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M6" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M6-Power supply for traction power supply equipment" .
+
+<https://flowfram.com/models/function_54cdda44_2fc1_4f67_91a2_6cd9907a0678> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M10] GSM-R railway wireless communication. CRITICAL — affected by Machine/Equipment (M1) and Environment (E) risk factors, plus upstream from M11." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_54cdda44_2fc1_4f67_91a2_6cd9907a0678>,
+        <https://flowfram.com/models/aspect_input_54cdda44_2fc1_4f67_91a2_6cd9907a0678>,
+        <https://flowfram.com/models/aspect_output_54cdda44_2fc1_4f67_91a2_6cd9907a0678>,
+        <https://flowfram.com/models/aspect_precondition_54cdda44_2fc1_4f67_91a2_6cd9907a0678>,
+        <https://flowfram.com/models/aspect_resource_54cdda44_2fc1_4f67_91a2_6cd9907a0678>,
+        <https://flowfram.com/models/aspect_time_54cdda44_2fc1_4f67_91a2_6cd9907a0678> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated high variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "High" ] ;
+    ns1:quantitativeMetadata [ ns1:hasConstant [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Harsh environment" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Harsh environment" ;
+                    ns1:value 2.1e-05 ;
+                    schema:name "DC_E" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:value 7.52e-05 ;
+                    schema:name "DC_M1" ] ;
+            ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "ANY" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "ANY" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "4af715d7-9b88-47b0-ac5e-44054a1f28ef" ;
+                    ns1:message [ ns1:hasConstant "DC_E",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M10",
+                                "V_prime_M10" ] ;
+                    ns1:targetAspectType "resource" ;
+                    ns1:targetFunctionName "M5-Dispatch center issues departure command" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "42bc71d9-a7a6-4c0b-8541-041fcc9c8cbc" ;
+                    ns1:message [ ns1:hasConstant "DC_E",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M10",
+                                "V_prime_M10" ] ;
+                    ns1:targetAspectType "control" ;
+                    ns1:targetFunctionName "M19-D301 train operation" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "3d57502c-a927-4d0a-8fde-2c386276e503" ;
+                    ns1:message [ ns1:hasConstant "DC_E",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M10",
+                                "V_prime_M10" ] ;
+                    ns1:targetAspectType "control" ;
+                    ns1:targetFunctionName "M16-D3115 train operation" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Total variability — no upstream transmission (entry-like, only receives passthrough from M4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "V_prime_M10" ;
+                    ns1:semanticMeaning "Total variability — no upstream transmission (entry-like, only receives passthrough from M4)" ;
+                    schema:name "OV_M10" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Self-variability from coupled risk factors DC_M1 and DC_E (Eq. 3, W=2)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "Math.sqrt( (DC_M1 * DC_E) / (DC_M1 + DC_E) )" ;
+                    ns1:semanticMeaning "Self-variability from coupled risk factors DC_M1 and DC_E (Eq. 3, W=2)" ;
+                    schema:name "V_prime_M10" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M10-GSM-R wireless communication" .
+
+<https://flowfram.com/models/function_5ecb889f_5dbf_46fd_b043_6a11bf685014> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M16] D3115 in-transit operation. CRITICAL — affected by H, M1, E risk factors, plus upstream from M10." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_5ecb889f_5dbf_46fd_b043_6a11bf685014>,
+        <https://flowfram.com/models/aspect_input_5ecb889f_5dbf_46fd_b043_6a11bf685014>,
+        <https://flowfram.com/models/aspect_output_5ecb889f_5dbf_46fd_b043_6a11bf685014>,
+        <https://flowfram.com/models/aspect_precondition_5ecb889f_5dbf_46fd_b043_6a11bf685014>,
+        <https://flowfram.com/models/aspect_resource_5ecb889f_5dbf_46fd_b043_6a11bf685014>,
+        <https://flowfram.com/models/aspect_time_5ecb889f_5dbf_46fd_b043_6a11bf685014> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated high variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "High" ] ;
+    ns1:quantitativeMetadata [ ns1:hasConstant [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:value 6.9e-05 ;
+                    schema:name "DC_H" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Harsh environment" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Harsh environment" ;
+                    ns1:value 2.1e-05 ;
+                    schema:name "DC_E" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:value 7.52e-05 ;
+                    schema:name "DC_M1" ] ;
+            ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "ANY" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "ANY" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "0ee95bf4-a6f2-4b2d-acfa-ca609758c194" ;
+                    ns1:message [ ns1:hasConstant "DC_E",
+                                "DC_H",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M16",
+                                "P_up_M10",
+                                "V_prime_M16",
+                                "V_transmitted_M16" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M17-D3115 train braking" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Variability received from upstream (Eq. 5)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M10 != null) ? OV_M10 * P_up_M10 : 0)" ;
+                    ns1:semanticMeaning "Variability received from upstream (Eq. 5)" ;
+                    schema:name "V_transmitted_M16" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Self-variability from coupled risk factors DC_H, DC_M1, DC_E (Eq. 3, W=3)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "Math.pow( (DC_H * DC_M1 * DC_E) / (DC_H + DC_M1 + DC_E), 1/3 )" ;
+                    ns1:semanticMeaning "Self-variability from coupled risk factors DC_H, DC_M1, DC_E (Eq. 3, W=3)" ;
+                    schema:name "V_prime_M16" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Total variability (self + transmitted) (Eq. 6)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "V_prime_M16 + V_transmitted_M16" ;
+                    ns1:semanticMeaning "Total variability (self + transmitted) (Eq. 6)" ;
+                    schema:name "OV_M16" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M10 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M10 != null) ? (1 - Math.exp(-Math.pow(OV_M10, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M10 (Eq. 4)" ;
+                    schema:name "P_up_M10" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M16-D3115 train operation" .
+
+<https://flowfram.com/models/function_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M19] D301 in-transit operation. CRITICAL — affected by H, M1, E risk factors, plus upstream from M10." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_bbf8ea3e_659d_4b35_8ce7_76207a1c2933>,
+        <https://flowfram.com/models/aspect_input_bbf8ea3e_659d_4b35_8ce7_76207a1c2933>,
+        <https://flowfram.com/models/aspect_output_bbf8ea3e_659d_4b35_8ce7_76207a1c2933>,
+        <https://flowfram.com/models/aspect_precondition_bbf8ea3e_659d_4b35_8ce7_76207a1c2933>,
+        <https://flowfram.com/models/aspect_resource_bbf8ea3e_659d_4b35_8ce7_76207a1c2933>,
+        <https://flowfram.com/models/aspect_time_bbf8ea3e_659d_4b35_8ce7_76207a1c2933> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated high variability potential based on function type and connectivity" ;
+            ns1:factors "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "High" ] ;
+    ns1:quantitativeMetadata [ ns1:hasConstant [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Harsh environment" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Harsh environment" ;
+                    ns1:value 2.1e-05 ;
+                    schema:name "DC_E" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Machine and equipment failures" ;
+                    ns1:value 7.52e-05 ;
+                    schema:name "DC_M1" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:value 6.9e-05 ;
+                    schema:name "DC_H" ] ;
+            ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "ANY" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "ANY" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "bff083ad-4ba8-46b0-9c05-5870e78d9cbd" ;
+                    ns1:message [ ns1:hasConstant "DC_E",
+                                "DC_H",
+                                "DC_M1" ;
+                            ns1:hasVariable "OV_M19",
+                                "P_up_M10",
+                                "V_prime_M19",
+                                "V_transmitted_M19" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M20-D301 train braking" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Self-variability from coupled risk factors DC_H, DC_M1, DC_E (Eq. 3, W=3)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "Math.pow( (DC_H * DC_M1 * DC_E) / (DC_H + DC_M1 + DC_E), 1/3 )" ;
+                    ns1:semanticMeaning "Self-variability from coupled risk factors DC_H, DC_M1, DC_E (Eq. 3, W=3)" ;
+                    schema:name "V_prime_M19" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Total variability (self + transmitted) (Eq. 6)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "V_prime_M19 + V_transmitted_M19" ;
+                    ns1:semanticMeaning "Total variability (self + transmitted) (Eq. 6)" ;
+                    schema:name "OV_M19" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Variability received from upstream (Eq. 5)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M10 != null) ? OV_M10 * P_up_M10 : 0)" ;
+                    ns1:semanticMeaning "Variability received from upstream (Eq. 5)" ;
+                    schema:name "V_transmitted_M19" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M10 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M10 != null) ? (1 - Math.exp(-Math.pow(OV_M10, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M10 (Eq. 4)" ;
+                    schema:name "P_up_M10" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M19-D301 train operation" .
+
+<https://flowfram.com/models/function_0328367d_3e6d_44a9_9c78_ecdbf22a1043> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M15] D3115 train departure execution. Receives variability through transmission from upstream M11." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_0328367d_3e6d_44a9_9c78_ecdbf22a1043>,
+        <https://flowfram.com/models/aspect_input_0328367d_3e6d_44a9_9c78_ecdbf22a1043>,
+        <https://flowfram.com/models/aspect_output_0328367d_3e6d_44a9_9c78_ecdbf22a1043>,
+        <https://flowfram.com/models/aspect_precondition_0328367d_3e6d_44a9_9c78_ecdbf22a1043>,
+        <https://flowfram.com/models/aspect_resource_0328367d_3e6d_44a9_9c78_ecdbf22a1043>,
+        <https://flowfram.com/models/aspect_time_0328367d_3e6d_44a9_9c78_ecdbf22a1043> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated high variability potential based on function type and connectivity" ;
+            ns1:factors "High connectivity (5 connections) increases coordination complexity",
+                "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "High" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "ANY" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "ANY" ;
+                    ns1:resource "ANY" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "84fbc676-7bdb-4c33-b739-5f5a7e40b151" ;
+                    ns1:message [ ns1:hasVariable "OV_M15",
+                                "P_up_M11" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M16-D3115 train operation" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Total variability — transmitted only" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M11 != null) ? OV_M11 * P_up_M11 : 0)" ;
+                    ns1:semanticMeaning "Total variability — transmitted only" ;
+                    schema:name "OV_M15" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M11 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M11 != null) ? (1 - Math.exp(-Math.pow(OV_M11, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M11 (Eq. 4)" ;
+                    schema:name "P_up_M11" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M15-D3115 train departure" .
+
+<https://flowfram.com/models/function_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M14] Organization, scheduling, and training of operational personnel." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_a5c1921e_6f5e_45b8_b03c_aa1e7273a711>,
+        <https://flowfram.com/models/aspect_input_a5c1921e_6f5e_45b8_b03c_aa1e7273a711>,
+        <https://flowfram.com/models/aspect_output_a5c1921e_6f5e_45b8_b03c_aa1e7273a711>,
+        <https://flowfram.com/models/aspect_precondition_a5c1921e_6f5e_45b8_b03c_aa1e7273a711>,
+        <https://flowfram.com/models/aspect_resource_a5c1921e_6f5e_45b8_b03c_aa1e7273a711>,
+        <https://flowfram.com/models/aspect_time_a5c1921e_6f5e_45b8_b03c_aa1e7273a711> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated high variability potential based on function type and connectivity" ;
+            ns1:factors "High connectivity (5 connections) increases coordination complexity",
+                "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "High" ] ;
+    ns1:quantitativeMetadata [ ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "061863cc-9c5a-4137-b0e6-090a880726d2" ;
+                    ns1:message [ ns1:hasVariable "OV_M14" ] ;
+                    ns1:targetAspectType "control" ;
+                    ns1:targetFunctionName "M15-D3115 train departure" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "02672b60-1a4a-4e48-981b-737ef20ed116" ;
+                    ns1:message [ ns1:hasVariable "OV_M14" ] ;
+                    ns1:targetAspectType "control" ;
+                    ns1:targetFunctionName "M17-D3115 train braking" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "64799a71-7201-4061-80fb-8c3addcc8b0e" ;
+                    ns1:message [ ns1:hasVariable "OV_M14" ] ;
+                    ns1:targetAspectType "control" ;
+                    ns1:targetFunctionName "M11-Train dispatch control" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "246496ef-ea9c-49be-bc93-8b14905d1c2a" ;
+                    ns1:message [ ns1:hasVariable "OV_M14" ] ;
+                    ns1:targetAspectType "control" ;
+                    ns1:targetFunctionName "M20-D301 train braking" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "44c33627-609e-443f-a369-f47225e844d5" ;
+                    ns1:message [ ns1:hasVariable "OV_M14" ] ;
+                    ns1:targetAspectType "control" ;
+                    ns1:targetFunctionName "M18-D301 train departure" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M14" ] ] ;
+    schema:name "M14-Personnel organization and training" .
+
+<https://flowfram.com/models/function_b7543578_f61c_4cf3_9d25_a53884b6ab56> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M4] Pre-departure inspection of the driving environment, weather conditions, and operational readiness." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_b7543578_f61c_4cf3_9d25_a53884b6ab56>,
+        <https://flowfram.com/models/aspect_input_b7543578_f61c_4cf3_9d25_a53884b6ab56>,
+        <https://flowfram.com/models/aspect_output_b7543578_f61c_4cf3_9d25_a53884b6ab56>,
+        <https://flowfram.com/models/aspect_precondition_b7543578_f61c_4cf3_9d25_a53884b6ab56>,
+        <https://flowfram.com/models/aspect_resource_b7543578_f61c_4cf3_9d25_a53884b6ab56>,
+        <https://flowfram.com/models/aspect_time_b7543578_f61c_4cf3_9d25_a53884b6ab56> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated high variability potential based on function type and connectivity" ;
+            ns1:factors "High connectivity (5 connections) increases coordination complexity",
+                "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "High" ] ;
+    ns1:quantitativeMetadata [ ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "c1c320f2-28b1-4291-832f-7a64e3f19f3c" ;
+                    ns1:message [ ns1:hasVariable "OV_M4" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M5-Dispatch center issues departure command" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "9df8f3c7-713e-48e5-a54e-4d3eac50e273" ;
+                    ns1:message [ ns1:hasVariable "OV_M4" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M9-Ground responder information transmission and reception" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "b6d7ec38-a901-469f-b1de-65d3e8da8fd1" ;
+                    ns1:message [ ns1:hasVariable "OV_M4" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M10-GSM-R wireless communication" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "c4a9bb49-deca-4d42-96c9-0f6a48426319" ;
+                    ns1:message [ ns1:hasVariable "OV_M4" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M7-Track circuit information transmission and reception" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "4a74f6f7-1e58-400e-b5f9-e104f97201d1" ;
+                    ns1:message [ ns1:hasVariable "OV_M4" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M6-Power supply for traction power supply equipment" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Output variability — no risk factor coupling (normal operation)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "1" ;
+                    ns1:semanticMeaning "Output variability — no risk factor coupling (normal operation)" ;
+                    schema:name "OV_M4" ] ] ;
+    schema:name "M4-Driving environment inspection" .
+
+<https://flowfram.com/models/function_fa705170_f417_403b_af72_02d684ae768e> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M18] D301 departure execution. Receives variability transmitted from M11 (dispatch control)." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_fa705170_f417_403b_af72_02d684ae768e>,
+        <https://flowfram.com/models/aspect_input_fa705170_f417_403b_af72_02d684ae768e>,
+        <https://flowfram.com/models/aspect_output_fa705170_f417_403b_af72_02d684ae768e>,
+        <https://flowfram.com/models/aspect_precondition_fa705170_f417_403b_af72_02d684ae768e>,
+        <https://flowfram.com/models/aspect_resource_fa705170_f417_403b_af72_02d684ae768e>,
+        <https://flowfram.com/models/aspect_time_fa705170_f417_403b_af72_02d684ae768e> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated high variability potential based on function type and connectivity" ;
+            ns1:factors "High connectivity (5 connections) increases coordination complexity",
+                "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "High" ] ;
+    ns1:quantitativeMetadata [ ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "NONE" ;
+                    ns1:input "NONE" ;
+                    ns1:precondition "NONE" ;
+                    ns1:resource "ANY" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "749f73e1-60e8-4f1a-94a8-350c84ee6be4" ;
+                    ns1:message [ ns1:hasVariable "OV_M18",
+                                "P_up_M11" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M19-D301 train operation" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Total variability — transmitted only (Eq. 5, no self-variability)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M11 != null) ? OV_M11 * P_up_M11 : 0)" ;
+                    ns1:semanticMeaning "Total variability — transmitted only (Eq. 5, no self-variability)" ;
+                    schema:name "OV_M18" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M11 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M11 != null) ? (1 - Math.exp(-Math.pow(OV_M11, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M11 (Eq. 4)" ;
+                    schema:name "P_up_M11" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M18-D301 train departure" .
+
+<https://flowfram.com/models/function_d2092504_be37_42b8_8d4e_1c2026074253> a ns1:Function,
+        ns1:HumanFunction ;
+    rdfs:comment "[M11] Train dispatch coordination and movement authority management. Affected by Human (H) and Management (M2) risk factors, plus upstream from M5." ;
+    ns1:functionCategory "Function performed by human operators" ;
+    ns1:functionType "Human" ;
+    ns1:hasAspect <https://flowfram.com/models/aspect_control_d2092504_be37_42b8_8d4e_1c2026074253>,
+        <https://flowfram.com/models/aspect_input_d2092504_be37_42b8_8d4e_1c2026074253>,
+        <https://flowfram.com/models/aspect_output_d2092504_be37_42b8_8d4e_1c2026074253>,
+        <https://flowfram.com/models/aspect_precondition_d2092504_be37_42b8_8d4e_1c2026074253>,
+        <https://flowfram.com/models/aspect_resource_d2092504_be37_42b8_8d4e_1c2026074253>,
+        <https://flowfram.com/models/aspect_time_d2092504_be37_42b8_8d4e_1c2026074253> ;
+    ns1:hasVariability [ a ns1:Variability ;
+            rdfs:comment "Estimated veryhigh variability potential based on function type and connectivity" ;
+            ns1:factors "High connectivity (6 connections) increases coordination complexity",
+                "Human performance inherently variable",
+                "Subject to fatigue, attention, and cognitive load" ;
+            ns1:precisionPhenotype "Acceptable" ;
+            ns1:timingPhenotype "OnTime" ;
+            ns1:variabilityPotential "VeryHigh" ] ;
+    ns1:quantitativeMetadata [ ns1:hasConstant [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Human risk factors (annual casualties)" ;
+                    ns1:value 6.9e-05 ;
+                    schema:name "DC_H" ],
+                [ a ns1:Constant ;
+                    rdfs:comment "Risk pulse energy — Management failures" ;
+                    ns1:dataType "xsd:decimal" ;
+                    ns1:semanticMeaning "Risk pulse energy — Management failures" ;
+                    ns1:value 1.3e-05 ;
+                    schema:name "DC_M2" ] ;
+            ns1:hasInterpretationProfile [ a ns1:InterpretationProfile ;
+                    rdfs:comment "Defines how incoming aspects are interpreted for function activation" ;
+                    ns1:control "ANY" ;
+                    ns1:input "ANY" ;
+                    ns1:precondition "ANY" ;
+                    ns1:resource "NONE" ;
+                    ns1:time "NONE" ] ;
+            ns1:hasOutput [ a ns1:OutputMessage ;
+                    ns1:edgeId "f5c69850-92f8-4b3f-9c40-8c09615d3a2e" ;
+                    ns1:message [ ns1:hasConstant "DC_H",
+                                "DC_M2" ;
+                            ns1:hasVariable "OV_M11",
+                                "P_up_M5",
+                                "V_prime_M11",
+                                "V_transmitted_M11" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M12-Station interlocking" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "970dac6a-1932-47ec-9174-68f23428418a" ;
+                    ns1:message [ ns1:hasConstant "DC_H",
+                                "DC_M2" ;
+                            ns1:hasVariable "OV_M11",
+                                "P_up_M5",
+                                "V_prime_M11",
+                                "V_transmitted_M11" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M18-D301 train departure" ],
+                [ a ns1:OutputMessage ;
+                    ns1:edgeId "d429c595-4375-4cc1-b863-a18011abef38" ;
+                    ns1:message [ ns1:hasConstant "DC_H",
+                                "DC_M2" ;
+                            ns1:hasVariable "OV_M11",
+                                "P_up_M5",
+                                "V_prime_M11",
+                                "V_transmitted_M11" ] ;
+                    ns1:targetAspectType "input" ;
+                    ns1:targetFunctionName "M15-D3115 train departure" ] ;
+            ns1:hasVariable [ a ns1:Variable ;
+                    rdfs:comment "Self-variability from coupled risk factors DC_H and DC_M2 (Eq. 3, W=2)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "Math.sqrt( (DC_H * DC_M2) / (DC_H + DC_M2) )" ;
+                    ns1:semanticMeaning "Self-variability from coupled risk factors DC_H and DC_M2 (Eq. 3, W=2)" ;
+                    schema:name "V_prime_M11" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Total variability (self + transmitted) (Eq. 6)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "V_prime_M11 + V_transmitted_M11" ;
+                    ns1:semanticMeaning "Total variability (self + transmitted) (Eq. 6)" ;
+                    schema:name "OV_M11" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Variability received from upstream (Eq. 5)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "((OV_M5 != null) ? OV_M5 * P_up_M5 : 0)" ;
+                    ns1:semanticMeaning "Variability received from upstream (Eq. 5)" ;
+                    schema:name "V_transmitted_M11" ],
+                [ a ns1:Variable ;
+                    rdfs:comment "Transmission probability from upstream M5 (Eq. 4)" ;
+                    ns1:codeType "expression" ;
+                    ns1:expression "(OV_M5 != null) ? (1 - Math.exp(-Math.pow(OV_M5, 2))) : 0" ;
+                    ns1:semanticMeaning "Transmission probability from upstream M5 (Eq. 4)" ;
+                    schema:name "P_up_M5" ] ;
+            ns1:isCustomActivation true ] ;
+    schema:name "M11-Train dispatch control" .
+

@@ -87,38 +87,38 @@ Executed against `fram.ttl` v1.6.0 (1133 TBox triples, ~1560 lines).
 
 ## v1.8.0 Validation (Current -- Gold Standard)
 
-Executed against `fram.ttl` v1.8.0 (1357 TBox triples) with `li-huang-2025.ttl` as ABox (3292 triples, 20 functions, 34 couplings) via the unified runner `validate_fram_model.py`.
+Executed against `fram.ttl` v1.8.0 (1309 TBox triples) with `li-huang-2025.ttl` as ABox (3292 triples, 20 functions, 34 couplings) via the unified runner `validate_fram_model.py`.
 
 ### Pre-requisite: W3C RDF 1.1 Conformance
 
 | Serialization | Format | Triples | Time | Status |
 |---------------|--------|---------|------|--------|
-| `fram.ttl` | Turtle | 1357 | 0.02s | VALID |
-| `fram.owl` | RDF/XML | 1357 | 0.04s | VALID |
+| `fram.ttl` | Turtle | 1309 | 0.02s | VALID |
+| `fram.owl` | RDF/XML | 1309 | 0.04s | VALID |
 | `context.jsonld` | JSON-LD 1.1 | 276 terms | -- | VALID |
 
-Cross-format consistency: TTL = OWL = 1357 triples. **PASS**.
+Cross-format consistency: TTL = OWL = 1309 triples. **PASS**.
 
 ### TBox Metrics (v1.8.0)
 
 | Metric | Value |
 |--------|-------|
-| Classes (FRAM) | 65 |
-| Object Properties | 66 |
-| Datatype Properties | 66 |
-| Total Properties | 132 |
+| Classes (FRAM) | 59 |
+| Object Properties | 65 |
+| Datatype Properties | 64 |
+| Total Properties | 129 |
 | `owl:inverseOf` pairs | 29 |
 | `owl:AllDisjointClasses` blocks | 8 |
 | gUFO `rdfs:subClassOf` axioms | 16 |
-| SKOS definitions | 36 |
-| Total TBox triples | 1357 |
+| SKOS definitions | 30 |
+| Total TBox triples | 1309 |
 
 ### ABox Metrics (Li-Huang 2025)
 
 | Metric | Value |
 |--------|-------|
 | Total ABox triples | 3292 |
-| Unique FRAM types used | 26 / 65 (40%) |
+| Unique FRAM types used | 26 / 59 (44%) |
 
 Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMessage (34), Coupling (34), VariabilityPropagation (34), ControlAspect (27), PreconditionAspect (25), ResourceAspect (25), Function (20), HumanFunction (20), TimeAspect (20), Variability (20), QuantitativeMetadata (20).
 
@@ -132,11 +132,11 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 ### Step 2: OWL-RL Reasoning & Consistency
 
 - **Status**: PASS
-- **TBox triples**: 1357
+- **TBox triples**: 1309
 - **ABox triples**: 3292
-- **Total before reasoning**: 4649
-- **Total after reasoning**: 10274
-- **Inferred triples**: 5625 (1.17s)
+- **Total before reasoning**: 4601
+- **Total after reasoning**: 9978
+- **Inferred triples**: 5377 (1.14s)
 - **Consistency**: PASS -- 0 instances of `owl:Nothing`
 - **Unsatisfiable classes**: PASS -- 0 unsatisfiable classes
 
@@ -144,7 +144,7 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 
 - **Status**: PASS
 - **Shapes validated**: 8 (S1--S8)
-- **Data triples**: 4649 (TBox + ABox)
+- **Data triples**: 4601 (TBox + ABox)
 - **Shapes graph triples**: 155
 - **Conforms**: `true`
 - **Shapes**:
@@ -159,7 +159,7 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 
 ### Step 4: SPARQL Competency Questions
 
-- **Status**: PASS (5/5)
+- **Status**: PASS (6/6)
 
 | CQ | Question | Results | Status |
 |----|----------|---------|--------|
@@ -167,7 +167,8 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 | CQ2 | Couplings between functions | 34 | PASS |
 | CQ3 | Aspects per function | 20 | PASS |
 | CQ4 | Functions with variability metadata | 20 | PASS |
-| CQ5 | Functions receiving input via couplings | 17 | PASS |
+| CQ5 | Functions with variability phenotypes | 20 | PASS |
+| CQ6 | Functions receiving input via couplings | 17 | PASS |
 
 ### Step 5: OOPS! Pitfall Scanning
 
@@ -189,15 +190,15 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 | RT2 | JSON-LD -> TTL -> JSON-LD | FAIL | Expected: blank node instability |
 | RT3 | TTL == JSON-LD (direct) | FAIL | Expected: structural differences |
 
-- Named triples only in TTL: 684
-- Named triples only in JSON-LD: 148
-- TTL coverage: 70.8%
+- Named triples only in TTL: 1044
+- Named triples only in JSON-LD: 146
+- TTL coverage: 87.7%
 
 ### Step 7: Gap Analysis
 
 - **Status**: REPORTED (informational)
-- **Predicates matching**: 56/83 (67.5%)
-- **Predicates with differences**: 27
+- **Predicates matching**: 55/77 (71.4%)
+- **Predicates with differences**: 22
 - **Notes**: Improvement from v1.7.0 (55/83 = 66.3%). Divergent predicates correspond to properties emitted by only one exporter.
 
 ### Step 8: SPARQL Semantic Equivalence (Gold Standard)
@@ -206,16 +207,16 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 
 | Query | Domain | TTL | JSON-LD | Status |
 |-------|--------|-----|---------|--------|
-| SQ1 | Functions and types | 20 | 20 | PASS |
-| SQ2 | Aspects per function | 188 | 188 | PASS |
-| SQ3 | Couplings | 34 | 34 | PASS |
-| SQ4 | Variability | 20 | 20 | PASS |
-| SQ5 | Scenarios | 4 | 4 | PASS |
-| SQ6 | Quantitative metadata | 20 | 20 | PASS |
-| SQ7 | Constants and variables | 59 | 59 | PASS |
-| SQ8 | Output messages | 34 | 34 | PASS |
-| SQ9 | Interpretation profiles | 15 | 15 | PASS |
-| SQ10 | Phenotypes | -- | -- | N/A (empty) |
+| SQ1 | Model identity and metadata | 1 | 1 | PASS |
+| SQ2 | Functions with type and category | 20 | 20 | PASS |
+| SQ3 | Aspect count per function | 20 | 20 | PASS |
+| SQ4 | Couplings with source/target functions | 34 | 34 | PASS |
+| SQ5 | Variability potential per function | 20 | 20 | PASS |
+| SQ6 | Quantitative metadata inventory | 20 | 20 | PASS |
+| SQ7 | Interpretation profiles | 15 | 15 | PASS |
+| SQ8 | Output routing topology | 34 | 34 | PASS |
+| SQ9 | Aggregate coupling statistics | 1 | 1 | PASS |
+| SQ10 | Scenarios | -- | -- | N/A (empty) |
 
 **Both serializations are SPARQL-equivalent**: identical queries yield identical results across all fundamental FRAM domain concepts. This confirms semantic equivalence per W3C RDF 1.1 Concepts (Section 3.5).
 
@@ -223,17 +224,17 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 
 | Step | Technique | Result |
 |------|-----------|--------|
-| 0 | W3C RDF 1.1 Conformance | PASS (TTL=OWL=1357 triples) |
+| 0 | W3C RDF 1.1 Conformance | PASS (TTL=OWL=1309 triples) |
 | 1 | JSON-LD -> Turtle | PASS (3292 triples) |
-| 2 | OWL-RL Reasoning | PASS (5625 inferred, 0 unsatisfiable) |
+| 2 | OWL-RL Reasoning | PASS (5377 inferred, 0 unsatisfiable) |
 | 3 | SHACL Shapes | PASS (conforms, 8/8 shapes) |
-| 4 | SPARQL CQs | PASS (5/5 questions) |
+| 4 | SPARQL CQs | PASS (6/6 questions) |
 | 5 | OOPS! Scanner | PASS (0 pitfalls at any level) |
 | 6 | Round-trip Fidelity | PASS (RT1 isomorphic) |
-| 7 | Gap Analysis | 67.5% predicate match (informational) |
+| 7 | Gap Analysis | 71.4% predicate match (informational) |
 | 8 | SPARQL Equivalence | PASS (9/9 = 100%, gold standard) |
 
-**Ontology version**: v1.8.0 (1357 TBox triples, 65 classes, 132 properties)
+**Ontology version**: v1.8.0 (1309 TBox triples, 59 classes, 129 properties)
 **ABox model**: Li-Huang 2025 (3292 triples, 20 functions, 34 couplings)
 **Validation date**: April 2026
 **Runner**: `python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld`

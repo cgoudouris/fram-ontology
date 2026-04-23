@@ -11,7 +11,7 @@ This benchmark verifies the FRAM Ontology across eight complementary dimensions:
 | 1 | JSON-LD → Turtle conversion | pyld + rdflib | Context resolution, IRI expansion, serialization integrity |
 | 2 | OWL-RL Reasoning | owlrl | Logical consistency, unsatisfiable classes, inferred triples |
 | 3 | SHACL Shape Validation | pyshacl | Structural constraints via 8 custom shapes |
-| 4 | SPARQL Competency Questions | rdflib | 5 CQs covering functions, couplings, aspects, variability |
+| 4 | SPARQL Competency Questions | rdflib | 6 CQs covering functions, couplings, aspects, variability, phenotypes |
 | 5 | OOPS! Pitfall Scanning | OOPS! REST API | Common ontology design anti-patterns |
 | 6 | Round-trip Fidelity | rdflib isomorphism | TTL ↔ JSON-LD serialization round-trip integrity |
 | 7 | Gap Analysis | rdflib + pyld | Predicate-level differences between serializations |
@@ -25,87 +25,83 @@ This benchmark verifies the FRAM Ontology across eight complementary dimensions:
 pip install rdflib pyld owlrl pyshacl requests
 ```
 
-## Running the Benchmark
+## Architecture
 
-### Unified Runner (recommended)
+The benchmark follows a **modular architecture**: each of the eight steps is implemented as an independent Python module under `validation/steps/`, and a thin orchestrator (`validate_fram_model.py`) selects, configures and invokes them in order. There is no `subprocess` indirection — every step is invoked through a direct `module.run(ctx)` call against a shared `ValidationContext`.
 
-The `validate_fram_model.py` script runs all 8 steps against **any** FRAM model:
+Benefits:
 
-```bash
-cd validation
-
-# Run Steps 2-4 only (TTL model, no JSON-LD counterpart)
-python validate_fram_model.py examples/li-huang-2025.ttl
-
-# Run Steps 2-8 (both TTL and JSON-LD available)
-python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld
-
-# Skip OOPS! API call (Step 5) for faster offline runs
-python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld --skip-oops
-
-# Run specific steps only
-python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld --steps 2,3,4,8
-```
-
-### Individual Steps (legacy)
-
-The original per-step scripts are still available but are hardcoded for the legacy boil-water example (not included in current examples):
-
-```bash
-cd validation
-
-# Step 1: Convert the example JSON-LD model to Turtle
-python step1_jsonld_to_ttl.py
-
-# Step 2: Run OWL-RL reasoning (requires Step 1 output)
-python step2_reasoning_validation.py
-
-# Step 3: Validate against SHACL shapes (requires Step 1 output)
-python step3_shacl_validation.py
-
-# Step 4: Run SPARQL competency questions (requires Step 1 output)
-python step4_sparql_competency.py
-
-# Step 5: Submit to OOPS! pitfall scanner (requires internet)
-python step5_oops_validation.py
-```
-
-Or run all legacy steps sequentially:
-
-```bash
-cd validation
-for step in step1_jsonld_to_ttl.py step2_reasoning_validation.py step3_shacl_validation.py step4_sparql_competency.py step5_oops_validation.py; do
-  echo "======== Running $step ========"
-  python "$step"
-  echo ""
-done
-
-# Steps 6-8 (require both TTL and JSON-LD)
-python step6_roundtrip_fidelity.py ../examples/li-huang-2025.ttl ../examples/li-huang-2025.jsonld ../context.jsonld
-python step7_gap_analysis.py ../examples/li-huang-2025.ttl ../examples/li-huang-2025.jsonld ../context.jsonld
-python step8_sparql_equivalence.py ../examples/li-huang-2025.ttl ../examples/li-huang-2025.jsonld ../context.jsonld
-```
-
-> **Note:** Step 1 must run first because Steps 2–4 depend on the generated TTL file. Steps 5–8 are independent. Steps 6–8 require both TTL and JSON-LD exports of the same model.
-
-## File Structure
+- **No silent failures** — a missing step module raises `ImportError` at orchestrator startup instead of being silently skipped.
+- **Standalone debugging** — each step is also a CLI: `python -m validation.steps.stepN_<name> <args>`.
+- **Unit-testable** — every step exposes the same `run(ctx) -> StepResult` contract and can be imported into a test harness.
+- **Zero subprocess overhead** — the Python interpreter is initialised once for the whole pipeline.
 
 ```
 validation/
-├── README.md                          # This file
-├── validate_fram_model.py             # Unified model-agnostic runner (all 8 steps)
-├── step1_jsonld_to_ttl.py             # JSON-LD → Turtle conversion (legacy, boil-water only)
-├── step2_reasoning_validation.py      # OWL-RL reasoning & consistency (legacy)
-├── step3_shacl_validation.py          # SHACL shape validation (legacy)
-├── step4_sparql_competency.py         # SPARQL competency questions (legacy)
-├── step5_oops_validation.py           # OOPS! pitfall scanning (legacy)
-├── step6_roundtrip_fidelity.py        # Round-trip fidelity: TTL ↔ JSON-LD
-├── step7_gap_analysis.py              # Predicate-level gap analysis
-├── step8_sparql_equivalence.py        # SPARQL semantic equivalence (10 queries)
+├── README.md                              # This file
+├── __init__.py                            # Package marker
+├── validate_fram_model.py                 # Thin orchestrator (~140 LOC)
+├── fram_rdfxml.owl                        # RDF/XML conversion buffer (Step 5)
+├── steps/                                 # 8 independent step modules
+│   ├── __init__.py                        # Shared types: ValidationContext, StepResult
+│   ├── step1_jsonld_to_ttl.py             # JSON-LD → Turtle conversion
+│   ├── step2_reasoning.py                 # OWL-RL reasoning
+│   ├── step3_shacl.py                     # SHACL shape validation
+│   ├── step4_competency.py                # SPARQL competency questions
+│   ├── step5_oops.py                      # OOPS! pitfall scanning
+│   ├── step6_roundtrip.py                 # Round-trip fidelity (RT1–RT3)
+│   ├── step7_gap_analysis.py              # Predicate-level gap report
+│   └── step8_sparql_equivalence.py        # SPARQL semantic equivalence (10 SQs)
 └── results/
-    ├── experiment_log.md              # Original experiment execution log
-    └── oops_analysis.md               # OOPS! pitfall analysis (v1.0 → v1.2.0)
+    ├── experiment_log.md                  # Original experiment execution log
+    └── oops_analysis.md                   # OOPS! pitfall analysis (v1.0 → v1.2.0)
 ```
+
+Each step module exposes:
+
+```python
+from validation.steps import StepResult, ValidationContext
+
+def run(ctx: ValidationContext) -> StepResult:
+    ...
+```
+
+and can be invoked standalone for debugging:
+
+```bash
+python -m validation.steps.step3_shacl examples/eac1-li-huang-2025-fresh.ttl
+python -m validation.steps.step6_roundtrip <model.ttl> <model.jsonld> [<context.jsonld>]
+```
+
+## Running the Full Benchmark
+
+The `validate_fram_model.py` orchestrator runs all requested steps against any FRAM model:
+
+```bash
+cd validation
+
+# Run Steps 2–4 only (TTL model, no JSON-LD counterpart)
+python validate_fram_model.py ../examples/eac1-li-huang-2025-fresh.ttl
+
+# Run Steps 2–8 (both TTL and JSON-LD available)
+python validate_fram_model.py \
+    ../examples/eac1-li-huang-2025-fresh.ttl \
+    ../examples/eac1-li-huang-2025-fresh.jsonld
+
+# Skip OOPS! API call (Step 5) for faster offline runs
+python validate_fram_model.py \
+    ../examples/eac1-li-huang-2025-fresh.ttl \
+    ../examples/eac1-li-huang-2025-fresh.jsonld \
+    --skip-oops
+
+# Run specific steps only
+python validate_fram_model.py \
+    ../examples/eac1-li-huang-2025-fresh.ttl \
+    ../examples/eac1-li-huang-2025-fresh.jsonld \
+    --steps 2,3,4,8
+```
+
+> **Note:** Step 1 runs only when a JSON-LD input is provided. Steps 6–8 require both TTL and JSON-LD exports of the same model. The orchestrator deselects them automatically when the JSON-LD input is omitted.
 
 ### Repository-Level Files Used
 
@@ -114,7 +110,6 @@ validation/
 | [`../fram.ttl`](../fram.ttl) | TBox — canonical ontology definition |
 | [`../context.jsonld`](../context.jsonld) | JSON-LD context for term resolution |
 | [`../fram-shapes.ttl`](../fram-shapes.ttl) | SHACL shapes (8 shapes: S1–S8) |
-| [`../examples/boil-water-model.jsonld`](../examples/boil-water-model.jsonld) | ABox — simple example (3 functions, 2 couplings) — **removed in v1.7.0** |
 | [`../examples/li-huang-2025.ttl`](../examples/li-huang-2025.ttl) | ABox — Li-Huang 2025 HSR FRAM model (20 functions, 34 couplings) |
 | [`../examples/li-huang-2025.jsonld`](../examples/li-huang-2025.jsonld) | ABox — Li-Huang 2025 (JSON-LD) |
 
@@ -135,9 +130,7 @@ The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 8 SHACL shapes:
 
 ## Competency Questions
 
-Step 4 validates the ontology against SPARQL-based competency questions. The unified runner uses 5 model-agnostic CQs; the legacy scripts use 6 CQs specific to the boil-water example.
-
-### Unified Runner (Li-Huang 2025)
+Step 4 validates the ontology against 6 SPARQL-based competency questions executed against the Li-Huang 2025 example model:
 
 | CQ | Question | Expected (Li-Huang) |
 |----|----------|---------------------|
@@ -145,37 +138,27 @@ Step 4 validates the ontology against SPARQL-based competency questions. The uni
 | CQ2 | What are the couplings between functions? | 34 couplings |
 | CQ3 | How many aspects does each function have? | 20 functions (6 each) |
 | CQ4 | Which functions have variability metadata? | 20 functions |
-| CQ5 | Which functions receive input from other functions via couplings? | 17 functions |
-
-### Legacy Scripts (boil-water)
-
-| CQ | Question | Expected (boil-water) |
-|----|----------|----------------------|
-| CQ1 | What are the model's functions and their types? | 3 functions (human, technological, human) |
-| CQ2 | What are the couplings between functions? | 2 couplings (Fill→Heat, Heat→Pour) |
-| CQ3 | What aspects does "Heat water to boiling" have? | 5 aspects (I, O, R, C, T) |
-| CQ4 | What is the variability distribution of "Heat water"? | Normal(μ=4.0, σ=0.5) |
-| CQ5 | What are the phenotypes of "Fill kettle"? | 2 phenotypes (timing: on-time, precision: acceptable) |
-| CQ6 | Which functions receive input via couplings? | 2 functions (Heat water, Pour water) |
+| CQ5 | What are the variability phenotypes of the functions? | 20 functions |
+| CQ6 | Which functions receive input from other functions via couplings? | 17 functions |
 
 ## Expected Results (v1.8.0)
 
-All steps should pass with the current ontology version:
+All steps should pass with the current ontology version against the Li-Huang 2025 model:
 
 | Step | Expected |
 |------|----------|
-| Step 1 | ~124 triples generated (boil-water legacy) |
-| Step 2 | PASS — TBox: 1357, ABox: 3292 (Li-Huang), Inferred: ~5625, consistent, 0 unsatisfiable |
+| Step 1 | JSON-LD → TTL conversion succeeds (skipped if input is already TTL) |
+| Step 2 | PASS — TBox: 1309, ABox: 3292, Inferred: ~5377, consistent, 0 unsatisfiable |
 | Step 3 | PASS — conforms to all 8 shapes |
-| Step 4 | PASS — all 5 CQs answered correctly |
-| Step 5 | PASS -- 0 pitfalls at any severity level |
+| Step 4 | PASS — all 6 CQs answered correctly |
+| Step 5 | PASS — 0 pitfalls at any severity level |
 | Step 6 | RT1: PASS, RT2: FAIL (expected — BNode instability), RT3: FAIL (expected — structural differences) |
-| Step 7 | 56/83 predicates matching (67.5%) — informational |
+| Step 7 | 55/77 predicates matching (71.4%) — informational |
 | Step 8 | PASS — 9/9 applicable SPARQL queries equivalent (100%) |
 
 ## Generated Files
 
-Scripts may generate the following intermediate files (gitignored):
+The runner may generate the following intermediate files (gitignored):
 
 - `*-model.ttl` — Turtle conversion of JSON-LD input (Step 1)
 - `fram_rdfxml.owl` — RDF/XML conversion for OOPS! submission (Step 5)
@@ -190,6 +173,8 @@ This validation benchmark was developed as part of **Preliminary Study 2 (EP2)**
 - **Structural validation**: SHACL (Knublauch & Kontokostas, 2017)
 - **Competency validation**: SPARQL-based CQs (Grüninger & Fox, 1995)
 - **Pitfall detection**: OOPS! (Poveda-Villalón et al., 2014)
+- **Round-trip & semantic equivalence**: serialization-independence verification across TTL and JSON-LD (added in v1.8.0)
+- **Modular runner architecture**: 8 independent step modules + thin orchestrator (refactored from the v1.8.0 mixed inline/subprocess runner; no behavioural change for end users)
 
 ## License
 
