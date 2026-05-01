@@ -12,7 +12,9 @@ This badge resolves to the latest version of the FRAM Ontology archived on Zenod
 
 ## Overview
 
-![FRAM Ontology Class Diagram](visualization/fram_ontology_diagram.svg)
+![FRAM Ontology — Class Hierarchy and gUFO Alignment](visualization/fram_ontology_diagram.svg)
+
+*Class hierarchy and gUFO foundational alignment (30 of 59 classes shown). The companion figure [`fram_ontology_properties.svg`](visualization/fram_ontology_properties.svg) presents the network of key object properties (domain → range).*
 
 The FRAM Ontology provides a formal vocabulary for describing FRAM models, including:
 
@@ -43,7 +45,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (8 shapes) |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
 | [`validation/`](validation/) | 8-step automated validation benchmark (Python) |
-| [`visualization/`](visualization/) | Class-diagram generator (`rdflib` + `graphviz`) and canonical SVG/PNG outputs |
+| [`visualization/`](visualization/) | Class-diagram generator (`rdflib` + `graphviz`) and two canonical figures: `fram_ontology_diagram.{svg,png}` (class hierarchy + gUFO alignment) and `fram_ontology_properties.{svg,png}` (object-property network) |
 
 ## Quick Start
 
