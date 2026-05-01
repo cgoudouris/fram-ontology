@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this ontology in academic work, please cite it as below."
+title: "FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method"
+abstract: >-
+  An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM),
+  enabling formal representation of FRAM models as Linked Data. The ontology
+  defines 59 classes and 129 properties (65 object + 64 datatype), 8 SHACL
+  shapes, and a JSON-LD context, with a foundational alignment to gUFO
+  (16 rdfs:subClassOf axioms). Distributed under CC BY-SA 4.0.
+type: software
+authors:
+  - family-names: Goudouris
+    given-names: César
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19430246
+    description: Concept DOI (always resolves to the latest version)
+repository-code: "https://github.com/cgoudouris/fram-ontology"
+url: "https://flowfram.com/ontology/fram/"
+license: CC-BY-SA-4.0
+version: "1.8.0"
+date-released: "2026-04-30"
+keywords:
+  - FRAM
+  - Functional Resonance Analysis Method
+  - ontology
+  - OWL 2
+  - Linked Data
+  - JSON-LD
+  - SHACL
+  - gUFO
+  - resilience engineering
+  - safety-II
+preferred-citation:
+  type: software
+  title: "FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method"
+  authors:
+    - family-names: Goudouris
+      given-names: César
+  year: 2026
+  version: "1.8.0"
+  doi: 10.5281/zenodo.19430246
+  url: "https://flowfram.com/ontology/fram/"
+  repository-code: "https://github.com/cgoudouris/fram-ontology"
+  license: CC-BY-SA-4.0
