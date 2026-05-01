@@ -13,8 +13,11 @@ authors:
     given-names: César
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.19430246
+    value: 10.5281/zenodo.18880157
     description: Concept DOI (always resolves to the latest version)
+  - type: doi
+    value: 10.5281/zenodo.19959352
+    description: Version-specific DOI for v1.8.0
 repository-code: "https://github.com/cgoudouris/fram-ontology"
 url: "https://flowfram.com/ontology/fram/"
 license: CC-BY-SA-4.0
@@ -39,7 +42,7 @@ preferred-citation:
       given-names: César
   year: 2026
   version: "1.8.0"
-  doi: 10.5281/zenodo.19430246
+  doi: 10.5281/zenodo.19959352
   url: "https://flowfram.com/ontology/fram/"
   repository-code: "https://github.com/cgoudouris/fram-ontology"
   license: CC-BY-SA-4.0
