@@ -12,6 +12,8 @@ This badge resolves to the latest version of the FRAM Ontology archived on Zenod
 
 ## Overview
 
+![FRAM Ontology Class Diagram](visualization/fram_ontology_diagram.svg)
+
 The FRAM Ontology provides a formal vocabulary for describing FRAM models, including:
 
 - **Functions** — human, technological, organisational, and background activities
@@ -41,6 +43,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (8 shapes) |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
 | [`validation/`](validation/) | 8-step automated validation benchmark (Python) |
+| [`visualization/`](visualization/) | Class-diagram generator (`rdflib` + `graphviz`) and canonical SVG/PNG outputs |
 
 ## Quick Start
 
