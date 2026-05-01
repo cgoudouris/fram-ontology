@@ -12,7 +12,7 @@ This badge resolves to the latest version of the FRAM Ontology archived on Zenod
 
 ## Overview
 
-![FRAM Ontology — Class Hierarchy and gUFO Alignment](visualization/fram_ontology_diagram.svg)
+![FRAM Ontology — Class Hierarchy and gUFO Alignment](visualization/fram_ontology_diagram.svg?v=2)
 
 *Class hierarchy and gUFO foundational alignment (30 of 59 classes shown). The companion figure [`fram_ontology_properties.svg`](visualization/fram_ontology_properties.svg) presents the network of key object properties (domain → range).*
 
