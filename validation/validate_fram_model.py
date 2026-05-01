@@ -15,19 +15,19 @@ Usage:
 
 Examples:
     # Steps 2-4 (TBox-only validation against a TTL model)
-    python validate_fram_model.py examples/eac1-li-huang-2025-fresh.ttl
+    python validate_fram_model.py examples/eac1-li-huang-2025.ttl
 
     # Full 8-step pipeline (offline, skipping OOPS!)
     python validate_fram_model.py \\
-        examples/eac1-li-huang-2025-fresh.ttl \\
-        examples/eac1-li-huang-2025-fresh.jsonld \\
+        examples/eac1-li-huang-2025.ttl \\
+        examples/eac1-li-huang-2025.jsonld \\
         --skip-oops
 
     # Run only specific steps
     python validate_fram_model.py model.ttl model.jsonld --steps 2,3,4,8
 
 Each step can also be executed standalone for debugging:
-    python -m validation.steps.step3_shacl examples/eac1-li-huang-2025-fresh.ttl
+    python -m validation.steps.step3_shacl examples/eac1-li-huang-2025.ttl
 
 Part of the FRAM Ontology Validation Benchmark (EP2 of the FRAM thesis).
 """

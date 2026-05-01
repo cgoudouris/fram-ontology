@@ -69,7 +69,7 @@ def run(ctx: ValidationContext) -> StepResult:
 and can be invoked standalone for debugging:
 
 ```bash
-python -m validation.steps.step3_shacl examples/eac1-li-huang-2025-fresh.ttl
+python -m validation.steps.step3_shacl examples/eac1-li-huang-2025.ttl
 python -m validation.steps.step6_roundtrip <model.ttl> <model.jsonld> [<context.jsonld>]
 ```
 
@@ -81,24 +81,30 @@ The `validate_fram_model.py` orchestrator runs all requested steps against any F
 cd validation
 
 # Run Steps 2–4 only (TTL model, no JSON-LD counterpart)
-python validate_fram_model.py ../examples/eac1-li-huang-2025-fresh.ttl
+python validate_fram_model.py ../examples/eac1-li-huang-2025.ttl
 
 # Run Steps 2–8 (both TTL and JSON-LD available)
 python validate_fram_model.py \
-    ../examples/eac1-li-huang-2025-fresh.ttl \
-    ../examples/eac1-li-huang-2025-fresh.jsonld
+    ../examples/eac1-li-huang-2025.ttl \
+    ../examples/eac1-li-huang-2025.jsonld
 
 # Skip OOPS! API call (Step 5) for faster offline runs
 python validate_fram_model.py \
-    ../examples/eac1-li-huang-2025-fresh.ttl \
-    ../examples/eac1-li-huang-2025-fresh.jsonld \
+    ../examples/eac1-li-huang-2025.ttl \
+    ../examples/eac1-li-huang-2025.jsonld \
     --skip-oops
 
 # Run specific steps only
 python validate_fram_model.py \
-    ../examples/eac1-li-huang-2025-fresh.ttl \
-    ../examples/eac1-li-huang-2025-fresh.jsonld \
+    ../examples/eac1-li-huang-2025.ttl \
+    ../examples/eac1-li-huang-2025.jsonld \
     --steps 2,3,4,8
+
+# Validate the second reference model (EAC2 — Patriarca et al. 2024)
+python validate_fram_model.py \
+    ../examples/eac2-patriarca-et-al.-2024.ttl \
+    ../examples/eac2-patriarca-et-al.-2024.jsonld \
+    --skip-oops
 ```
 
 > **Note:** Step 1 runs only when a JSON-LD input is provided. Steps 6–8 require both TTL and JSON-LD exports of the same model. The orchestrator deselects them automatically when the JSON-LD input is omitted.
@@ -107,11 +113,13 @@ python validate_fram_model.py \
 
 | File | Role |
 |------|------|
-| [`../fram.ttl`](../fram.ttl) | TBox — canonical ontology definition |
+| [`../fram.ttl`](../fram.ttl) | TBox — canonical ontology definition (1309 triples; 59 classes; 129 properties) |
 | [`../context.jsonld`](../context.jsonld) | JSON-LD context for term resolution |
 | [`../fram-shapes.ttl`](../fram-shapes.ttl) | SHACL shapes (8 shapes: S1–S8) |
-| [`../examples/li-huang-2025.ttl`](../examples/li-huang-2025.ttl) | ABox — Li-Huang 2025 HSR FRAM model (20 functions, 34 couplings) |
-| [`../examples/li-huang-2025.jsonld`](../examples/li-huang-2025.jsonld) | ABox — Li-Huang 2025 (JSON-LD) |
+| [`../examples/eac1-li-huang-2025.ttl`](../examples/eac1-li-huang-2025.ttl) | ABox — Li & Huang (2025) HSR model (20 functions, 34 couplings, 2860 triples) |
+| [`../examples/eac1-li-huang-2025.jsonld`](../examples/eac1-li-huang-2025.jsonld) | ABox — Li & Huang (2025) JSON-LD serialization |
+| [`../examples/eac2-patriarca-et-al.-2024.ttl`](../examples/eac2-patriarca-et-al.-2024.ttl) | ABox — Patriarca et al. (2024) FRW model (14 functions, 21 couplings, 2196 triples) |
+| [`../examples/eac2-patriarca-et-al.-2024.jsonld`](../examples/eac2-patriarca-et-al.-2024.jsonld) | ABox — Patriarca et al. (2024) JSON-LD serialization |
 
 ## SHACL Shapes
 
@@ -130,31 +138,33 @@ The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 8 SHACL shapes:
 
 ## Competency Questions
 
-Step 4 validates the ontology against 6 SPARQL-based competency questions executed against the Li-Huang 2025 example model:
+Step 4 validates the ontology against 6 SPARQL-based competency questions executed against the reference ABoxes in [`../examples/`](../examples/):
 
-| CQ | Question | Expected (Li-Huang) |
-|----|----------|---------------------|
-| CQ1 | What are the model's functions and their types? | 20 functions |
-| CQ2 | What are the couplings between functions? | 34 couplings |
-| CQ3 | How many aspects does each function have? | 20 functions (6 each) |
-| CQ4 | Which functions have variability metadata? | 20 functions |
-| CQ5 | What are the variability phenotypes of the functions? | 20 functions |
-| CQ6 | Which functions receive input from other functions via couplings? | 17 functions |
+| CQ | Question | EAC1 (Li & Huang, 2025) | EAC2 (Patriarca et al., 2024) |
+|----|----------|:---:|:---:|
+| CQ1 | What are the model's functions and their types? | 20 | 14 |
+| CQ2 | What are the couplings between functions? | 34 | 21 |
+| CQ3 | How many aspects does each function have? | 20 | 14 |
+| CQ4 | Which functions have variability metadata? | 20 | 14 |
+| CQ5 | What are the variability phenotypes of the functions? | 20 | 14 |
+| CQ6 | Which functions receive input from other functions via couplings? | 17 | 11 |
 
 ## Expected Results (v1.8.0)
 
-All steps should pass with the current ontology version against the Li-Huang 2025 model:
+All steps should pass with the current ontology version against both reference ABoxes:
 
-| Step | Expected |
-|------|----------|
-| Step 1 | JSON-LD → TTL conversion succeeds (skipped if input is already TTL) |
-| Step 2 | PASS — TBox: 1309, ABox: 3292, Inferred: ~5377, consistent, 0 unsatisfiable |
-| Step 3 | PASS — conforms to all 8 shapes |
-| Step 4 | PASS — all 6 CQs answered correctly |
-| Step 5 | PASS — 0 pitfalls at any severity level |
-| Step 6 | RT1: PASS, RT2: FAIL (expected — BNode instability), RT3: FAIL (expected — structural differences) |
-| Step 7 | 55/77 predicates matching (71.4%) — informational |
-| Step 8 | PASS — 9/9 applicable SPARQL queries equivalent (100%) |
+| Step | EAC1 (Li & Huang, 2025) | EAC2 (Patriarca et al., 2024) |
+|------|---|---|
+| 1 | JSON-LD → TTL conversion succeeds (skipped if input is already TTL) | idem |
+| 2 | PASS — TBox 1309 / ABox 2860 / 5321 inferred; consistent; 0 unsatisfiable | PASS — TBox 1309 / ABox 2196 / 4376 inferred; consistent; 0 unsatisfiable |
+| 3 | PASS — conforms to all 8 shapes | PASS — conforms to all 8 shapes |
+| 4 | PASS — 6/6 CQs answered | PASS — 6/6 CQs answered |
+| 5 | PASS — 0 pitfalls at any severity (executed against TBox; same result for both ABoxes) | idem |
+| 6 | RT1 PASS; RT2 / RT3 expected FAIL (BNode instability and structural differences) | idem |
+| 7 | 56/71 predicates matching (78.9%) — informational | 58/74 predicates matching (78.4%) — informational |
+| 8 | PASS — 9/9 applicable SPARQL queries equivalent (100%) | PASS — 9/9 applicable SPARQL queries equivalent (100%) |
+
+> **Step 7 (Gap Analysis) is informational, not a pass/fail criterion.** Coverage cannot reach 100% by construction: the TTL serialization exposes every RDF predicate in the TBox (including `owl:imports`, `rdfs:label`, structural metadata, and named aspect IRIs such as `fram:Input`, `fram:Control`, `fram:Time`), while the compact JSON-LD serialization projects a subset of those predicates onto named keys via the `@context`. Some predicates appear only in JSON-LD (`fram:framPrinciples`, populated by JSON-LD framing). Reaching 100% would require an expanded JSON-LD form, which would defeat the legibility goal of the compact serialization. Semantic equivalence between the two serializations is verified by Step 6 (graph isomorphism, RT1) and Step 8 (gold-standard SPARQL equivalence), which are the binding criteria.
 
 ## Generated Files
 

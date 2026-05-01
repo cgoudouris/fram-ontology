@@ -1,6 +1,6 @@
 # EP2 — Ontology Validation Experiment Log
 
-Validation benchmark for the FRAM Ontology. Current validation uses `li-huang-2025.ttl` / `li-huang-2025.jsonld` (ABox) and `fram.ttl` v1.8.0 (TBox). Historical baseline used `boil-water-model.jsonld`.
+Validation benchmark for the FRAM Ontology. The current published baseline (v1.8.0) is exercised against two reference ABoxes: `eac1-li-huang-2025.{ttl,jsonld}` (Li & Huang, 2025; HSR Ningbo-Wenzhou) and `eac2-patriarca-et-al.-2024.{ttl,jsonld}` (Patriarca et al., 2024; Functional Random Walker). Earlier baselines (v1.6.0 over `boil-water-model.jsonld`, v1.2.0 over the same file, and an interim v1.7.0 single-model run over `li-huang-2025.{ttl,jsonld}` reaching 71.4% gap coverage) are preserved further down for traceability.
 
 ---
 
@@ -87,15 +87,18 @@ Executed against `fram.ttl` v1.6.0 (1133 TBox triples, ~1560 lines).
 
 ## v1.8.0 Validation (Current -- Gold Standard)
 
-Executed against `fram.ttl` v1.8.0 (1309 TBox triples) with `li-huang-2025.ttl` as ABox (3292 triples, 20 functions, 34 couplings) via the unified runner `validate_fram_model.py`.
+Executed against `fram.ttl` v1.8.0 (1309 TBox triples) with two ABoxes via the unified runner `validate_fram_model.py`:
+
+- **EAC1** — `eac1-li-huang-2025.{ttl,jsonld}` (Li & Huang, 2025; HSR Ningbo-Wenzhou; 20 functions, 34 couplings, 17 receiving functions; 2860 ABox triples)
+- **EAC2** — `eac2-patriarca-et-al.-2024.{ttl,jsonld}` (Patriarca et al., 2024; FRW; 14 functions, 21 couplings, 11 receiving functions; 2196 ABox triples)
 
 ### Pre-requisite: W3C RDF 1.1 Conformance
 
-| Serialization | Format | Triples | Time | Status |
-|---------------|--------|---------|------|--------|
-| `fram.ttl` | Turtle | 1309 | 0.02s | VALID |
-| `fram.owl` | RDF/XML | 1309 | 0.04s | VALID |
-| `context.jsonld` | JSON-LD 1.1 | 276 terms | -- | VALID |
+| Serialization | Format | Triples | Status |
+|---------------|--------|---------|--------|
+| `fram.ttl` | Turtle | 1309 | VALID |
+| `fram.owl` | RDF/XML | 1309 | VALID |
+| `context.jsonld` | JSON-LD 1.1 | 276 terms | VALID |
 
 Cross-format consistency: TTL = OWL = 1309 triples. **PASS**.
 
@@ -113,40 +116,36 @@ Cross-format consistency: TTL = OWL = 1309 triples. **PASS**.
 | SKOS definitions | 30 |
 | Total TBox triples | 1309 |
 
-### ABox Metrics (Li-Huang 2025)
+### ABox Metrics
 
-| Metric | Value |
-|--------|-------|
-| Total ABox triples | 3292 |
-| Unique FRAM types used | 26 / 59 (44%) |
-
-Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMessage (34), Coupling (34), VariabilityPropagation (34), ControlAspect (27), PreconditionAspect (25), ResourceAspect (25), Function (20), HumanFunction (20), TimeAspect (20), Variability (20), QuantitativeMetadata (20).
+| Metric | EAC1 (Li & Huang, 2025) | EAC2 (Patriarca et al., 2024) |
+|--------|:---:|:---:|
+| Total ABox triples | 2860 | 2196 |
+| Functions | 20 | 14 |
+| Couplings | 34 | 21 |
+| Receiving functions (CQ6) | 17 | 11 |
 
 ### Step 1: JSON-LD -> Turtle Conversion
 
-- **Status**: PASS
-- **Input**: `li-huang-2025.jsonld`
-- **Output**: 3292 ABox triples
+- **Status**: PASS (both models)
 - **Notes**: All terms resolved to IRIs in `fram:` and `model:` namespaces.
 
 ### Step 2: OWL-RL Reasoning & Consistency
 
-- **Status**: PASS
-- **TBox triples**: 1309
-- **ABox triples**: 3292
-- **Total before reasoning**: 4601
-- **Total after reasoning**: 9978
-- **Inferred triples**: 5377 (1.14s)
-- **Consistency**: PASS -- 0 instances of `owl:Nothing`
-- **Unsatisfiable classes**: PASS -- 0 unsatisfiable classes
+| Metric | EAC1 | EAC2 |
+|--------|---:|---:|
+| TBox triples | 1309 | 1309 |
+| ABox triples | 2860 | 2196 |
+| Total before reasoning | 4169 | 3505 |
+| Inferred triples | 5321 | 4376 |
+| Reasoning time | 1.04s | 0.85s |
+| `owl:Nothing` instances | 0 | 0 |
+| Unsatisfiable classes | 0 | 0 |
+| **Status** | **PASS** | **PASS** |
 
 ### Step 3: SHACL Shape Validation
 
-- **Status**: PASS
-- **Shapes validated**: 8 (S1--S8)
-- **Data triples**: 4601 (TBox + ABox)
-- **Shapes graph triples**: 155
-- **Conforms**: `true`
+- **Status**: PASS (both models) — `Conforms = True`, 0 violations against the 8 shapes (S1–S8).
 - **Shapes**:
   - S1 (FRAMModelShape): Model has `name` and >=1 function
   - S2 (FunctionShape): Functions have `name`, `functionType`, >=1 aspect
@@ -159,85 +158,81 @@ Top instance types: OutputAspect (54), Variable (43), InputAspect (37), OutputMe
 
 ### Step 4: SPARQL Competency Questions
 
-- **Status**: PASS (6/6)
+- **Status**: PASS (6/6 for both models)
 
-| CQ | Question | Results | Status |
-|----|----------|---------|--------|
-| CQ1 | Functions and their types | 20 | PASS |
-| CQ2 | Couplings between functions | 34 | PASS |
-| CQ3 | Aspects per function | 20 | PASS |
-| CQ4 | Functions with variability metadata | 20 | PASS |
-| CQ5 | Functions with variability phenotypes | 20 | PASS |
-| CQ6 | Functions receiving input via couplings | 17 | PASS |
+| CQ | Question | EAC1 | EAC2 |
+|----|----------|---:|---:|
+| CQ1 | Functions and their types | 20 | 14 |
+| CQ2 | Couplings between functions | 34 | 21 |
+| CQ3 | Aspects per function | 20 | 14 |
+| CQ4 | Functions with variability metadata | 20 | 14 |
+| CQ5 | Functions with variability phenotypes | 20 | 14 |
+| CQ6 | Functions receiving input via couplings | 17 | 11 |
 
 ### Step 5: OOPS! Pitfall Scanning
 
 - **Status**: PASS
 - **API**: `https://oops.linkeddata.es/rest`
-- **Pitfalls detected**: **0** (zero)
-- **Critical**: 0
-- **Important**: 0
-- **Minor**: 0
-- **Notes**: Complete elimination of all pitfalls. The P04 false positive (gUFO classes) that persisted since v1.3.0 is no longer reported. See [oops_analysis.md](oops_analysis.md) for full evolution.
+- **Pitfalls detected**: **0** (zero) at any severity level (Critical, Important, Minor).
+- **Notes**: OOPS! operates over the TBox (`fram.ttl`) and is invariant across ABoxes. Adding an ABox to a graph already free of pitfalls cannot introduce new TBox-level pitfalls. See [oops_analysis.md](oops_analysis.md) for the full evolution since v1.0.
 
 ### Step 6: Round-Trip Fidelity
 
-- **Status**: PASS (RT1)
+| Test | Description | EAC1 | EAC2 | Note |
+|------|-------------|:---:|:---:|------|
+| RT1 | TTL -> JSON-LD -> TTL | **PASS** | **PASS** | Isomorphic after double conversion |
+| RT2 | JSON-LD -> TTL -> JSON-LD | FAIL | FAIL | Expected: blank node instability |
+| RT3 | TTL == JSON-LD (direct) | FAIL | FAIL | Expected: structural differences |
 
-| Test | Description | Result | Note |
-|------|-------------|--------|------|
-| RT1 | TTL -> JSON-LD -> TTL | **PASS** | Isomorphic after double conversion |
-| RT2 | JSON-LD -> TTL -> JSON-LD | FAIL | Expected: blank node instability |
-| RT3 | TTL == JSON-LD (direct) | FAIL | Expected: structural differences |
-
-- Named triples only in TTL: 1044
-- Named triples only in JSON-LD: 146
-- TTL coverage: 87.7%
+RT1 is the binding criterion. RT2 and RT3 reproduce well-known phenomena of RDF serializers (BNode renaming and JSON-LD framing flexibility) and are documented as expected outcomes by the protocol.
 
 ### Step 7: Gap Analysis
 
 - **Status**: REPORTED (informational)
-- **Predicates matching**: 55/77 (71.4%)
-- **Predicates with differences**: 22
-- **Notes**: Improvement from v1.7.0 (55/83 = 66.3%). Divergent predicates correspond to properties emitted by only one exporter.
+- **EAC1**: 56/71 predicates matching (**78.9%**); 15 with differences. Predicates only in JSON-LD: `fram:framPrinciples` (4 occurrences). Predicates only in TTL: `owl:imports`, `fram:Control`, `fram:Human`, `fram:Input`, `fram:Precondition`, `fram:Resource`.
+- **EAC2**: 58/74 predicates matching (**78.4%**); 16 with differences. Predicates only in JSON-LD: `fram:framPrinciples` (4 occurrences). Predicates only in TTL: `owl:imports`, `fram:Control`, `fram:Human`, `fram:Input`, `fram:Precondition`, `fram:Resource`, `fram:Time`.
+- **Notes**: Coverage cannot reach 100% by construction. The TTL form exposes every RDF predicate of the TBox (including `owl:imports`, structural metadata, and named aspect IRIs reused as predicates), whereas the compact JSON-LD form projects a subset of those predicates onto named keys via the `@context`. JSON-LD framing also injects `fram:framPrinciples`. Reaching 100% would require an expanded JSON-LD form, which would defeat the legibility goal of the canonical context. Semantic equivalence is verified by Step 6 (graph isomorphism, RT1) and Step 8 (gold-standard SPARQL equivalence).
 
 ### Step 8: SPARQL Semantic Equivalence (Gold Standard)
 
-- **Status**: PASS (9/9 = 100%)
+- **Status**: PASS (9/9 = 100% for both models; SQ10 N/A — empty in both sides)
 
-| Query | Domain | TTL | JSON-LD | Status |
-|-------|--------|-----|---------|--------|
-| SQ1 | Model identity and metadata | 1 | 1 | PASS |
-| SQ2 | Functions with type and category | 20 | 20 | PASS |
-| SQ3 | Aspect count per function | 20 | 20 | PASS |
-| SQ4 | Couplings with source/target functions | 34 | 34 | PASS |
-| SQ5 | Variability potential per function | 20 | 20 | PASS |
-| SQ6 | Quantitative metadata inventory | 20 | 20 | PASS |
-| SQ7 | Interpretation profiles | 15 | 15 | PASS |
-| SQ8 | Output routing topology | 34 | 34 | PASS |
-| SQ9 | Aggregate coupling statistics | 1 | 1 | PASS |
-| SQ10 | Scenarios | -- | -- | N/A (empty) |
+| Query | Domain | EAC1 (TTL=JSON-LD) | EAC2 (TTL=JSON-LD) |
+|-------|--------|:---:|:---:|
+| SQ1 | Model identity and metadata | 1 | 1 |
+| SQ2 | Functions with type and category | 20 | 14 |
+| SQ3 | Aspect count per function | 20 | 14 |
+| SQ4 | Couplings with source/target functions | 34 | 21 |
+| SQ5 | Variability potential per function | 20 | 14 |
+| SQ6 | Quantitative metadata inventory | 20 | 14 |
+| SQ7 | Interpretation profiles | 15 | 10 |
+| SQ8 | Output routing topology | 34 | 21 |
+| SQ9 | Aggregate counts | 1 | 1 |
+| SQ10 | Scenarios | -- | -- |
 
-**Both serializations are SPARQL-equivalent**: identical queries yield identical results across all fundamental FRAM domain concepts. This confirms semantic equivalence per W3C RDF 1.1 Concepts (Section 3.5).
+**Both serializations are SPARQL-equivalent** for both reference models: identical queries yield identical results across all fundamental FRAM domain concepts. This confirms semantic equivalence per W3C RDF 1.1 Concepts (Section 3.5).
 
 ### v1.8.0 Overall Summary
 
-| Step | Technique | Result |
-|------|-----------|--------|
-| 0 | W3C RDF 1.1 Conformance | PASS (TTL=OWL=1309 triples) |
-| 1 | JSON-LD -> Turtle | PASS (3292 triples) |
-| 2 | OWL-RL Reasoning | PASS (5377 inferred, 0 unsatisfiable) |
-| 3 | SHACL Shapes | PASS (conforms, 8/8 shapes) |
-| 4 | SPARQL CQs | PASS (6/6 questions) |
-| 5 | OOPS! Scanner | PASS (0 pitfalls at any level) |
-| 6 | Round-trip Fidelity | PASS (RT1 isomorphic) |
-| 7 | Gap Analysis | 71.4% predicate match (informational) |
-| 8 | SPARQL Equivalence | PASS (9/9 = 100%, gold standard) |
+| Step | Technique | EAC1 | EAC2 |
+|------|-----------|:---:|:---:|
+| 0 | W3C RDF 1.1 Conformance | PASS (TTL=OWL=1309) | PASS (TTL=OWL=1309) |
+| 1 | JSON-LD -> Turtle | PASS (2860 triples) | PASS (2196 triples) |
+| 2 | OWL-RL Reasoning | PASS (5321 inferred, 0 unsat) | PASS (4376 inferred, 0 unsat) |
+| 3 | SHACL Shapes | PASS (conforms, 8/8 shapes) | PASS (conforms, 8/8 shapes) |
+| 4 | SPARQL CQs | PASS (6/6) | PASS (6/6) |
+| 5 | OOPS! Scanner | PASS (0 pitfalls; TBox-level) | PASS (0 pitfalls; TBox-level) |
+| 6 | Round-trip Fidelity | PASS (RT1 isomorphic) | PASS (RT1 isomorphic) |
+| 7 | Gap Analysis | 78.9% (informational) | 78.4% (informational) |
+| 8 | SPARQL Equivalence | PASS (9/9 = 100%) | PASS (9/9 = 100%) |
 
-**Ontology version**: v1.8.0 (1309 TBox triples, 59 classes, 129 properties)
-**ABox model**: Li-Huang 2025 (3292 triples, 20 functions, 34 couplings)
-**Validation date**: April 2026
-**Runner**: `python validate_fram_model.py examples/li-huang-2025.ttl examples/li-huang-2025.jsonld`
+**Ontology version**: v1.8.0 (1309 TBox triples; 59 classes; 129 properties)
+**Reference ABoxes**: EAC1 (Li & Huang, 2025) and EAC2 (Patriarca et al., 2024)
+**Runner**:
+```bash
+python validation/validate_fram_model.py examples/eac1-li-huang-2025.ttl       examples/eac1-li-huang-2025.jsonld       --skip-oops
+python validation/validate_fram_model.py examples/eac2-patriarca-et-al.-2024.ttl examples/eac2-patriarca-et-al.-2024.jsonld --skip-oops
+```
 
 ---
 

@@ -6,9 +6,9 @@ An OWL 2 ontology for the **Functional Resonance Analysis Method (FRAM)**, enabl
 
 This badge certifies that the FRAM ontology was scanned with OOPS! (OntOlogy Pitfall Scanner), a tool that detects structural and semantic pitfalls in OWL ontologies.
 
-[![DOI](https://zenodo.org/badge/1162643093.svg)](https://zenodo.org/badge/latestdoi/1162643093)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19430246.svg)](https://doi.org/10.5281/zenodo.19430246)
 
-This badge links to the FRAM ontology on Zenodo and always resolves to the latest version automatically.
+This badge resolves to the latest version of the FRAM Ontology archived on Zenodo (concept DOI `10.5281/zenodo.19430246`). Version-specific DOIs are minted automatically for every GitHub release.
 
 ## Overview
 
@@ -204,7 +204,7 @@ The `fram-model.schema.json` file provides a [JSON Schema (Draft 2020-12)](https
 Using [ajv-cli](https://github.com/ajv-validator/ajv-cli):
 
 ```bash
-npx -y ajv-cli validate -s ontology/fram-model.schema.json -d ontology/examples/li-huang-2025.jsonld --spec=draft2020
+npx -y ajv-cli validate -s fram-model.schema.json -d examples/eac1-li-huang-2025.jsonld --spec=draft2020
 ```
 
 Or programmatically with [ajv](https://ajv.js.org/):
@@ -217,8 +217,8 @@ const addFormats = require('ajv-formats');
 const ajv = new Ajv2020({ allErrors: true });
 addFormats(ajv);
 
-const schema = JSON.parse(fs.readFileSync('ontology/fram-model.schema.json', 'utf8'));
-const data = JSON.parse(fs.readFileSync('ontology/examples/li-huang-2025.jsonld', 'utf8'));
+const schema = JSON.parse(fs.readFileSync('fram-model.schema.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync('examples/eac1-li-huang-2025.jsonld', 'utf8'));
 
 const validate = ajv.compile(schema);
 if (validate(data)) {
@@ -263,12 +263,12 @@ cd validation
 
 # Full benchmark via the orchestrator (recommended)
 python validate_fram_model.py \
-    ../examples/eac1-li-huang-2025-fresh.ttl \
-    ../examples/eac1-li-huang-2025-fresh.jsonld \
+    ../examples/eac1-li-huang-2025.ttl \
+    ../examples/eac1-li-huang-2025.jsonld \
     --skip-oops
 
 # Or run a single step standalone
-python -m validation.steps.step3_shacl ../examples/eac1-li-huang-2025-fresh.ttl
+python -m validation.steps.step3_shacl ../examples/eac1-li-huang-2025.ttl
 ```
 
 See [`validation/README.md`](validation/README.md) for full instructions and expected results.
