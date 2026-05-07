@@ -121,23 +121,6 @@ fram:FunctionAspectShape
         sh:message "S4: An Aspect (within a function) must have a valid aspectCode." ;
     ] .
 
-# --- Shape S5: NormalDistribution must have mean and stdDev ---
-fram:NormalDistributionShape
-    a sh:NodeShape ;
-    sh:targetClass fram:NormalDistribution ;
-    sh:property [
-        sh:path fram:distributionMean ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "S5: A NormalDistribution must have exactly one distributionMean." ;
-    ] ;
-    sh:property [
-        sh:path fram:distributionStdDev ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "S5: A NormalDistribution must have a distributionStdDev." ;
-    ] .
-
 # --- Shape S6: Phenotype instance (ABox) must have a probability ---
 # Targets only ABox phenotype instances (blank nodes created from data),
 # not TBox named individuals like fram:OnTime, fram:Precise, etc.

@@ -39,7 +39,6 @@
     "HumanFunction": "fram:HumanFunction",
     "TechnologicalFunction": "fram:TechnologicalFunction",
     "OrganisationalFunction": "fram:OrganisationalFunction",
-    "SocialFunction": "fram:SocialFunction",
     "BackgroundFunction": "fram:BackgroundFunction",
     "EntryFunction": "fram:EntryFunction",
     "ExitFunction": "fram:ExitFunction",
@@ -53,11 +52,6 @@
     "ExternalVariability": "fram:ExternalVariability",
     "UpstreamVariability": "fram:UpstreamVariability",
     "DownstreamVariability": "fram:DownstreamVariability",
-    "Distribution": "fram:Distribution",
-    "NormalDistribution": "fram:NormalDistribution",
-    "UniformDistribution": "fram:UniformDistribution",
-    "TriangularDistribution": "fram:TriangularDistribution",
-    "LogNormalDistribution": "fram:LogNormalDistribution",
     "Phenotype": "fram:Phenotype",
     "TimingPhenotypeClass": "fram:TimingPhenotype",
     "PrecisionPhenotypeClass": "fram:PrecisionPhenotype",
@@ -168,10 +162,6 @@
       "@id": "fram:targetAspect",
       "@type": "@id"
     },
-    "hasDistribution": {
-      "@id": "fram:hasDistribution",
-      "@type": "@id"
-    },
     "hasPhenotype": {
       "@id": "fram:hasPhenotype",
       "@type": "@id"
@@ -267,22 +257,6 @@
       "@id": "fram:phenotypeProbability",
       "@type": "xsd:decimal"
     },
-    "distributionMean": {
-      "@id": "fram:distributionMean",
-      "@type": "xsd:decimal"
-    },
-    "distributionStdDev": {
-      "@id": "fram:distributionStdDev",
-      "@type": "xsd:decimal"
-    },
-    "distributionMin": {
-      "@id": "fram:distributionMin",
-      "@type": "xsd:decimal"
-    },
-    "distributionMax": {
-      "@id": "fram:distributionMax",
-      "@type": "xsd:decimal"
-    },
     "amplification": {
       "@id": "fram:amplification",
       "@type": "xsd:decimal"
@@ -374,10 +348,6 @@
     },
     "isTargetAspectOf": {
       "@id": "fram:isTargetAspectOf",
-      "@type": "@id"
-    },
-    "isDistributionOf": {
-      "@id": "fram:isDistributionOf",
       "@type": "@id"
     },
     "isPhenotypeOf": {

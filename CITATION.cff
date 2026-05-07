@@ -1,12 +1,13 @@
 cff-version: 1.2.0
 message: "If you use this ontology in academic work, please cite it as below."
-title: "FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method"
+title: "FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis
+  Method"
 abstract: >-
   An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM),
   enabling formal representation of FRAM models as Linked Data. The ontology
-  defines 59 classes and 129 properties (65 object + 64 datatype), 8 SHACL
-  shapes, and a JSON-LD context, with a foundational alignment to gUFO
-  (16 rdfs:subClassOf axioms). Distributed under CC BY-SA 4.0.
+  defines 54 classes and 123 properties (63 object + 60 datatype), 7 SHACL
+  shapes, and a JSON-LD context, with a foundational alignment to gUFO (15
+  rdfs:subClassOf axioms). Distributed under CC BY-SA 4.0.
 type: software
 authors:
   - family-names: Goudouris
@@ -17,12 +18,12 @@ identifiers:
     description: Concept DOI (always resolves to the latest version)
   - type: doi
     value: 10.5281/zenodo.19959352
-    description: Version-specific DOI for v1.8.0
+    description: Version-specific DOI for v1.8.0 (previous version)
 repository-code: "https://github.com/cgoudouris/fram-ontology"
 url: "https://flowfram.com/ontology/fram/"
 license: CC-BY-SA-4.0
-version: "1.8.0"
-date-released: "2026-04-30"
+version: "1.8.1"
+date-released: "2026-05-07"
 keywords:
   - FRAM
   - Functional Resonance Analysis Method
@@ -36,13 +37,14 @@ keywords:
   - safety-II
 preferred-citation:
   type: software
-  title: "FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method"
+  title: "FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis
+    Method"
   authors:
     - family-names: Goudouris
       given-names: César
   year: 2026
-  version: "1.8.0"
-  doi: 10.5281/zenodo.19959352
+  version: "1.8.1"
+  doi: 10.5281/zenodo.18880157
   url: "https://flowfram.com/ontology/fram/"
   repository-code: "https://github.com/cgoudouris/fram-ontology"
   license: CC-BY-SA-4.0

@@ -140,7 +140,6 @@
   },
 
   "$defs": {
-
     "Function": {
       "type": "object",
       "description": "A FRAM function — an activity or task performed by a human, technological, or organisational agent.",
@@ -157,7 +156,6 @@
                 "HumanFunction",
                 "TechnologicalFunction",
                 "OrganisationalFunction",
-                "SocialFunction",
                 "BackgroundFunction",
                 "EntryFunction",
                 "ExitFunction",
@@ -173,7 +171,6 @@
                   "HumanFunction",
                   "TechnologicalFunction",
                   "OrganisationalFunction",
-                  "SocialFunction",
                   "BackgroundFunction",
                   "EntryFunction",
                   "ExitFunction",
@@ -271,7 +268,14 @@
         },
         "aspectType": {
           "type": "string",
-          "enum": ["Input", "Output", "Precondition", "Resource", "Control", "Time"],
+          "enum": [
+            "Input",
+            "Output",
+            "Precondition",
+            "Resource",
+            "Control",
+            "Time"
+          ],
           "description": "Canonical aspect type name."
         },
         "aspectCode": {
@@ -344,9 +348,13 @@
             "@type": {
               "type": "string",
               "enum": [
-                "Aspect", "InputAspect", "OutputAspect",
-                "PreconditionAspect", "ResourceAspect",
-                "ControlAspect", "TimeAspect"
+                "Aspect",
+                "InputAspect",
+                "OutputAspect",
+                "PreconditionAspect",
+                "ResourceAspect",
+                "ControlAspect",
+                "TimeAspect"
               ]
             },
             "@id": { "type": "string" },
@@ -356,7 +364,14 @@
             },
             "aspectType": {
               "type": "string",
-              "enum": ["Input", "Output", "Precondition", "Resource", "Control", "Time"]
+              "enum": [
+                "Input",
+                "Output",
+                "Precondition",
+                "Resource",
+                "Control",
+                "Time"
+              ]
             }
           },
           "additionalProperties": true
@@ -408,10 +423,6 @@
           "type": "array",
           "description": "Detailed phenotype specifications with probabilities.",
           "items": { "$ref": "#/$defs/Phenotype" }
-        },
-        "hasDistribution": {
-          "$ref": "#/$defs/Distribution",
-          "description": "Quantitative probability distribution modeling the variability."
         }
       }
     },
@@ -439,11 +450,23 @@
         "phenotypeValue": {
           "type": "string",
           "enum": [
-            "too-early", "on-time", "too-late", "not-at-all",
-            "precise", "acceptable", "imprecise",
-            "too-short", "appropriate", "too-long",
-            "correct-order", "wrong-order", "skipped", "repeated",
-            "too-low", "on-target", "too-high"
+            "too-early",
+            "on-time",
+            "too-late",
+            "not-at-all",
+            "precise",
+            "acceptable",
+            "imprecise",
+            "too-short",
+            "appropriate",
+            "too-long",
+            "correct-order",
+            "wrong-order",
+            "skipped",
+            "repeated",
+            "too-low",
+            "on-target",
+            "too-high"
           ],
           "description": "The phenotype category."
         },
@@ -454,80 +477,6 @@
           "description": "Probability of this phenotype [0, 1]."
         }
       }
-    },
-
-    "Distribution": {
-      "type": "object",
-      "description": "A probability distribution used for quantitative variability analysis.",
-      "additionalProperties": true,
-      "properties": {
-        "@type": {
-          "type": "string",
-          "enum": [
-            "Distribution",
-            "NormalDistribution",
-            "UniformDistribution",
-            "TriangularDistribution",
-            "LogNormalDistribution"
-          ],
-          "description": "The type of probability distribution."
-        },
-        "distributionMean": {
-          "type": "number",
-          "description": "Mean (μ) — applicable to Normal and LogNormal distributions."
-        },
-        "distributionStdDev": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Standard deviation (σ) — applicable to Normal and LogNormal distributions."
-        },
-        "distributionMin": {
-          "type": "number",
-          "description": "Minimum value — applicable to Uniform and Triangular distributions."
-        },
-        "distributionMax": {
-          "type": "number",
-          "description": "Maximum value — applicable to Uniform and Triangular distributions."
-        },
-        "unit": {
-          "type": "string",
-          "description": "Unit of measurement (e.g. 'minutes', 'seconds', 'percentage')."
-        }
-      },
-      "allOf": [
-        {
-          "if": {
-            "properties": { "@type": { "const": "NormalDistribution" } }
-          },
-          "then": {
-            "required": ["@type", "distributionMean", "distributionStdDev"]
-          }
-        },
-        {
-          "if": {
-            "properties": { "@type": { "const": "LogNormalDistribution" } }
-          },
-          "then": {
-            "required": ["@type", "distributionMean", "distributionStdDev"]
-          }
-        },
-        {
-          "if": {
-            "properties": { "@type": { "const": "UniformDistribution" } }
-          },
-          "then": {
-            "required": ["@type", "distributionMin", "distributionMax"]
-          }
-        },
-        {
-          "if": {
-            "properties": { "@type": { "const": "TriangularDistribution" } }
-          },
-          "then": {
-            "required": ["@type", "distributionMin", "distributionMax"]
-          }
-        }
-      ]
     },
 
     "PerformanceCondition": {
@@ -644,7 +593,10 @@
         "@type": {
           "oneOf": [
             { "const": "EmergentPhenotypeResult" },
-            { "type": "array", "contains": { "const": "EmergentPhenotypeResult" } }
+            {
+              "type": "array",
+              "contains": { "const": "EmergentPhenotypeResult" }
+            }
           ]
         },
         "@id": { "type": "string" },

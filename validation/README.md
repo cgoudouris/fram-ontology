@@ -10,7 +10,7 @@ This benchmark verifies the FRAM Ontology across eight complementary dimensions:
 |------|-----------|------|-------------------|
 | 1 | JSON-LD → Turtle conversion | pyld + rdflib | Context resolution, IRI expansion, serialization integrity |
 | 2 | OWL-RL Reasoning | owlrl | Logical consistency, unsatisfiable classes, inferred triples |
-| 3 | SHACL Shape Validation | pyshacl | Structural constraints via 8 custom shapes |
+| 3 | SHACL Shape Validation | pyshacl | Structural constraints via 7 custom shapes |
 | 4 | SPARQL Competency Questions | rdflib | 6 CQs covering functions, couplings, aspects, variability, phenotypes |
 | 5 | OOPS! Pitfall Scanning | OOPS! REST API | Common ontology design anti-patterns |
 | 6 | Round-trip Fidelity | rdflib isomorphism | TTL ↔ JSON-LD serialization round-trip integrity |
@@ -113,9 +113,9 @@ python validate_fram_model.py \
 
 | File | Role |
 |------|------|
-| [`../fram.ttl`](../fram.ttl) | TBox — canonical ontology definition (1309 triples; 59 classes; 129 properties) |
+| [`../fram.ttl`](../fram.ttl) | TBox — canonical ontology definition (1235 triples; 54 classes; 123 properties) |
 | [`../context.jsonld`](../context.jsonld) | JSON-LD context for term resolution |
-| [`../fram-shapes.ttl`](../fram-shapes.ttl) | SHACL shapes (8 shapes: S1–S8) |
+| [`../fram-shapes.ttl`](../fram-shapes.ttl) | SHACL shapes (7 shapes: S1–S4, S6–S8) |
 | [`../examples/eac1-li-huang-2025.ttl`](../examples/eac1-li-huang-2025.ttl) | ABox — Li & Huang (2025) HSR model (20 functions, 34 couplings, 2860 triples) |
 | [`../examples/eac1-li-huang-2025.jsonld`](../examples/eac1-li-huang-2025.jsonld) | ABox — Li & Huang (2025) JSON-LD serialization |
 | [`../examples/eac2-patriarca-et-al.-2024.ttl`](../examples/eac2-patriarca-et-al.-2024.ttl) | ABox — Patriarca et al. (2024) FRW model (14 functions, 21 couplings, 2196 triples) |
@@ -123,7 +123,7 @@ python validate_fram_model.py \
 
 ## SHACL Shapes
 
-The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 8 SHACL shapes:
+The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 7 SHACL shapes:
 
 | Shape | Target | Constraints |
 |-------|--------|-------------|
@@ -131,10 +131,11 @@ The [`fram-shapes.ttl`](../fram-shapes.ttl) file defines 8 SHACL shapes:
 | S2: FunctionShape | `fram:Function` | Must have `schema:name`, `fram:functionType`, ≥1 `fram:hasAspect` |
 | S3: CouplingShape | `fram:Coupling` | Must have `sourceFunction`, `targetFunction`, `sourceAspect`, `targetAspect` |
 | S4: AspectShape | `fram:Aspect` (via SPARQL) | Must have valid `aspectType` and `aspectCode` ∈ {I, O, P, R, C, T} |
-| S5: NormalDistShape | `fram:NormalDistribution` | Must have `distributionMean` and `distributionStdDev` > 0 |
 | S6: PhenotypeShape | `fram:Phenotype` (via SPARQL) | Must have `phenotypeProbability` ∈ [0, 1] |
 | S7: PhenotypeMappingRuleShape | `fram:PhenotypeMappingRule` | Must have `mapsToVariable` (string) and `mapsToDimension` (VariabilityDimension) |
 | S8: WAIDeclarationShape | `fram:WAIDeclaration` | Must have `dominantPhenotype` (string) and `waiConfidence` ∈ {Low, Medium, High} |
+
+> **Note:** Shape S5 (`NormalDistShape`) was removed in v1.8.1 together with the entire `fram:Distribution` hierarchy. Identifiers S1–S4 and S6–S8 are preserved for continuity with prior reports.
 
 ## Competency Questions
 
@@ -149,19 +150,19 @@ Step 4 validates the ontology against 6 SPARQL-based competency questions execut
 | CQ5 | What are the variability phenotypes of the functions? | 20 | 14 |
 | CQ6 | Which functions receive input from other functions via couplings? | 17 | 11 |
 
-## Expected Results (v1.8.0)
+## Expected Results (v1.8.1)
 
 All steps should pass with the current ontology version against both reference ABoxes:
 
 | Step | EAC1 (Li & Huang, 2025) | EAC2 (Patriarca et al., 2024) |
 |------|---|---|
 | 1 | JSON-LD → TTL conversion succeeds (skipped if input is already TTL) | idem |
-| 2 | PASS — TBox 1309 / ABox 2860 / 5321 inferred; consistent; 0 unsatisfiable | PASS — TBox 1309 / ABox 2196 / 4376 inferred; consistent; 0 unsatisfiable |
-| 3 | PASS — conforms to all 8 shapes | PASS — conforms to all 8 shapes |
+| 2 | PASS — TBox 1235 / ABox 2860 / 5321 inferred; consistent; 0 unsatisfiable | PASS — TBox 1235 / ABox 2196 / 4235 inferred; consistent; 0 unsatisfiable |
+| 3 | PASS — conforms to all 7 shapes | PASS — conforms to all 7 shapes |
 | 4 | PASS — 6/6 CQs answered | PASS — 6/6 CQs answered |
 | 5 | PASS — 0 pitfalls at any severity (executed against TBox; same result for both ABoxes) | idem |
 | 6 | RT1 PASS; RT2 / RT3 expected FAIL (BNode instability and structural differences) | idem |
-| 7 | 56/71 predicates matching (78.9%) — informational | 58/74 predicates matching (78.4%) — informational |
+| 7 | 57/71 predicates matching (80.3%) — informational | 59/74 predicates matching (79.7%) — informational |
 | 8 | PASS — 9/9 applicable SPARQL queries equivalent (100%) | PASS — 9/9 applicable SPARQL queries equivalent (100%) |
 
 > **Step 7 (Gap Analysis) is informational, not a pass/fail criterion.** Coverage cannot reach 100% by construction: the TTL serialization exposes every RDF predicate in the TBox (including `owl:imports`, `rdfs:label`, structural metadata, and named aspect IRIs such as `fram:Input`, `fram:Control`, `fram:Time`), while the compact JSON-LD serialization projects a subset of those predicates onto named keys via the `@context`. Some predicates appear only in JSON-LD (`fram:framPrinciples`, populated by JSON-LD framing). Reaching 100% would require an expanded JSON-LD form, which would defeat the legibility goal of the compact serialization. Semantic equivalence between the two serializations is verified by Step 6 (graph isomorphism, RT1) and Step 8 (gold-standard SPARQL equivalence), which are the binding criteria.

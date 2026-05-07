@@ -10,7 +10,6 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "dc": "http://purl.org/dc/elements/1.1/",
     "dcterms": "http://purl.org/dc/terms/",
-
     "id": "@id",
     "type": "@type",
     "label": "rdfs:label",
@@ -19,7 +18,6 @@
     "definition": "skos:definition",
     "note": "skos:note",
     "example": "skos:example",
-
     "FRAMModel": "fram:FRAMModel",
     "Function": "fram:Function",
     "Aspect": "fram:Aspect",
@@ -38,7 +36,6 @@
     "QuantitativeMetadata": "fram:QuantitativeMetadata",
     "VariabilityPropagation": "fram:VariabilityPropagation",
     "FRAMPrinciple": "fram:FRAMPrinciple",
-
     "HumanFunction": "fram:HumanFunction",
     "TechnologicalFunction": "fram:TechnologicalFunction",
     "OrganisationalFunction": "fram:OrganisationalFunction",
@@ -46,26 +43,16 @@
     "EntryFunction": "fram:EntryFunction",
     "ExitFunction": "fram:ExitFunction",
     "ForegroundFunction": "fram:ForegroundFunction",
-    "SocialFunction": "fram:SocialFunction",
-
     "InputAspect": "fram:InputAspect",
     "OutputAspect": "fram:OutputAspect",
     "PreconditionAspect": "fram:PreconditionAspect",
     "ResourceAspect": "fram:ResourceAspect",
     "ControlAspect": "fram:ControlAspect",
     "TimeAspect": "fram:TimeAspect",
-
     "InternalVariability": "fram:InternalVariability",
     "ExternalVariability": "fram:ExternalVariability",
     "UpstreamVariability": "fram:UpstreamVariability",
     "DownstreamVariability": "fram:DownstreamVariability",
-
-    "Distribution": "fram:Distribution",
-    "NormalDistribution": "fram:NormalDistribution",
-    "UniformDistribution": "fram:UniformDistribution",
-    "TriangularDistribution": "fram:TriangularDistribution",
-    "LogNormalDistribution": "fram:LogNormalDistribution",
-
     "Phenotype": "fram:Phenotype",
     "TimingPhenotypeClass": "fram:TimingPhenotype",
     "PrecisionPhenotypeClass": "fram:PrecisionPhenotype",
@@ -76,7 +63,6 @@
     "ForcePhenotype": "fram:ForcePhenotype",
     "DistancePhenotype": "fram:DistancePhenotype",
     "DirectionPhenotype": "fram:DirectionPhenotype",
-
     "VariabilityDimension": "fram:VariabilityDimension",
     "TimingDimension": "fram:TimingDimension",
     "DurationDimension": "fram:DurationDimension",
@@ -85,7 +71,6 @@
     "ForceDimension": "fram:ForceDimension",
     "DistanceDimension": "fram:DistanceDimension",
     "DirectionDimension": "fram:DirectionDimension",
-
     "TooEarly": "fram:TooEarly",
     "OnTime": "fram:OnTime",
     "TooLate": "fram:TooLate",
@@ -103,53 +88,158 @@
     "TooLow": "fram:TooLow",
     "OnTarget": "fram:OnTarget",
     "TooHigh": "fram:TooHigh",
-
-    "functions": { "@id": "fram:hasFunction", "@type": "@id", "@container": "@set" },
-    "couplings": { "@id": "fram:hasCoupling", "@type": "@id", "@container": "@set" },
-    "variability": { "@id": "fram:hasVariability", "@type": "@id" },
-    "connections": { "@id": "fram:hasCoupling", "@type": "@id", "@container": "@set" },
-    "constants": { "@id": "fram:hasConstant", "@container": "@set" },
-    "variables": { "@id": "fram:hasVariable", "@container": "@set" },
-    "outputs": { "@id": "fram:hasOutput", "@container": "@set" },
-    "performanceConditions": { "@id": "fram:hasPerformanceCondition", "@container": "@set" },
-    "scenarios": { "@id": "fram:hasScenario", "@container": "@set" },
-
-    "hasFunction": { "@id": "fram:hasFunction", "@type": "@id" },
-    "hasCoupling": { "@id": "fram:hasCoupling", "@type": "@id" },
-    "hasAspect": { "@id": "fram:hasAspect", "@type": "@id" },
-    "hasVariability": { "@id": "fram:hasVariability", "@type": "@id" },
-    "hasPerformanceCondition": { "@id": "fram:hasPerformanceCondition", "@type": "@id" },
-    "sourceFunction": { "@id": "fram:sourceFunction", "@type": "@id" },
-    "targetFunction": { "@id": "fram:targetFunction", "@type": "@id" },
-    "sourceAspect": { "@id": "fram:sourceAspect", "@type": "@id" },
-    "targetAspect": { "@id": "fram:targetAspect", "@type": "@id" },
-    "hasDistribution": { "@id": "fram:hasDistribution", "@type": "@id" },
-    "hasPhenotype": { "@id": "fram:hasPhenotype", "@type": "@id" },
-    "hasDimension": { "@id": "fram:hasDimension", "@type": "@id" },
-    "isDimensionOf": { "@id": "fram:isDimensionOf", "@type": "@id" },
+    "functions": {
+      "@id": "fram:hasFunction",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "couplings": {
+      "@id": "fram:hasCoupling",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "variability": {
+      "@id": "fram:hasVariability",
+      "@type": "@id"
+    },
+    "connections": {
+      "@id": "fram:hasCoupling",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "constants": {
+      "@id": "fram:hasConstant",
+      "@container": "@set"
+    },
+    "variables": {
+      "@id": "fram:hasVariable",
+      "@container": "@set"
+    },
+    "outputs": {
+      "@id": "fram:hasOutput",
+      "@container": "@set"
+    },
+    "performanceConditions": {
+      "@id": "fram:hasPerformanceCondition",
+      "@container": "@set"
+    },
+    "scenarios": {
+      "@id": "fram:hasScenario",
+      "@container": "@set"
+    },
+    "hasFunction": {
+      "@id": "fram:hasFunction",
+      "@type": "@id"
+    },
+    "hasCoupling": {
+      "@id": "fram:hasCoupling",
+      "@type": "@id"
+    },
+    "hasAspect": {
+      "@id": "fram:hasAspect",
+      "@type": "@id"
+    },
+    "hasVariability": {
+      "@id": "fram:hasVariability",
+      "@type": "@id"
+    },
+    "hasPerformanceCondition": {
+      "@id": "fram:hasPerformanceCondition",
+      "@type": "@id"
+    },
+    "sourceFunction": {
+      "@id": "fram:sourceFunction",
+      "@type": "@id"
+    },
+    "targetFunction": {
+      "@id": "fram:targetFunction",
+      "@type": "@id"
+    },
+    "sourceAspect": {
+      "@id": "fram:sourceAspect",
+      "@type": "@id"
+    },
+    "targetAspect": {
+      "@id": "fram:targetAspect",
+      "@type": "@id"
+    },
+    "hasPhenotype": {
+      "@id": "fram:hasPhenotype",
+      "@type": "@id"
+    },
+    "hasDimension": {
+      "@id": "fram:hasDimension",
+      "@type": "@id"
+    },
+    "isDimensionOf": {
+      "@id": "fram:isDimensionOf",
+      "@type": "@id"
+    },
     "dimensionName": "fram:dimensionName",
-    "hasContributingFactor": { "@id": "fram:hasContributingFactor", "@type": "@id" },
-    "hasConstant": { "@id": "fram:hasConstant", "@type": "@id" },
-    "hasVariable": { "@id": "fram:hasVariable", "@type": "@id" },
-    "hasOutput": { "@id": "fram:hasOutput", "@type": "@id" },
-    "hasInterpretationProfile": { "@id": "fram:hasInterpretationProfile", "@type": "@id" },
-    "hasPassthrough": { "@id": "fram:hasPassthrough", "@type": "@id" },
-    "hasScenario": { "@id": "fram:hasScenario", "@type": "@id" },
-    "originChain": { "@id": "fram:originChain", "@type": "@id" },
-    "resonancePoint": { "@id": "fram:resonancePoint", "@type": "@id" },
-    "criticalPath": { "@id": "fram:criticalPath", "@type": "@id" },
-    "variabilityHotspot": { "@id": "fram:variabilityHotspot", "@type": "@id" },
-
-    "couplingStrength": { "@id": "fram:couplingStrength", "@type": "xsd:decimal" },
-    "resonanceFactor": { "@id": "fram:resonanceFactor", "@type": "xsd:decimal" },
-    "phenotypeProbability": { "@id": "fram:phenotypeProbability", "@type": "xsd:decimal" },
-    "probability": { "@id": "fram:phenotypeProbability", "@type": "xsd:decimal" },
-    "distributionMean": { "@id": "fram:distributionMean", "@type": "xsd:decimal" },
-    "distributionStdDev": { "@id": "fram:distributionStdDev", "@type": "xsd:decimal" },
-    "distributionMin": { "@id": "fram:distributionMin", "@type": "xsd:decimal" },
-    "distributionMax": { "@id": "fram:distributionMax", "@type": "xsd:decimal" },
-    "amplification": { "@id": "fram:amplification", "@type": "xsd:decimal" },
-
+    "hasContributingFactor": {
+      "@id": "fram:hasContributingFactor",
+      "@type": "@id"
+    },
+    "hasConstant": {
+      "@id": "fram:hasConstant",
+      "@type": "@id"
+    },
+    "hasVariable": {
+      "@id": "fram:hasVariable",
+      "@type": "@id"
+    },
+    "hasOutput": {
+      "@id": "fram:hasOutput",
+      "@type": "@id"
+    },
+    "hasInterpretationProfile": {
+      "@id": "fram:hasInterpretationProfile",
+      "@type": "@id"
+    },
+    "hasPassthrough": {
+      "@id": "fram:hasPassthrough",
+      "@type": "@id"
+    },
+    "hasScenario": {
+      "@id": "fram:hasScenario",
+      "@type": "@id"
+    },
+    "originChain": {
+      "@id": "fram:originChain",
+      "@type": "@id"
+    },
+    "resonancePoint": {
+      "@id": "fram:resonancePoint",
+      "@type": "@id"
+    },
+    "criticalPath": {
+      "@id": "fram:criticalPath",
+      "@type": "@id"
+    },
+    "variabilityHotspot": {
+      "@id": "fram:variabilityHotspot",
+      "@type": "@id"
+    },
+    "couplingStrength": {
+      "@id": "fram:couplingStrength",
+      "@type": "xsd:decimal"
+    },
+    "resonanceFactor": {
+      "@id": "fram:resonanceFactor",
+      "@type": "xsd:decimal"
+    },
+    "phenotypeProbability": {
+      "@id": "fram:phenotypeProbability",
+      "@type": "xsd:decimal"
+    },
+    "probability": {
+      "@id": "fram:phenotypeProbability",
+      "@type": "xsd:decimal"
+    },
+    "amplification": {
+      "@id": "fram:amplification",
+      "@type": "xsd:decimal"
+    },
     "aspectType": "fram:aspectType",
     "aspectCode": "fram:aspectCode",
     "functionType": "fram:functionType",
@@ -173,23 +263,39 @@
     "couplingType": "fram:couplingType",
     "semanticRole": "fram:semanticRole",
     "semanticMeaning": "fram:semanticMeaning",
-
     "value": "fram:value",
     "position": "fram:position",
     "edgeId": "fram:edgeId",
-    "message": { "@id": "fram:message", "@type": "@id" },
-    "passthrough": { "@id": "fram:hasPassthrough", "@container": "@set" },
+    "message": {
+      "@id": "fram:message",
+      "@type": "@id"
+    },
+    "passthrough": {
+      "@id": "fram:hasPassthrough",
+      "@container": "@set"
+    },
     "sourceField": "fram:sourceField",
     "targetField": "fram:targetField",
     "sourceFunctionName": "fram:sourceFunctionName",
     "targetFunctionName": "fram:targetFunctionName",
     "dependencies": "fram:dependencies",
     "factors": "fram:factors",
-    "connectionCount": { "@id": "fram:connectionCount", "@type": "xsd:integer" },
-    "relatedFunction": { "@id": "fram:relatedFunction", "@type": "@id" },
-    "notes": { "@id": "skos:note", "@container": "@set" },
-    "examples": { "@id": "skos:example", "@container": "@set" },
-
+    "connectionCount": {
+      "@id": "fram:connectionCount",
+      "@type": "xsd:integer"
+    },
+    "relatedFunction": {
+      "@id": "fram:relatedFunction",
+      "@type": "@id"
+    },
+    "notes": {
+      "@id": "skos:note",
+      "@container": "@set"
+    },
+    "examples": {
+      "@id": "skos:example",
+      "@container": "@set"
+    },
     "sourceType": "fram:sourceType",
     "externalKey": "fram:externalKey",
     "hasFallback": "fram:hasFallback",
@@ -198,16 +304,13 @@
     "isCustomActivation": "fram:isCustomActivation",
     "interpretationProfile": "fram:hasInterpretationProfile",
     "targetAspectType": "fram:targetAspectType",
-
     "input": "fram:input",
     "precondition": "fram:precondition",
     "resource": "fram:resource",
     "time": "fram:time",
     "control": "fram:control",
-
     "variabilityPropagation": "fram:variabilityPropagation",
     "propagates": "fram:propagates",
-
     "summary": "fram:summary",
     "functionCount": "fram:functionCount",
     "couplingCount": "fram:couplingCount",
@@ -215,38 +318,69 @@
     "couplingsByAspect": "fram:couplingsByAspect",
     "averageConnectionsPerFunction": "fram:averageConnectionsPerFunction",
     "maxConnectionsFunction": "fram:maxConnectionsFunction",
-
     "methodologyContext": "fram:methodologyContext",
     "framPrinciples": "fram:framPrinciples",
     "scenariosEnabled": "fram:scenariosEnabled",
     "scenarioCount": "fram:scenarioCount",
     "quantitativeMetadata": "fram:quantitativeMetadata",
     "metadata": "fram:metadata",
-
     "PhenotypeMappingRule": "fram:PhenotypeMappingRule",
     "WAIDeclaration": "fram:WAIDeclaration",
     "EmergentPhenotypeResult": "fram:EmergentPhenotypeResult",
     "WAIWADComparison": "fram:WAIWADComparison",
-
-    "hasPhenotypeMappingRule": { "@id": "fram:hasPhenotypeMappingRule", "@type": "@id" },
-    "hasWAIDeclaration": { "@id": "fram:hasWAIDeclaration", "@type": "@id" },
-    "hasEmergentResult": { "@id": "fram:hasEmergentResult", "@type": "@id" },
-    "hasWAIWADComparison": { "@id": "fram:hasWAIWADComparison", "@type": "@id" },
+    "hasPhenotypeMappingRule": {
+      "@id": "fram:hasPhenotypeMappingRule",
+      "@type": "@id"
+    },
+    "hasWAIDeclaration": {
+      "@id": "fram:hasWAIDeclaration",
+      "@type": "@id"
+    },
+    "hasEmergentResult": {
+      "@id": "fram:hasEmergentResult",
+      "@type": "@id"
+    },
+    "hasWAIWADComparison": {
+      "@id": "fram:hasWAIWADComparison",
+      "@type": "@id"
+    },
     "mapsToVariable": "fram:mapsToVariable",
-    "mapsToDimension": { "@id": "fram:mapsToDimension", "@type": "@id" },
-    "discordanceIndex": { "@id": "fram:discordanceIndex", "@type": "xsd:decimal" },
+    "mapsToDimension": {
+      "@id": "fram:mapsToDimension",
+      "@type": "@id"
+    },
+    "discordanceIndex": {
+      "@id": "fram:discordanceIndex",
+      "@type": "xsd:decimal"
+    },
     "concordanceLevel": "fram:concordanceLevel",
     "waiConfidence": "fram:waiConfidence",
     "waiRationale": "fram:waiRationale",
     "dominantPhenotype": "fram:dominantPhenotype",
-    "dominantProbability": { "@id": "fram:dominantProbability", "@type": "xsd:decimal" },
-    "sampleSize": { "@id": "fram:sampleSize", "@type": "xsd:integer" },
-    "phenotypeMappings": { "@id": "fram:hasPhenotypeMappingRule", "@container": "@set" },
-    "waiDeclarations": { "@id": "fram:hasWAIDeclaration", "@container": "@set" },
-
-    "executionTimestamp": { "@id": "fram:executionTimestamp", "@type": "xsd:dateTime" },
-    "cycleNumber": { "@id": "fram:cycleNumber", "@type": "xsd:integer" },
-
+    "dominantProbability": {
+      "@id": "fram:dominantProbability",
+      "@type": "xsd:decimal"
+    },
+    "sampleSize": {
+      "@id": "fram:sampleSize",
+      "@type": "xsd:integer"
+    },
+    "phenotypeMappings": {
+      "@id": "fram:hasPhenotypeMappingRule",
+      "@container": "@set"
+    },
+    "waiDeclarations": {
+      "@id": "fram:hasWAIDeclaration",
+      "@container": "@set"
+    },
+    "executionTimestamp": {
+      "@id": "fram:executionTimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "cycleNumber": {
+      "@id": "fram:cycleNumber",
+      "@type": "xsd:integer"
+    },
     "creator": "schema:creator",
     "author": "schema:author",
     "dateCreated": "schema:dateCreated",
@@ -254,37 +388,117 @@
     "version": "schema:version",
     "about": "schema:about",
     "keywords": "schema:keywords",
-    "isPartOf": { "@id": "schema:isPartOf", "@type": "@id" },
-    "hasPart": { "@id": "schema:hasPart", "@type": "@id" },
-
-    "isFunctionOf": { "@id": "fram:isFunctionOf", "@type": "@id" },
-    "isCouplingOf": { "@id": "fram:isCouplingOf", "@type": "@id" },
-    "isAspectOf": { "@id": "fram:isAspectOf", "@type": "@id" },
-    "isSourceOf": { "@id": "fram:isSourceOf", "@type": "@id" },
-    "isTargetOf": { "@id": "fram:isTargetOf", "@type": "@id" },
-
-    "isVariabilityOf": { "@id": "fram:isVariabilityOf", "@type": "@id" },
-    "isPerformanceConditionOf": { "@id": "fram:isPerformanceConditionOf", "@type": "@id" },
-    "isSourceAspectOf": { "@id": "fram:isSourceAspectOf", "@type": "@id" },
-    "isTargetAspectOf": { "@id": "fram:isTargetAspectOf", "@type": "@id" },
-    "isDistributionOf": { "@id": "fram:isDistributionOf", "@type": "@id" },
-    "isPhenotypeOf": { "@id": "fram:isPhenotypeOf", "@type": "@id" },
-    "isContributingFactorTo": { "@id": "fram:isContributingFactorTo", "@type": "@id" },
-    "isConstantOf": { "@id": "fram:isConstantOf", "@type": "@id" },
-    "isVariableOf": { "@id": "fram:isVariableOf", "@type": "@id" },
-    "isOutputOf": { "@id": "fram:isOutputOf", "@type": "@id" },
-    "isScenarioOf": { "@id": "fram:isScenarioOf", "@type": "@id" },
-    "isInterpretationProfileOf": { "@id": "fram:isInterpretationProfileOf", "@type": "@id" },
-    "isPassthroughOf": { "@id": "fram:isPassthroughOf", "@type": "@id" },
-    "isOriginChainIn": { "@id": "fram:isOriginChainIn", "@type": "@id" },
-    "isResonancePointIn": { "@id": "fram:isResonancePointIn", "@type": "@id" },
-    "isCriticalPathIn": { "@id": "fram:isCriticalPathIn", "@type": "@id" },
-    "isVariabilityHotspotIn": { "@id": "fram:isVariabilityHotspotIn", "@type": "@id" },
-
-    "isPhenotypeMappingRuleOf": { "@id": "fram:isPhenotypeMappingRuleOf", "@type": "@id" },
-    "isWAIDeclarationOf": { "@id": "fram:isWAIDeclarationOf", "@type": "@id" },
-    "isEmergentResultOf": { "@id": "fram:isEmergentResultOf", "@type": "@id" },
-    "isWAIWADComparisonOf": { "@id": "fram:isWAIWADComparisonOf", "@type": "@id" },
-    "isMappingDimensionOf": { "@id": "fram:isMappingDimensionOf", "@type": "@id" }
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    },
+    "hasPart": {
+      "@id": "schema:hasPart",
+      "@type": "@id"
+    },
+    "isFunctionOf": {
+      "@id": "fram:isFunctionOf",
+      "@type": "@id"
+    },
+    "isCouplingOf": {
+      "@id": "fram:isCouplingOf",
+      "@type": "@id"
+    },
+    "isAspectOf": {
+      "@id": "fram:isAspectOf",
+      "@type": "@id"
+    },
+    "isSourceOf": {
+      "@id": "fram:isSourceOf",
+      "@type": "@id"
+    },
+    "isTargetOf": {
+      "@id": "fram:isTargetOf",
+      "@type": "@id"
+    },
+    "isVariabilityOf": {
+      "@id": "fram:isVariabilityOf",
+      "@type": "@id"
+    },
+    "isPerformanceConditionOf": {
+      "@id": "fram:isPerformanceConditionOf",
+      "@type": "@id"
+    },
+    "isSourceAspectOf": {
+      "@id": "fram:isSourceAspectOf",
+      "@type": "@id"
+    },
+    "isTargetAspectOf": {
+      "@id": "fram:isTargetAspectOf",
+      "@type": "@id"
+    },
+    "isPhenotypeOf": {
+      "@id": "fram:isPhenotypeOf",
+      "@type": "@id"
+    },
+    "isContributingFactorTo": {
+      "@id": "fram:isContributingFactorTo",
+      "@type": "@id"
+    },
+    "isConstantOf": {
+      "@id": "fram:isConstantOf",
+      "@type": "@id"
+    },
+    "isVariableOf": {
+      "@id": "fram:isVariableOf",
+      "@type": "@id"
+    },
+    "isOutputOf": {
+      "@id": "fram:isOutputOf",
+      "@type": "@id"
+    },
+    "isScenarioOf": {
+      "@id": "fram:isScenarioOf",
+      "@type": "@id"
+    },
+    "isInterpretationProfileOf": {
+      "@id": "fram:isInterpretationProfileOf",
+      "@type": "@id"
+    },
+    "isPassthroughOf": {
+      "@id": "fram:isPassthroughOf",
+      "@type": "@id"
+    },
+    "isOriginChainIn": {
+      "@id": "fram:isOriginChainIn",
+      "@type": "@id"
+    },
+    "isResonancePointIn": {
+      "@id": "fram:isResonancePointIn",
+      "@type": "@id"
+    },
+    "isCriticalPathIn": {
+      "@id": "fram:isCriticalPathIn",
+      "@type": "@id"
+    },
+    "isVariabilityHotspotIn": {
+      "@id": "fram:isVariabilityHotspotIn",
+      "@type": "@id"
+    },
+    "isPhenotypeMappingRuleOf": {
+      "@id": "fram:isPhenotypeMappingRuleOf",
+      "@type": "@id"
+    },
+    "isWAIDeclarationOf": {
+      "@id": "fram:isWAIDeclarationOf",
+      "@type": "@id"
+    },
+    "isEmergentResultOf": {
+      "@id": "fram:isEmergentResultOf",
+      "@type": "@id"
+    },
+    "isWAIWADComparisonOf": {
+      "@id": "fram:isWAIWADComparisonOf",
+      "@type": "@id"
+    },
+    "isMappingDimensionOf": {
+      "@id": "fram:isMappingDimensionOf",
+      "@type": "@id"
+    }
   }
 }

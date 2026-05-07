@@ -39,14 +39,15 @@
 # =============================================================================
 
 <https://flowfram.com/ontology/fram/> a owl:Ontology ;
-    owl:versionIRI <https://flowfram.com/ontology/fram/1.8.0> ;
-    owl:versionInfo "1.8.0" ;
+    owl:versionIRI <https://flowfram.com/ontology/fram/1.8.1> ;
+    owl:versionInfo "1.8.1" ;
     dc:title "FRAM Ontology"@en ;
     dc:description "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns."@en ;
     dc:creator "César Goudouris" ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
     dcterms:created "2025-01-01"^^xsd:date ;
-    dcterms:modified "2026-04-22"^^xsd:date ;
+    dcterms:modified "2026-05-07"^^xsd:date ;
+    rdfs:comment "v1.8.1 patch release: removed all Distribution-related elements (Distribution class and 4 subclasses, hasDistribution / isDistributionOf object properties, distributionMean / distributionStdDev / distributionMin / distributionMax datatype properties, NormalDistributionShape, gUFO alignment fram:Distribution rdfs:subClassOf gufo:AbstractIndividual). The previous Monte-Carlo-bound design was inadequate to express the methodological pluralism of variability quantification in FRAM (analytical, fuzzy, Bayesian, agent-based) and is deferred to a future release. In v1.8.1 the ontology represents variability strictly at the qualitative level: dimensions (timing, precision, duration, sequence, force, distance, direction) and classified phenotypes (e.g. TooEarly, OnTime, Imprecise) with associated probability."@en ;
     vann:preferredNamespacePrefix "fram" ;
     vann:preferredNamespaceUri "https://flowfram.com/ontology/fram/" ;
     rdfs:seeAlso <https://github.com/cgoudouris/fram-ontology> ;
@@ -97,12 +98,6 @@ fram:FunctionalResonance a owl:Class ;
     rdfs:label "Functional Resonance"@en ;
     rdfs:comment "An emergent phenomenon arising from the unintended interaction of everyday performance variability of multiple functions."@en ;
     skos:definition "The detectable signal arising when everyday variability of multiple functions combines and amplifies through couplings, potentially leading to unexpected outcomes. This is the core concept of FRAM analysis."@en ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:Distribution a owl:Class ;
-    rdfs:label "Distribution"@en ;
-    rdfs:comment "A probability distribution characterizing the quantitative variability of a function output or aspect."@en ;
-    skos:definition "A mathematical probability distribution (Normal, Uniform, Triangular, LogNormal) used to quantify the variability of function outputs for simulation and analysis."@en ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:Phenotype a owl:Class ;
@@ -433,35 +428,6 @@ fram:TooHigh a fram:ForcePhenotype ;
 
 
 # =============================================================================
-# DISTRIBUTION SUBCLASSES
-# =============================================================================
-
-fram:NormalDistribution a owl:Class ;
-    rdfs:subClassOf fram:Distribution ;
-    rdfs:label "Normal Distribution"@en ;
-    rdfs:comment "A Gaussian (normal) probability distribution characterized by mean and standard deviation."@en ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:UniformDistribution a owl:Class ;
-    rdfs:subClassOf fram:Distribution ;
-    rdfs:label "Uniform Distribution"@en ;
-    rdfs:comment "A uniform probability distribution where all values in a range are equally likely."@en ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:TriangularDistribution a owl:Class ;
-    rdfs:subClassOf fram:Distribution ;
-    rdfs:label "Triangular Distribution"@en ;
-    rdfs:comment "A triangular probability distribution characterized by minimum, mode, and maximum values."@en ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:LogNormalDistribution a owl:Class ;
-    rdfs:subClassOf fram:Distribution ;
-    rdfs:label "Log-Normal Distribution"@en ;
-    rdfs:comment "A log-normal probability distribution where the logarithm of the variable is normally distributed."@en ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-
-# =============================================================================
 # VARIABILITY TYPE SUBCLASSES
 # =============================================================================
 
@@ -557,13 +523,6 @@ fram:targetAspect a owl:ObjectProperty ;
     rdfs:range fram:Aspect ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
-fram:hasDistribution a owl:ObjectProperty ;
-    rdfs:label "has distribution"@en ;
-    rdfs:comment "Associates a quantitative variability characterization with a probability distribution."@en ;
-    rdfs:domain fram:Variability ;
-    rdfs:range fram:Distribution ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
 fram:hasPhenotype a owl:ObjectProperty ;
     rdfs:label "has phenotype"@en ;
     rdfs:comment "Associates variability with a phenotype along any variability dimension."@en ;
@@ -655,34 +614,6 @@ fram:phenotypeProbability a owl:DatatypeProperty ;
     rdfs:range xsd:decimal ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
-fram:distributionMean a owl:DatatypeProperty ;
-    rdfs:label "distribution mean"@en ;
-    rdfs:comment "The mean value of a probability distribution."@en ;
-    rdfs:domain fram:Distribution ;
-    rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:distributionStdDev a owl:DatatypeProperty ;
-    rdfs:label "distribution standard deviation"@en ;
-    rdfs:comment "The standard deviation of a probability distribution."@en ;
-    rdfs:domain fram:Distribution ;
-    rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:distributionMin a owl:DatatypeProperty ;
-    rdfs:label "distribution minimum"@en ;
-    rdfs:comment "The minimum value of a probability distribution."@en ;
-    rdfs:domain fram:Distribution ;
-    rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:distributionMax a owl:DatatypeProperty ;
-    rdfs:label "distribution maximum"@en ;
-    rdfs:comment "The maximum value of a probability distribution."@en ;
-    rdfs:domain fram:Distribution ;
-    rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
 fram:timingPhenotype a owl:DatatypeProperty ;
     rdfs:label "timing phenotype"@en ;
     rdfs:comment "The timing dimension of variability: too-early, on-time, too-late, or not-at-all (Hollnagel, 2012). Retained for backward compatibility; prefer hasPhenotype + hasDimension for extensible modeling."@en ;
@@ -706,8 +637,7 @@ fram:dimensionName a owl:DatatypeProperty ;
 
 fram:expression a owl:DatatypeProperty ;
     rdfs:label "expression"@en ;
-    rdfs:comment "A mathematical expression or formula associated with variability calculations."@en ;
-    rdfs:domain fram:Distribution ;
+    rdfs:comment "A mathematical expression or formula associated with quantitative metadata of a function."@en ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
@@ -1239,14 +1169,6 @@ fram:hasPassthrough a owl:ObjectProperty ;
 
 [] a owl:AllDisjointClasses ;
    owl:members (
-        fram:NormalDistribution
-        fram:UniformDistribution
-        fram:TriangularDistribution
-        fram:LogNormalDistribution
-    ) .
-
-[] a owl:AllDisjointClasses ;
-   owl:members (
         fram:UpstreamVariability
         fram:DownstreamVariability
         fram:InternalVariability
@@ -1341,14 +1263,6 @@ fram:isTargetAspectOf a owl:ObjectProperty ;
     rdfs:domain fram:Aspect ;
     rdfs:range fram:Coupling ;
     owl:inverseOf fram:targetAspect ;
-    rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
-
-fram:isDistributionOf a owl:ObjectProperty ;
-    rdfs:label "is distribution of"@en ;
-    rdfs:comment "Relates a distribution back to the variability it characterizes."@en ;
-    rdfs:domain fram:Distribution ;
-    rdfs:range fram:Variability ;
-    owl:inverseOf fram:hasDistribution ;
     rdfs:isDefinedBy <https://flowfram.com/ontology/fram/> .
 
 fram:isPhenotypeOf a owl:ObjectProperty ;
@@ -1572,9 +1486,6 @@ fram:PerformanceCondition rdfs:subClassOf gufo:Disposition ;
 
 fram:FunctionalResonance rdfs:subClassOf gufo:Event ;
     rdfs:comment "Functional Resonance is a gufo:Event — an emergent complex event arising from the temporal coincidence and mutual amplification of everyday variability across coupled functions."@en .
-
-fram:Distribution rdfs:subClassOf gufo:AbstractIndividual ;
-    rdfs:comment "A probability distribution is a gufo:AbstractIndividual — an abstract entity that does not exist in space-time but characterizes the quantitative profile of variability."@en .
 
 fram:Phenotype rdfs:subClassOf gufo:QualityValue ;
     rdfs:comment "A phenotype is a gufo:QualityValue — a point in a specific dimension of the variability quality space (e.g., OnTime in TimingDimension, TooLow in ForceDimension)."@en .

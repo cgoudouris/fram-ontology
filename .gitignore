@@ -1,1 +1,8 @@
 .DS_Store
+.venv/
+__pycache__/
+*.pyc
+validation/results/*.json
+validation/results/*.xml
+validation/results/*-model.ttl
+validation/fram_rdfxml.owl

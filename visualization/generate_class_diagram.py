@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate publication-quality class diagrams of the FRAM Ontology v1.8.0.
+Generate publication-quality class diagrams of the FRAM Ontology v1.8.1.
 
 Produces TWO companion figures:
 
@@ -69,12 +69,12 @@ def _node(parent, label, fill, color, dashed=False, fontsize="10"):
 def build_hierarchy_diagram(g: Graph, output_name: str):
     """Class hierarchy + gUFO alignment as a compact TB tree."""
     dot = Digraph(
-        name="FRAM Ontology v1.8.0 - Class Hierarchy",
+        name="FRAM Ontology v1.8.1 - Class Hierarchy",
         format="svg",
         engine="dot",
         graph_attr={
             "rankdir": "TB",
-            "label": "FRAM Ontology v1.8.0 - Class Hierarchy and gUFO Alignment\n ",
+            "label": "FRAM Ontology v1.8.1 - Class Hierarchy and gUFO Alignment\n ",
             "labelloc": "t",
             "fontname": "Helvetica",
             "fontsize": "16",
@@ -91,8 +91,9 @@ def build_hierarchy_diagram(g: Graph, output_name: str):
 
     # Row 1: gUFO foundational anchors (top)
     gufo_classes = [
-        "gufo:Collection", "gufo:Event", "gufo:ExternallyDependentMode",
-        "gufo:Object", "gufo:Quality", "gufo:Disposition",
+        "gufo:Object", "gufo:Event", "gufo:IntrinsicMode",
+        "gufo:RelationalQuality", "gufo:Quality", "gufo:QualityValue",
+        "gufo:Disposition",
     ]
     with dot.subgraph(name="cluster_gufo") as c:
         c.attr(
@@ -154,7 +155,7 @@ def build_hierarchy_diagram(g: Graph, output_name: str):
 
     # Row 4: Variability + WAI side clusters
     var_classes = ["fram:Variability", "fram:Phenotype",
-                   "fram:NormalDistribution", "fram:PerformanceCondition"]
+                   "fram:VariabilityDimension", "fram:PerformanceCondition"]
     with dot.subgraph(name="cluster_var") as c:
         c.attr(
             label="Variability & Quantitative", style="rounded,filled",
@@ -180,11 +181,13 @@ def build_hierarchy_diagram(g: Graph, output_name: str):
     # Explicit edges: ONLY the FRAM -> gUFO alignment.
     # Intra-FRAM subClassOf is conveyed by cluster labels.
     gufo_subclass = [
-        ("fram:FRAMModel", "gufo:Collection"),
+        ("fram:FRAMModel", "gufo:Object"),
         ("fram:Function", "gufo:Event"),
-        ("fram:Aspect", "gufo:ExternallyDependentMode"),
-        ("fram:Coupling", "gufo:Object"),
+        ("fram:Aspect", "gufo:IntrinsicMode"),
+        ("fram:Coupling", "gufo:RelationalQuality"),
         ("fram:Variability", "gufo:Quality"),
+        ("fram:VariabilityDimension", "gufo:Quality"),
+        ("fram:Phenotype", "gufo:QualityValue"),
         ("fram:PerformanceCondition", "gufo:Disposition"),
     ]
     for child, parent in gufo_subclass:
@@ -225,8 +228,8 @@ def build_hierarchy_diagram(g: Graph, output_name: str):
 
     dot.node(
         "annotation",
-        label=("Showing 30 of 59 classes  -  65 Object Properties  -  "
-               "64 Datatype Properties  -  1,309 TBox triples\n"
+        label=("Showing 30 of 54 classes  -  63 Object Properties  -  "
+               "60 Datatype Properties  -  1,235 TBox triples\n"
                "Object-property network in companion figure "
                "(fram_ontology_properties.svg)"),
         shape="note", style="filled", fillcolor="#FCF3CF",
@@ -244,12 +247,12 @@ def build_hierarchy_diagram(g: Graph, output_name: str):
 def build_property_diagram(g: Graph, output_name: str):
     """Companion diagram: key object properties as a small network."""
     dot = Digraph(
-        name="FRAM Ontology v1.8.0 - Object Properties",
+        name="FRAM Ontology v1.8.1 - Object Properties",
         format="svg",
         engine="dot",
         graph_attr={
             "rankdir": "LR",
-            "label": "FRAM Ontology v1.8.0 - Key Object Properties (Domain -> Range)\n ",
+            "label": "FRAM Ontology v1.8.1 - Key Object Properties (Domain -> Range)\n ",
             "labelloc": "t",
             "fontname": "Helvetica",
             "fontsize": "15",
@@ -274,7 +277,7 @@ def build_property_diagram(g: Graph, output_name: str):
         ("fram:Coupling", COLORS["core"], FRAM_FILL),
         ("fram:Aspect", COLORS["core"], FRAM_FILL),
         ("fram:Variability", COLORS["variability"], VAR_FILL),
-        ("fram:NormalDistribution", COLORS["variability"], VAR_FILL),
+        ("fram:VariabilityDimension", COLORS["variability"], VAR_FILL),
         ("fram:Phenotype", COLORS["variability"], VAR_FILL),
         ("fram:PerformanceCondition", COLORS["variability"], VAR_FILL),
         ("fram:WAIDeclaration", COLORS["wai_wad"], WAI_FILL),
@@ -283,15 +286,15 @@ def build_property_diagram(g: Graph, output_name: str):
         dot.node(_nid(label), label=label, color=color, fillcolor=fill)
 
     edges = [
-        ("fram:FRAMScenario", "fram:FRAMModel", "hasModel"),
+        ("fram:FRAMModel", "fram:FRAMScenario", "hasScenario"),
         ("fram:FRAMModel", "fram:Function", "hasFunction"),
         ("fram:FRAMModel", "fram:Coupling", "hasCoupling"),
         ("fram:Function", "fram:Aspect", "hasAspect"),
         ("fram:Coupling", "fram:Function", "sourceFunction"),
         ("fram:Coupling", "fram:Aspect", "sourceAspect"),
-        ("fram:Function", "fram:Variability", "hasVariabilityPotential"),
-        ("fram:Variability", "fram:NormalDistribution", "hasDistribution"),
+        ("fram:Function", "fram:Variability", "hasVariability"),
         ("fram:Variability", "fram:Phenotype", "hasPhenotype"),
+        ("fram:Phenotype", "fram:VariabilityDimension", "mapsToDimension"),
         ("fram:Function", "fram:PerformanceCondition", "hasPerformanceCondition"),
         ("fram:Function", "fram:WAIDeclaration", "hasWAIDeclaration"),
     ]

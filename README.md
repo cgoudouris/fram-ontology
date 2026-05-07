@@ -14,7 +14,7 @@ This badge resolves to the latest version of the FRAM Ontology archived on Zenod
 
 ![FRAM Ontology — Class Hierarchy and gUFO Alignment](visualization/fram_ontology_diagram.svg?v=2)
 
-*Class hierarchy and gUFO foundational alignment (30 of 59 classes shown). The companion figure [`fram_ontology_properties.svg`](visualization/fram_ontology_properties.svg) presents the network of key object properties (domain → range).*
+*Class hierarchy and gUFO foundational alignment (30 of 54 classes shown). The companion figure [`fram_ontology_properties.svg`](visualization/fram_ontology_properties.svg) presents the network of key object properties (domain → range).*
 
 The FRAM Ontology provides a formal vocabulary for describing FRAM models, including:
 
@@ -25,7 +25,6 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 - **Variability Dimensions** — extensible hierarchy of variability dimensions based on Hollnagel (2012), Delikhoon et al. (2024), and Karevan & Nadeau (2025)
 - **Performance Conditions** — Common Performance Conditions (CPCs) that influence variability
 - **Functional Resonance** — emergent phenomena arising from the interaction of everyday variability
-- **Distributions** — probability distributions (Normal, Uniform, Triangular, LogNormal) for quantitative analysis
 
 ## Namespace
 
@@ -42,7 +41,7 @@ The FRAM Ontology provides a formal vocabulary for describing FRAM models, inclu
 | [`context.jsonld`](context.jsonld) | JSON-LD context file for use in `@context` references |
 | [`fram-model.schema.json`](fram-model.schema.json) | JSON Schema (2020-12) for validating FRAM model documents |
 | [`fram.owl`](fram.owl) | OWL/RDF-XML serialization (auto-generated from `fram.ttl`) |
-| [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (8 shapes) |
+| [`fram-shapes.ttl`](fram-shapes.ttl) | SHACL shapes for structural validation (7 shapes) |
 | [`examples/`](examples/) | Example FRAM models serialized as JSON-LD |
 | [`validation/`](validation/) | 8-step automated validation benchmark (Python) |
 | [`visualization/`](visualization/) | Class-diagram generator (`rdflib` + `graphviz`) and two canonical figures: `fram_ontology_diagram.{svg,png}` (class hierarchy + gUFO alignment) and `fram_ontology_properties.{svg,png}` (object-property network) |
@@ -107,7 +106,7 @@ owl:Thing
 │   ├── fram:HumanFunction
 │   ├── fram:TechnologicalFunction
 │   ├── fram:OrganisationalFunction
-│   ├── fram:SocialFunction
+
 │   ├── fram:BackgroundFunction
 │   ├── fram:EntryFunction
 │   ├── fram:ExitFunction
@@ -135,11 +134,6 @@ owl:Thing
 │   └── fram:DirectionDimension
 ├── fram:PerformanceCondition ─── rdfs:subClassOf gufo:Disposition
 ├── fram:FunctionalResonance ──── rdfs:subClassOf gufo:Event
-├── fram:Distribution ─────────── rdfs:subClassOf gufo:AbstractIndividual
-│   ├── fram:NormalDistribution
-│   ├── fram:UniformDistribution
-│   ├── fram:TriangularDistribution
-│   └── fram:LogNormalDistribution
 ├── fram:Phenotype ────────────── rdfs:subClassOf gufo:QualityValue
 │   ├── fram:TimingPhenotype
 │   ├── fram:DurationPhenotype
@@ -169,7 +163,6 @@ owl:Thing
 | `sourceFunction` | Coupling | Function | Coupling source |
 | `targetFunction` | Coupling | Function | Coupling target |
 | `hasVariability` | Function | Variability | Function's variability |
-| `hasDistribution` | Variability | Distribution | Quantitative distribution |
 | `hasPhenotype` | Variability | Phenotype | Qualitative phenotype |
 | `hasPhenotypeMappingRule` | Function | PhenotypeMappingRule | Analyst-defined classification rule |
 | `hasWAIDeclaration` | PhenotypeMappingRule | WAIDeclaration | Expected phenotype (Work-as-Imagined) |
@@ -200,8 +193,8 @@ The `fram-model.schema.json` file provides a [JSON Schema (Draft 2020-12)](https
 
 - **Required properties**: every `Function` must have `name`, `@type`, and `functionType`
 - **Enumerated values**: `functionType` ∈ {human, technological, organisational, background}, `aspectCode` ∈ {I, O, P, R, C, T}, phenotype values, etc.
-- **Numeric constraints**: `couplingStrength` ∈ [0, 1], distribution parameters ≥ 0
-- **Conditional rules**: `NormalDistribution` requires `mean` + `stddev`; `UniformDistribution` requires `min` + `max`
+- **Numeric constraints**: `couplingStrength` ∈ [0, 1], probability values ∈ [0, 1]
+- **Conditional rules**: `WAIDeclaration` requires `dominantPhenotype` and `waiConfidence` ∈ {Low, Medium, High}; `PhenotypeMappingRule` requires `mapsToVariable` and `mapsToDimension`
 - **Structural integrity**: correct nesting of functions, aspects, couplings, variability, and scenarios
 
 ### Validating a Model
@@ -253,7 +246,7 @@ The [`validation/`](validation/) directory contains an **8-step automated benchm
 |------|-----------|-------------------|
 | 1 | JSON-LD → Turtle | Context resolution, serialization integrity |
 | 2 | OWL-RL Reasoning | Logical consistency, unsatisfiable classes |
-| 3 | SHACL Shapes | Structural constraints (8 shapes in [`fram-shapes.ttl`](fram-shapes.ttl)) |
+| 3 | SHACL Shapes | Structural constraints (7 shapes in [`fram-shapes.ttl`](fram-shapes.ttl)) |
 | 4 | SPARQL CQs | 6 competency questions against example model |
 | 5 | OOPS! Scanner | Common ontology design anti-patterns |
 | 6 | Round-trip Fidelity | TTL ↔ JSON-LD serialization integrity |
@@ -280,7 +273,7 @@ See [`validation/README.md`](validation/README.md) for full instructions and exp
 
 ## Foundational Ontology Alignment (gUFO)
 
-Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unified Foundational Ontology** ([gUFO](https://purl.org/nemo/gufo)) — Guizzardi et al. (2021). This anchors FRAM domain concepts in well-established ontological categories. As of v1.6.0, the alignment comprises **16 `rdfs:subClassOf` axioms**.
+Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unified Foundational Ontology** ([gUFO](https://purl.org/nemo/gufo)) — Guizzardi et al. (2021). This anchors FRAM domain concepts in well-established ontological categories. As of v1.8.1, the alignment comprises **15 `rdfs:subClassOf` axioms**.
 
 ### Alignment Table
 
@@ -293,7 +286,6 @@ Since v1.3.0, the FRAM Ontology includes a lightweight alignment with the **Unif
 | `Variability` | `gufo:Quality` | Measurable property with an associated quality space |
 | `PerformanceCondition` | `gufo:Disposition` | Latent property that manifests under specific conditions |
 | `FunctionalResonance` | `gufo:Event` | Emergent complex event |
-| `Distribution` | `gufo:AbstractIndividual` | Abstract entity (not in space-time) |
 | `Phenotype` | `gufo:QualityValue` | Point in the quality space of variability |
 | `VariabilityDimension` | `gufo:Quality` | Measurable dimension of performance variability |
 | `PhenotypeMappingRule` | `gufo:AbstractIndividual` | Abstract classification specification |
@@ -321,11 +313,12 @@ Lališ et al. (2019) proposed mapping FRAM Functions to UFO *Dispositions* — l
 | 1.1.0 | 2025-02 | Added quantitative metadata classes (Constant, Variable, OutputMessage, InterpretationProfile, Passthrough) |
 | 1.2.0 | 2025-03 | Added Distribution and Phenotype class hierarchies; FRAMScenario |
 | 1.3.0 | 2025-03 | gUFO foundational alignment (11 axioms); full inverse properties; disjointness axioms; OOPS! validation |
-| 1.4.0 | 2025-06 | Function taxonomy restructuring — orthogonal Nature (Human, Technological, Organisational) and Flow Role (Entry, Exit, Background, Foreground) dimensions; SocialFunction added |
+| 1.4.0 | 2025-06 | Function taxonomy restructuring — orthogonal Nature (Human, Technological, Organisational) and Flow Role (Entry, Exit, Background, Foreground) dimensions |
 | 1.5.0 | 2025-07 | Multi-dimensional variability — VariabilityDimension class with 7 subclasses (Timing, Duration, Sequence, Precision, Force, Distance, Direction); 5 new Phenotype subclasses; 10 new individuals; 12th gUFO axiom; expanded disjointness axioms |
 | 1.6.0 | 2026-04 | Emergent phenotype classification — 4 new classes (PhenotypeMappingRule, WAIDeclaration, EmergentPhenotypeResult, WAIWADComparison); 6 new object properties; 7 new datatype properties; WAI/WAD comparison framework with discordance index Δ(WAI-WAD); 16 gUFO axioms |
 | 1.7.0 | 2026-04 | Semantic purity refinement — 6 new datatype properties for TBox completeness: `targetAspectType` (OutputMessage routing), `input`, `precondition`, `resource`, `control`, `time` (InterpretationProfile aspect modes); context.jsonld expanded with `model:` prefix for ABox IRIs; examples updated to Li-Huang-2025 cross-domain model; SPARQL equivalence validated (9/9 PASS) between TTL and JSON-LD serializations |
 | 1.8.0 | 2026-04 | ABox alignment and domain purity — 4 new classes (ModelSummary, QuantitativeMetadata, VariabilityPropagation, FRAMPrinciple), 9 new object properties, 11 new datatype properties; validation benchmark expanded from 5 to 8 steps with round-trip fidelity, gap analysis, and SPARQL equivalence; domain purity audit: platform-specific concepts (LLM prompts, AI insights) excluded from TBox by design; TBox: 59 classes, 129 properties (65 OP + 64 DP), 1309 triples |
+| 1.8.1 | 2026-05 | Patch release — removed all Distribution-related elements (Distribution class and 4 subclasses, `hasDistribution` / `isDistributionOf` object properties, `distributionMean` / `distributionStdDev` / `distributionMin` / `distributionMax` datatype properties, `NormalDistShape`, gUFO alignment `Distribution rdfs:subClassOf gufo:AbstractIndividual`). The previous Monte-Carlo-bound design was inadequate to express the methodological pluralism of variability quantification in FRAM (analytical, fuzzy, Bayesian, agent-based) and is deferred to a future release. The TBox now represents variability strictly at the qualitative level: dimensions and classified phenotypes with associated probability. TBox: 54 classes, 123 properties (63 OP + 60 DP), 1235 triples; 7 SHACL shapes; 15 gUFO axioms |
 
 ## Background
 
