@@ -8,6 +8,8 @@
   xmlns:vann="http://purl.org/vocab/vann/"
   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
   xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:schema="https://schema.org/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
 >
   <owl:DatatypeProperty rdf:about="https://flowfram.com/ontology/fram/dimensionName">
     <rdfs:label xml:lang="en">dimension name</rdfs:label>
@@ -20,7 +22,13 @@
         <owl:versionInfo>1.8.1</owl:versionInfo>
         <dc:title xml:lang="en">FRAM Ontology</dc:title>
         <dc:description xml:lang="en">An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models, functions, aspects, couplings, variability, performance conditions, and functional resonance patterns.</dc:description>
-        <dc:creator>César Goudouris</dc:creator>
+        <dc:creator>César Augusto Simões Goudouris</dc:creator>
+        <dcterms:creator rdf:resource="https://orcid.org/0009-0006-2693-0267"/>
+        <dcterms:contributor rdf:resource="https://orcid.org/0000-0002-9276-8193"/>
+        <dcterms:contributor rdf:resource="https://orcid.org/0000-0002-7059-6546"/>
+        <dcterms:publisher rdf:resource="https://ror.org/03490as77"/>
+        <dcterms:bibliographicCitation xml:lang="en">Goudouris, C. A. S. (2026). FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method (v1.8.1). Zenodo. https://doi.org/10.5281/zenodo.18880157</dcterms:bibliographicCitation>
+        <schema:sameAs rdf:resource="https://doi.org/10.5281/zenodo.18880157"/>
         <dcterms:license rdf:resource="https://creativecommons.org/licenses/by-sa/4.0/"/>
         <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-01</dcterms:created>
         <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-05-07</dcterms:modified>
@@ -1455,4 +1463,32 @@
     <rdfs:comment xml:lang="en">A phenotype describing variability in direction: Correct Direction, Wrong Direction, or Reversed (Delikhoon et al., 2024).</rdfs:comment>
     <rdfs:isDefinedBy rdf:resource="https://flowfram.com/ontology/fram/"/>
   </owl:Class>
+
+  <!-- Provenance: authors, supervisors and affiliations (ORCID / ROR IRIs) -->
+  <schema:Person rdf:about="https://orcid.org/0009-0006-2693-0267">
+    <schema:name>César Augusto Simões Goudouris</schema:name>
+    <foaf:name>César Augusto Simões Goudouris</foaf:name>
+    <schema:affiliation rdf:resource="https://ror.org/03490as77"/>
+    <schema:roleName>Author</schema:roleName>
+  </schema:Person>
+  <schema:Person rdf:about="https://orcid.org/0000-0002-9276-8193">
+    <schema:name>Paulo Victor Rodrigues de Carvalho</schema:name>
+    <foaf:name>Paulo Victor Rodrigues de Carvalho</foaf:name>
+    <schema:affiliation rdf:resource="https://ror.org/03490as77"/>
+    <schema:roleName>Supervisor</schema:roleName>
+  </schema:Person>
+  <schema:Person rdf:about="https://orcid.org/0000-0002-7059-6546">
+    <schema:name>Alessandro Jatobá</schema:name>
+    <foaf:name>Alessandro Jatobá</foaf:name>
+    <schema:affiliation rdf:resource="https://ror.org/04jhswv08"/>
+    <schema:roleName>Supervisor</schema:roleName>
+  </schema:Person>
+  <schema:Organization rdf:about="https://ror.org/03490as77">
+    <schema:name>Universidade Federal do Rio de Janeiro (UFRJ)</schema:name>
+    <schema:department>Programa de Pós-Graduação em Informática (PPGI)</schema:department>
+  </schema:Organization>
+  <schema:Organization rdf:about="https://ror.org/04jhswv08">
+    <schema:name>Fundação Oswaldo Cruz (Fiocruz)</schema:name>
+    <schema:department>Centro de Estudos Estratégicos (CEE)</schema:department>
+  </schema:Organization>
 </rdf:RDF>
