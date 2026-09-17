@@ -1,0 +1,53 @@
+{
+  "upload_type": "software",
+  "title": "FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method",
+  "language": "eng",
+  "version": "1.8.1",
+  "license": "cc-by-sa-4.0",
+  "creators": [
+    {
+      "name": "Goudouris, César Augusto Simões",
+      "orcid": "0009-0006-2693-0267",
+      "affiliation": "Programa de Pós-Graduação em Informática (PPGI), Universidade Federal do Rio de Janeiro (UFRJ), Brazil"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Carvalho, Paulo Victor Rodrigues de",
+      "type": "Supervisor",
+      "orcid": "0000-0002-9276-8193",
+      "affiliation": "Programa de Pós-Graduação em Informática (PPGI), Universidade Federal do Rio de Janeiro (UFRJ), Brazil"
+    },
+    {
+      "name": "Jatobá, Alessandro",
+      "type": "Supervisor",
+      "orcid": "0000-0002-7059-6546",
+      "affiliation": "Centro de Estudos Estratégicos (CEE), Fundação Oswaldo Cruz (Fiocruz), Brazil"
+    }
+  ],
+  "keywords": [
+    "FRAM",
+    "Functional Resonance Analysis Method",
+    "ontology",
+    "OWL 2",
+    "Linked Data",
+    "JSON-LD",
+    "SHACL",
+    "gUFO",
+    "resilience engineering",
+    "safety-II"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/cgoudouris/fram-ontology",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://flowfram.com/ontology/fram/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ],
+  "description": "An OWL 2 ontology for the Functional Resonance Analysis Method (FRAM), enabling formal representation of FRAM models as Linked Data. The ontology defines 54 classes and 123 properties (63 object + 60 datatype), 7 SHACL shapes, and a JSON-LD context, with a foundational alignment to gUFO (15 rdfs:subClassOf axioms).\n\nThis artefact is a research product of the doctoral research of César Augusto Simões Goudouris at the Programa de Pós-Graduação em Informática (PPGI), Universidade Federal do Rio de Janeiro (UFRJ), Brazil, supervised by Prof. Paulo Victor Rodrigues de Carvalho, DSc (PPGI/UFRJ) and Prof. Alessandro Jatobá, DSc (CEE/Fiocruz). It underpins the FlowFRAM platform (https://flowfram.com) and the doctoral thesis \"FlowFRAM: promoção do Pensamento Complexo por meio de uma ferramenta de modelagem FRAM baseada em programação orientada a fluxo\" (in preparation; a version-of-record identifier will be added once deposited).\n\nDistributed under CC BY-SA 4.0."
+}

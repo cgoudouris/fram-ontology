@@ -10,6 +10,8 @@ This badge certifies that the FRAM ontology was scanned with OOPS! (OntOlogy Pit
 
 This badge resolves to the latest version of the FRAM Ontology archived on Zenodo (concept DOI `10.5281/zenodo.18880157`). Version-specific DOIs are minted automatically for every GitHub release (e.g. v1.8.0 → `10.5281/zenodo.19959352`).
 
+**Author:** César Augusto Simões Goudouris [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--2693--0267-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0006-2693-0267) — doctoral research at [PPGI](https://ppgi.ufrj.br)/[UFRJ](https://ror.org/03490as77), supervised by Prof. Paulo Victor Rodrigues de Carvalho, DSc and Prof. Alessandro Jatobá, DSc. See [Academic Context and Provenance](#academic-context-and-provenance).
+
 ## Overview
 
 ![FRAM Ontology — Class Hierarchy and gUFO Alignment](visualization/fram_ontology_diagram.svg?v=2)
@@ -318,7 +320,7 @@ Lališ et al. (2019) proposed mapping FRAM Functions to UFO *Dispositions* — l
 | 1.6.0 | 2026-04 | Emergent phenotype classification — 4 new classes (PhenotypeMappingRule, WAIDeclaration, EmergentPhenotypeResult, WAIWADComparison); 6 new object properties; 7 new datatype properties; WAI/WAD comparison framework with discordance index Δ(WAI-WAD); 16 gUFO axioms |
 | 1.7.0 | 2026-04 | Semantic purity refinement — 6 new datatype properties for TBox completeness: `targetAspectType` (OutputMessage routing), `input`, `precondition`, `resource`, `control`, `time` (InterpretationProfile aspect modes); context.jsonld expanded with `model:` prefix for ABox IRIs; examples updated to Li-Huang-2025 cross-domain model; SPARQL equivalence validated (9/9 PASS) between TTL and JSON-LD serializations |
 | 1.8.0 | 2026-04 | ABox alignment and domain purity — 4 new classes (ModelSummary, QuantitativeMetadata, VariabilityPropagation, FRAMPrinciple), 9 new object properties, 11 new datatype properties; validation benchmark expanded from 5 to 8 steps with round-trip fidelity, gap analysis, and SPARQL equivalence; domain purity audit: platform-specific concepts (LLM prompts, AI insights) excluded from TBox by design; TBox: 59 classes, 129 properties (65 OP + 64 DP), 1309 triples |
-| 1.8.1 | 2026-05 | Patch release — removed all Distribution-related elements (Distribution class and 4 subclasses, `hasDistribution` / `isDistributionOf` object properties, `distributionMean` / `distributionStdDev` / `distributionMin` / `distributionMax` datatype properties, `NormalDistShape`, gUFO alignment `Distribution rdfs:subClassOf gufo:AbstractIndividual`). The previous Monte-Carlo-bound design was inadequate to express the methodological pluralism of variability quantification in FRAM (analytical, fuzzy, Bayesian, agent-based) and is deferred to a future release. The TBox now represents variability strictly at the qualitative level: dimensions and classified phenotypes with associated probability. TBox: 54 classes, 123 properties (63 OP + 60 DP), 1235 triples; 7 SHACL shapes; 15 gUFO axioms |
+| 1.8.1 | 2026-05 | Patch release — removed all Distribution-related elements (Distribution class and 4 subclasses, `hasDistribution` / `isDistributionOf` object properties, `distributionMean` / `distributionStdDev` / `distributionMin` / `distributionMax` datatype properties, `NormalDistShape`, gUFO alignment `Distribution rdfs:subClassOf gufo:AbstractIndividual`). The previous Monte-Carlo-bound design was inadequate to express the methodological pluralism of variability quantification in FRAM (analytical, fuzzy, Bayesian, agent-based) and is deferred to a future release. The TBox now represents variability strictly at the qualitative level: dimensions and classified phenotypes with associated probability. TBox: 54 classes, 123 properties (63 OP + 60 DP), 1235 triples; 7 SHACL shapes; 15 gUFO axioms. This release is also the first archived with full machine-readable provenance: `.zenodo.json`, author ORCID and PPGI/UFRJ affiliation, doctoral supervisors as Zenodo contributors (Supervisor role) and a README Academic Context section |
 
 ## Background
 
@@ -344,6 +346,19 @@ This ontology powers the [FlowFRAM](https://flowfram.com) platform, an open-sour
 - Quantitative variability analysis with probability distributions
 - JSON-LD export for Linked Data interoperability
 - AI-assisted analysis via LLM integration
+
+## Academic Context and Provenance
+
+This ontology is a research product of the doctoral research of **César Augusto Simões Goudouris** ([ORCID 0009-0006-2693-0267](https://orcid.org/0009-0006-2693-0267)) at the **Programa de Pós-Graduação em Informática (PPGI)**, **Universidade Federal do Rio de Janeiro (UFRJ)** ([ROR 03490as77](https://ror.org/03490as77)), Brazil.
+
+The research is supervised by:
+
+- **Prof. Paulo Victor Rodrigues de Carvalho**, DSc ([ORCID 0000-0002-9276-8193](https://orcid.org/0000-0002-9276-8193)) — PPGI, Universidade Federal do Rio de Janeiro (UFRJ) ([ROR 03490as77](https://ror.org/03490as77))
+- **Prof. Alessandro Jatobá**, DSc ([ORCID 0000-0002-7059-6546](https://orcid.org/0000-0002-7059-6546)) — Centro de Estudos Estratégicos (CEE), Fundação Oswaldo Cruz (Fiocruz) ([ROR 04jhswv08](https://ror.org/04jhswv08))
+
+The ontology underpins the [FlowFRAM](https://flowfram.com) platform and the doctoral thesis *"FlowFRAM: promoção do Pensamento Complexo por meio de uma ferramenta de modelagem FRAM baseada em programação orientada a fluxo"* (in preparation). A version-of-record identifier for the thesis will be added here and to the Zenodo record once it is deposited.
+
+Persistent archival copies of every release are minted on Zenodo (concept DOI [`10.5281/zenodo.18880157`](https://doi.org/10.5281/zenodo.18880157)). The [`.zenodo.json`](.zenodo.json) file at the repository root drives the GitHub–Zenodo integration, so authorship, supervision (contributor role *Supervisor*), affiliations, ORCIDs, and related identifiers are propagated automatically to each new deposit.
 
 ## Contributing
 
@@ -375,11 +390,14 @@ This ontology is released under the [Creative Commons Attribution-ShareAlike 4.0
 If you use this ontology in academic work, please cite:
 
 ```bibtex
-@misc{framontology2025,
-  title = {FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method},
-  author = {Goudouris, César},
-  year = {2025},
-  url = {https://flowfram.com/ontology/fram/},
-  note = {Available at: https://github.com/cgoudouris/fram-ontology}
+@misc{framontology2026,
+  title        = {FRAM Ontology: An OWL 2 Vocabulary for the Functional Resonance Analysis Method},
+  author       = {Goudouris, C{\'e}sar Augusto Sim{\~o}es},
+  year         = {2026},
+  version      = {1.8.1},
+  doi          = {10.5281/zenodo.18880157},
+  url          = {https://flowfram.com/ontology/fram/},
+  howpublished = {Programa de Pós-Graduação em Informática (PPGI), Universidade Federal do Rio de Janeiro (UFRJ)},
+  note         = {Available at: https://github.com/cgoudouris/fram-ontology}
 }
 ```

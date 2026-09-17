@@ -7,11 +7,17 @@ abstract: >-
   enabling formal representation of FRAM models as Linked Data. The ontology
   defines 54 classes and 123 properties (63 object + 60 datatype), 7 SHACL
   shapes, and a JSON-LD context, with a foundational alignment to gUFO (15
-  rdfs:subClassOf axioms). Distributed under CC BY-SA 4.0.
+  rdfs:subClassOf axioms). This artefact is a research product of the doctoral
+  research of César Augusto Simões Goudouris at the Programa de Pós-Graduação
+  em Informática (PPGI), Universidade Federal do Rio de Janeiro (UFRJ),
+  supervised by Prof. Paulo Victor Rodrigues de Carvalho, DSc (PPGI/UFRJ) and
+  Prof. Alessandro Jatobá, DSc (CEE/Fiocruz). Distributed under CC BY-SA 4.0.
 type: software
 authors:
   - family-names: Goudouris
-    given-names: César
+    given-names: César Augusto Simões
+    orcid: "https://orcid.org/0009-0006-2693-0267"
+    affiliation: "Programa de Pós-Graduação em Informática (PPGI), Universidade Federal do Rio de Janeiro (UFRJ)"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.18880157
@@ -41,7 +47,9 @@ preferred-citation:
     Method"
   authors:
     - family-names: Goudouris
-      given-names: César
+      given-names: César Augusto Simões
+      orcid: "https://orcid.org/0009-0006-2693-0267"
+      affiliation: "Programa de Pós-Graduação em Informática (PPGI), Universidade Federal do Rio de Janeiro (UFRJ)"
   year: 2026
   version: "1.8.1"
   doi: 10.5281/zenodo.18880157
